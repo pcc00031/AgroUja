@@ -14,8 +14,15 @@ h1 {
     padding: 0px;
 }
 
+ul {
+    margin: 1% 5% 0.5% 0px;
+    padding: 0px 0px 0px 0px;
+    list-style: none;
+}
+
+
 a:link, a:visited {
-    color: #045491;
+    color: #FFF;
     font-weight : bold;
     text-decoration: none;
 }
@@ -29,11 +36,15 @@ a:link:hover, a:visited:hover  {
     max-width: 960px;
 }
 
+p{
+    color: #FFF;
+}
+
 .site-header {
     background-color: seagreen;
     -webkit-backdrop-filter: saturate(180%) blur(20px);
     backdrop-filter: saturate(180%) blur(20px);
-    padding: 10%;
+    padding: 5%;
 }
 .site-header a {
     color: #FFF;

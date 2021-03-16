@@ -6,6 +6,11 @@
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <link rel="icon" href="" />
+        <h:outputStylesheet library="css" name="bootstrap.min.css"/>
         <h:outputStylesheet library="css" name="default.css"/>
         <h:outputStylesheet library="css" name="cssLayout.css"/>
         <title>AgroUja - Productos</title>
@@ -14,7 +19,17 @@
     <h:body>
 
         <div id="top">
-            <ui:insert name="top"><h1>AgroUja</h1></ui:insert>
+            <nav class="site-header sticky-top py-1">
+
+                <div class="container d-flex flex-column flex-md-row justify-content-between">
+                    <ul> <li><h:link  outcome="/index">AGROUJA</h:link></li></ul>
+                    <ul> <li><h:link  outcome="index">Productos</h:link></li></ul>
+                    <ul> <li class="margenmov"><h:link  outcome="/contacto/index">Contacto</h:link></li></ul>
+                    <a class="py-2 d-none d-md-inline-block margenmov" ></a>
+                    <a class="py-2 d-none d-md-inline-block " href="login">Iniciar sesión</a>
+                    <a class="py-2 d-none d-md-inline-block " href="registro">Registro</a>
+                </div>
+            </nav>
         </div>
         <div>
             <div id="left">
@@ -25,7 +40,10 @@
             </div>
         </div>
         <div id="bottom">
-            <ui:insert name="bottom">Pedro Corpas Cuesta</ui:insert>
+            <footer class="container">
+                <p class="float-right"><a href="#">Back to top</a></p>
+                <p>&copy; 2017-2018 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+            </footer>
         </div>
 
     </h:body>
