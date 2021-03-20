@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../WEB-INF/plantilla/layout-prod.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="left">
+        <h:form>
+            <aside>
+
+                <p:card style="margin-top: 5%; padding-top: 1%; background-color: white; width: 310px; max-height: 270px">
+                    <p:selectOneRadio id="customRadio" value="" layout="custom">
+                        <f:selectItem itemLabel="Red" itemValue="Red"/>
+                        <f:selectItem itemLabel="Green" itemValue="Green"/>
+                        <f:selectItem itemLabel="Blue" itemValue="Blue"/>
+                    </p:selectOneRadio>
+                    <h5>Seleccione categoría</h5><hr></hr>
+                    <h:panelGrid  columns="2" cellpadding="5">
+                        <p:radioButton id="opt1" for="customRadio" itemIndex="0"/>
+                        <h:outputLabel for="opt1" value="Todos los elementos"/>
+
+                        <p:radioButton id="opt2" for="customRadio" itemIndex="1"/>
+                        <h:outputLabel for="opt2" value="Aceites"/>
+
+                        <p:radioButton id="opt3" for="customRadio" itemIndex="2"/>
+                        <h:outputLabel for="opt3" value="Herramientas"/>
+
+                    </h:panelGrid>
+                    <center>  <p:button styleClass="ui-button-success" value="Buscar" icon="pi pi-search" /></center>
+                </p:card>
+                <br></br>
+
+                <p:card style="padding-top: 1%; margin-bottom: 10%; background-color: #white; width: 310px; max-height: 270px">
+                    <p:selectOneRadio id="customRadio1" value="" layout="custom">
+                        <f:selectItem itemLabel="marc" itemValue="marc"/>
+                        <f:selectItem itemLabel="marc1" itemValue="marc1"/>
+                        <f:selectItem itemLabel="marc2" itemValue="marc2"/>
+                    </p:selectOneRadio>
+                    <h5>Seleccione marca</h5><hr></hr>
+                    <h:panelGrid style="color: #black;" columns="2" cellpadding="5">
+                        <p:radioButton id="opt4" for="customRadio1" itemIndex="1"/>
+                        <h:outputLabel for="opt4" value="Todos los elementos"/>
+
+                        <p:radioButton id="opt5" for="customRadio1" itemIndex="1"/>
+                        <h:outputLabel for="opt5" value="AgroUja"/>
+
+                        <p:radioButton id="opt6" for="customRadio1" itemIndex="2"/>
+                        <h:outputLabel for="opt6" value="Desconocida"/>
+                    </h:panelGrid>
+                    <center>  <p:button styleClass="ui-button-success" value="Buscar" icon="pi pi-search" /></center>
+
+                </p:card>
+
+
+            </aside>
+        </h:form>
+    </ui:define>
+
+    <ui:define name="content">
+
+        <h:form>
+            <p:menubar style="max-height: 60px">
+                <p:menuitem outcome="agregar" value="Nuevo producto" icon="pi pi-fw pi-plus"/>
+                <p:menuitem  value="Comparar productos" icon="pi pi-fw pi-copy"/>
+                <f:facet name="options">    
+                    <p:inputText placeholder="Search"/> <i class="pi pi-fw pi-search"/>   
+                </f:facet>
+            </p:menubar>
+
+        </h:form>
+
+        <section>
+            <h:form>
+                <ul>
+
+                    <li> 
+                        <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: #white; width: 210px; max-height: 250px">
+                            <h:link outcome="visualizar"><h:graphicImage height="100" width="150" name="pala.png" library="images"/></h:link><br></br> <hr></hr>                                                       
+                            <h:link style="color: #85bb5c" outcome="visualizar">Visualizar</h:link>
+                        </p:card>
+                    </li>
+                    <li> 
+                        <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: #white; width: 210px; max-height: 250px">
+                            <h:link outcome="visualizar"><h:graphicImage height="100" width="150" name="pala.png" library="images"/></h:link><br></br> <hr></hr>                                                       
+                            <h:link style="color: #85bb5c" outcome="visualizar">Visualizar</h:link>
+                        </p:card>
+                    </li>
+                    <li> 
+                        <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: #white; width: 210px; max-height: 250px">
+                            <h:link outcome="visualizar"><h:graphicImage height="100" width="150" name="pala.png" library="images"/></h:link><br></br> <hr></hr>                                                       
+                            <h:link style="color: #85bb5c" outcome="visualizar">Visualizar</h:link>
+                        </p:card>
+                    </li>
+                    <li> 
+                        <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: #white; width: 210px; max-height: 250px">
+                            <h:link outcome="visualizar"><h:graphicImage height="100" width="150" name="pala.png" library="images"/></h:link><br></br> <hr></hr>                                                       
+                            <h:link style="color: #85bb5c" outcome="visualizar">Visualizar</h:link>
+                        </p:card>
+                    </li>
+                    <li> 
+                        <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: #white; width: 210px; max-height: 250px">
+                            <h:link outcome="visualizar"><h:graphicImage height="100" width="150" name="aceite.png" library="images"/></h:link><br></br> <hr></hr>                                                       
+                            <h:link style="color: #85bb5c" outcome="visualizar">Visualizar</h:link>
+                        </p:card>
+                    </li>
+                    <li> 
+                        <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: #white; width: 210px; max-height: 250px">
+                            <h:link outcome="visualizar"><h:graphicImage height="100" width="150" name="aceite.png" library="images"/></h:link><br></br> <hr></hr>                                                       
+                            <h:link style="color: #85bb5c" outcome="visualizar">Visualizar</h:link>
+                        </p:card>
+                    </li>
+                    <li> 
+                        <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: #white; width: 210px; max-height: 250px">
+                            <h:link outcome="visualizar"><h:graphicImage height="100" width="150" name="aceite.png" library="images"/></h:link><br></br> <hr></hr>                                                       
+                            <h:link style="color: #85bb5c" outcome="visualizar">Visualizar</h:link>
+                        </p:card>
+                    </li>              
+                    <li> 
+                        <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: #white; width: 210px; max-height: 250px">
+                            <h:link outcome="visualizar"><h:graphicImage height="100" width="150" name="aceite.png" library="images"/></h:link><br></br> <hr></hr>                                                       
+                            <h:link style="color: #85bb5c" outcome="visualizar">Visualizar</h:link>
+                        </p:card>
+                    </li>
+                </ul>
+            </h:form>
+        </section>
+    </ui:define>
+
+</ui:composition>

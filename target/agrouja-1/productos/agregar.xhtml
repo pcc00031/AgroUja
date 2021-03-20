@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../WEB-INF/plantilla/layout.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:define  name="content">
+
+        <h:form>
+            <p:fieldset  style=" align-self:  center; margin-left: 30%; margin-right: 30%" legend="Datos del producto">
+                <h:panelGrid style="margin-left: 10%;" columns="2" cellpadding="7">
+                    <p:outputLabel for="Nomb" value="Nombre" />
+                    <p:inputText id="Nomb" required="true" />
+
+                    <p:outputLabel for="input1" value="Precio"/>
+                    <p:inputNumber id="input1" value="#{inputNumberView.input1}" modifyValueOnWheel="false" required="true"/>
+                    <p:outputLabel  value="Estado"/>
+                    <p:selectOneRadio required="true">
+                        <f:selectItem itemValue="Nuevo" itemLabel="Nuevo"/>
+                        <f:selectItem itemValue="Usado" itemLabel="Usado"/>
+                    </p:selectOneRadio>
+                    <p:outputLabel  value="Tipo de promoción"/>
+                    <p:selectOneRadio required="true">
+                        <f:selectItem itemValue="Venta" itemLabel="Venta"/>
+                        <f:selectItem itemValue="Alquiler" itemLabel="Alquiler"/>
+                    </p:selectOneRadio>
+                    <p:outputLabel for="@next" value="Categoría"/>
+                    <p:selectOneMenu id="option" value="#{selectOneMenuView.selectedOption}">
+                        <f:selectItem itemLabel="Desconocida" itemValue="Otro"/>
+                        <f:selectItem itemLabel="Comestible" itemValue="Comestible"/>
+                        <f:selectItem itemLabel="Maquinaria" itemValue="Maquinaria"/>
+                        <f:selectItem itemLabel="Otra" itemValue="Otro"/>
+
+                    </p:selectOneMenu>
+                    <p:outputLabel value="Marca"/>
+                    <p:selectOneMenu id="option1" value="">
+
+                        <f:selectItem itemLabel="Desconocida" itemValue="Nose"/>
+                        <f:selectItem itemLabel="AgroUja" itemValue="erer"/>
+                        <f:selectItem itemLabel="Nueva marca" itemValue="asd"/>
+
+                    </p:selectOneMenu>
+
+                    <p:outputLabel  value="Destacado"/>
+
+                    <p:selectBooleanCheckbox  itemLabel="Sí"/>
+                    <p:outputLabel value="Descripción"/>
+                    <p:inputTextarea rows="6" cols="33"/>
+                    <p:outputLabel for="User" value="Imagen"/>
+                    <p:inputText type="file" id="User"  />
+
+
+                    <p:commandButton icon="pi pi-check" styleClass="ui-button-success" value="Añadir"/>
+
+
+                </h:panelGrid>
+            </p:fieldset>
+
+
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>
