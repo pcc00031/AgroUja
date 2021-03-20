@@ -4,14 +4,14 @@
                 template="/WEB-INF/plantilla/layout.xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui">
-    <img src="carousel/img1.jpg" alt=""/>
     <ui:define name="content">
         <h:body>
             <h:form>
-                <p:contentFlow value="#{carr.images}" var="image">
-<!--                    <p:graphicImage library="carousel" name="#{image}" styleClass="content"/>-->
-                    <p:graphicImage  url="carousel/#{image}" styleClass="content"/>
-                    <div class="caption">#{image}</div>
+                <p:contentFlow>
+                    <p:graphicImage library="images" value="1" name="img1.jpg" styleClass="content"/>
+                    <p:graphicImage library="images" value="1" name="img2.jpg" styleClass="content"/>
+                    <p:graphicImage library="images" value="1" name="img3.jpg" styleClass="content"/>
+
                 </p:contentFlow>
             </h:form>
         </h:body>
