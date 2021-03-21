@@ -1,23 +1,23 @@
 # AGROUJA SL - VERSIÓN 1.0
 
-# Nuevos archivos
+## Nuevos archivos
 
 - hojas de estilo
 - diferentes layouts de las distintas vistas
 - vistas .jsf (Usuario, productos, contacto y principal)
 - algunas clases java auxiliares
 
-# Nuevas funcionalidades
+## Nuevas funcionalidades
 
 - el usuario puede navegar correctamente entre las vistas de la aplicación
 - formularios editables por todas las vistas
 
-# Correciones
+## Correciones
 
 - solapamiento de funciones .css
 - apartados visuales 
 
-# Aporte de cada miembro
+## Aporte de cada miembro
 
 - vista principal de productos (/productos/index) - @pcc00031
 - vista de agregar producto (/productos/agregar) - @pcc00031
