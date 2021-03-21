@@ -2,15 +2,16 @@
 
 ![fondo](https://user-images.githubusercontent.com/49394226/111911219-e9466700-8a64-11eb-930f-0e8f88fcbbf9.jpg)
 
-## ?? Descripción
-El propósito de nuestro proyecto es facilitar a los agricultores un portal de compraventa y alquiler de productos y maquinaria agrícola.
-La página estaría orientada para particulares, de esta forma podrían conseguir ahorrar algo de dinero a la hora de publicar los productos que ya no necesiten. Además otros particulares podrían beneficiarse de adquirir este tipo de mercancía con una significativa reducción del coste final.
+## ðŸŒ³ DescripciÃ³n
 
-## ?? Requisitos funcionales
+El propÃ³sito de nuestro proyecto es facilitar a los agricultores un portal de compraventa y alquiler de productos y maquinaria agrÃ­cola.
+La pÃ¡gina estarÃ­a orientada para particulares, de esta forma podrÃ­an conseguir ahorrar algo de dinero a la hora de publicar los productos que ya no necesiten. AdemÃ¡s otros particulares podrÃ­an beneficiarse de adquirir este tipo de mercancÃ­a con una significativa reducciÃ³n del coste final.
 
-El proyecto contará con:
+## ðŸ“¢ Requisitos funcionales
 
-- Registro e inicio/cierre sesión de usuario.
-- Sistema para añadir y/o comprar/alquilar productos.
+El proyecto contarÃ¡ con:
+
+- Registro e inicio/cierre sesiÃ³n de usuario.
+- Sistema para aÃ±adir y/o comprar/alquilar productos.
 - Posibilidad de valorar y comentar los productos.
 - Formulario de contacto
