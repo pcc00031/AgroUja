@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html" 
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <link rel="icon" href="" />
+        <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+        <h:outputStylesheet library="css" name="default.css"/>
+        <h:outputStylesheet library="css" name="cssLayout.css"/>
+        <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces"/>
+        <title>AgroUja</title>
+    </h:head>
+
+    <h:body>
+        <header>
+            <div id="top">
+                <nav class="site-header sticky-top py-1">
+
+                    <div style="font-size: 13px; " class="container d-flex flex-column flex-md-row justify-content-between">
+                        <ul> <li><h:link  outcome="/index">AGROUJA</h:link></li></ul>
+                        <ul> <li><h:link  outcome="/productos/index">Productos</h:link></li></ul>
+                        <ul> <li class="margenmov"><h:link  outcome="/contacto">Contacto</h:link></li></ul>
+                        <a class="py-2 d-none d-md-inline-block margenmov" ></a>
+                        <ul> <li style="width: 125px"><h:link  outcome="/login">Iniciar Sesión</h:link></li></ul>
+                        <ul> <li><h:link  outcome="/registro">Registro</h:link></li></ul>
+                        <h:link outcome="/usuario/index"> <p:avatar icon="pi pi-user" shape="circle" styleClass="p-mr-2" style="padding: 1%;margin-bottom: 20%;margin-top: 10%;background: #006600;color: white" /></h:link>
+                    </div>
+                </nav>
+            </div>  
+        </header>
+
+
+        <div id="content" class="center_content">
+            <ui:insert name="content">Content</ui:insert>
+        </div>
+
+        <div id="bottom">
+            <footer class="container">
+                <p class="float-right"><a href="#">Back to top</a></p>
+                <p style="color: white;">&copy; 2020-2021 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+
+            </footer>
+        </div>
+
+    </h:body>
+
+</html>

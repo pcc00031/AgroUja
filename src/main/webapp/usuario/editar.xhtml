@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../WEB-INF/plantilla/layout-usu.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="content">
+        <h:head><label><h4>Editar usuario</h4></label></h:head>
+        <h:form><label></label><p:inputText placeholder="Nombre"></p:inputText><br></br>
+                <label></label><p:inputText placeholder="Apellidos"></p:inputText><br></br>
+                <label></label><p:inputTextarea rows="6" cols="33" placeholder="Biografía"/><br></br>
+                <label></label><p:password placeholder="Contraseña"></p:password><br></br>
+                <label></label><p:password placeholder="Confirmar contraseña"></p:password><br></br>
+                <label></label><p:inputText placeholder="Nombre de usuario"></p:inputText><br></br>
+                <label> FOTO DE PERFIL <input type="file" name="Seleccionar archivo"></input></label><br></br>
+                <label></label><p:inputText placeholder="Correo electrónico"></p:inputText><br></br>
+                <label> FECHA DE NACIMIENTO <input type="date" name="Fecha de nacimiento"></input></label><br></br>
+                <label></label><p:inputText placeholder="Teléfono"></p:inputText><br></br>
+                <label></label> DATOS TARJETA DE PAGO  <p:inputText placeholder="Número tarjeta"></p:inputText><p:inputText placeholder="Fecha caducidad"></p:inputText><p:inputText placeholder="Clave seguridad"></p:inputText><br></br>
+                <label></label><p:inputText placeholder="Dirección de envío"></p:inputText><br></br>
+                <label></label><p:inputText placeholder="Teléfono"></p:inputText></h:form>
+        <br><p:button styleClass="ui-button-success" value="Guardar cambios" onclick="JavaScript: alert('¡Cambios guardados satisfactoriamente!')" icon="pi pi-check"/></br>
+        
+    </ui:define>
+
+</ui:composition>

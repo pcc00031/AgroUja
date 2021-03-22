@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../WEB-INF/plantilla/layout-usu.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="content">
+        <p:avatar label="U" styleClass="p-mr-2" size="xlarge" shape="circle" style="width: 200px; height: 200px"/><br></br>
+        <p><font size="4"><b>Jesús García Rodríguez</b></font></p>
+        <p><b>jgr00059</b></p>
+        <p><font size="3"><b>Fecha de nacimiento:</b> 09/10/1998</font></p>
+        <p><font size="3"><b>Correo electrónico:</b> jgr00059@red.ujaen.es</font></p>
+        <p><font size="3"><b>Teléfono:</b> 600123456 &nbsp; (dato ficticio)</font></p>
+        <p><font size="3"><b>Datos tarjeta de pago:</b> 0516 &nbsp; 4155 &nbsp; 7741 &nbsp; 9818 &nbsp; &nbsp; &nbsp; 04/21 &nbsp; &nbsp; &nbsp; 941 &nbsp; (datos fictios)</font></p>
+        <p><font size="3"><b>Dirección de envío:</b> Campus las Lagunillas, s/n, 23071, Jaén (Jaén)</font></p><br></br>
+        <br><p:button styleClass="ui-button-success" value="Pedidos activos" onclick="JavaScript: alert('No existen pedidos activos para el usuario')"/></br>
+        <br><p:button outcome="editar" styleClass="ui-button-success" value="Editar usuario" icon="pi pi-pencil" /></br>
+        
+        
+    </ui:define>
+
+</ui:composition>
