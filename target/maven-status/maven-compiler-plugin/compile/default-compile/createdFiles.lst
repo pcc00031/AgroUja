@@ -1,3 +1,4 @@
+daw\productos\ProductosDAO.class
 daw\agrouja\JAXRSConfiguration.class
 daw\agrouja\country1\Country.class
 daw\agrouja\formularioController1\FormularioController.class
@@ -6,3 +7,5 @@ daw\agrouja\selectOneView1\SelectOneView.class
 daw\agrouja\resources\Carrousel.class
 daw\agrouja\resources\JavaEE8Resource.class
 daw\agrouja\country1\CountryService.class
+daw\productos\Producto.class
+daw\productos\ProductosController.class

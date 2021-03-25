@@ -72,57 +72,64 @@
         </h:form>
 
         <section>
-            <h:form>
+            <h:form >
                 <ul>
-
-                    <li> 
-                        <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: #white; width: 210px; max-height: 250px">
-                            <h:link outcome="visualizar"><h:graphicImage height="100" width="150" name="pala.png" library="images"/></h:link><br></br> <hr></hr>                                                       
-                            <h:link style="color: #85bb5c" outcome="visualizar">Visualizar</h:link>
-                        </p:card>
-                    </li>
-                    <li> 
-                        <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: #white; width: 210px; max-height: 250px">
-                            <h:link outcome="visualizar"><h:graphicImage height="100" width="150" name="pala.png" library="images"/></h:link><br></br> <hr></hr>                                                       
-                            <h:link style="color: #85bb5c" outcome="visualizar">Visualizar</h:link>
-                        </p:card>
-                    </li>
-                    <li> 
-                        <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: #white; width: 210px; max-height: 250px">
-                            <h:link outcome="visualizar"><h:graphicImage height="100" width="150" name="pala.png" library="images"/></h:link><br></br> <hr></hr>                                                       
-                            <h:link style="color: #85bb5c" outcome="visualizar">Visualizar</h:link>
-                        </p:card>
-                    </li>
-                    <li> 
-                        <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: #white; width: 210px; max-height: 250px">
-                            <h:link outcome="visualizar"><h:graphicImage height="100" width="150" name="pala.png" library="images"/></h:link><br></br> <hr></hr>                                                       
-                            <h:link style="color: #85bb5c" outcome="visualizar">Visualizar</h:link>
-                        </p:card>
-                    </li>
-                    <li> 
-                        <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: #white; width: 210px; max-height: 250px">
-                            <h:link outcome="visualizar"><h:graphicImage height="100" width="150" name="aceite.png" library="images"/></h:link><br></br> <hr></hr>                                                       
-                            <h:link style="color: #85bb5c" outcome="visualizar">Visualizar</h:link>
-                        </p:card>
-                    </li>
-                    <li> 
-                        <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: #white; width: 210px; max-height: 250px">
-                            <h:link outcome="visualizar"><h:graphicImage height="100" width="150" name="aceite.png" library="images"/></h:link><br></br> <hr></hr>                                                       
-                            <h:link style="color: #85bb5c" outcome="visualizar">Visualizar</h:link>
-                        </p:card>
-                    </li>
-                    <li> 
-                        <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: #white; width: 210px; max-height: 250px">
-                            <h:link outcome="visualizar"><h:graphicImage height="100" width="150" name="aceite.png" library="images"/></h:link><br></br> <hr></hr>                                                       
-                            <h:link style="color: #85bb5c" outcome="visualizar">Visualizar</h:link>
-                        </p:card>
-                    </li>              
-                    <li> 
-                        <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: #white; width: 210px; max-height: 250px">
-                            <h:link outcome="visualizar"><h:graphicImage height="100" width="150" name="aceite.png" library="images"/></h:link><br></br> <hr></hr>                                                       
-                            <h:link style="color: #85bb5c" outcome="visualizar">Visualizar</h:link>
-                        </p:card>
-                    </li>
+                    <ui:repeat var="p" value="#{prodCtrl.productos}">
+                        <li> 
+                            <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: white; width: 210px; max-height: 250px">
+                                <h:link outcome="visualizar"><h:graphicImage height="100" width="150" name="#{p.imagen}" library="images"/></h:link><br></br> <hr></hr>                                                       
+                                <h:link style="color: #85bb5c" outcome="visualizar">#{p.nombre}</h:link>
+                            </p:card>
+                        </li>
+                    </ui:repeat>
+                    <!--                    <li> 
+                                            <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: #white; width: 210px; max-height: 250px">
+                                                <h:link outcome="visualizar"><h:graphicImage height="100" width="150" name="pala.png" library="images"/></h:link><br></br> <hr></hr>                                                       
+                                                <h:link style="color: #85bb5c" outcome="visualizar">Visualizar</h:link>
+                                            </p:card>
+                                        </li>
+                                        <li> 
+                                            <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: #white; width: 210px; max-height: 250px">
+                                                <h:link outcome="visualizar"><h:graphicImage height="100" width="150" name="pala.png" library="images"/></h:link><br></br> <hr></hr>                                                       
+                                                <h:link style="color: #85bb5c" outcome="visualizar">Visualizar</h:link>
+                                            </p:card>
+                                        </li>
+                                        <li> 
+                                            <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: #white; width: 210px; max-height: 250px">
+                                                <h:link outcome="visualizar"><h:graphicImage height="100" width="150" name="pala.png" library="images"/></h:link><br></br> <hr></hr>                                                       
+                                                <h:link style="color: #85bb5c" outcome="visualizar">Visualizar</h:link>
+                                            </p:card>
+                                        </li>
+                                        <li> 
+                                            <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: #white; width: 210px; max-height: 250px">
+                                                <h:link outcome="visualizar"><h:graphicImage height="100" width="150" name="pala.png" library="images"/></h:link><br></br> <hr></hr>                                                       
+                                                <h:link style="color: #85bb5c" outcome="visualizar">Visualizar</h:link>
+                                            </p:card>
+                                        </li>
+                                        <li> 
+                                            <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: #white; width: 210px; max-height: 250px">
+                                                <h:link outcome="visualizar"><h:graphicImage height="100" width="150" name="aceite.png" library="images"/></h:link><br></br> <hr></hr>                                                       
+                                                <h:link style="color: #85bb5c" outcome="visualizar">Visualizar</h:link>
+                                            </p:card>
+                                        </li>
+                                        <li> 
+                                            <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: #white; width: 210px; max-height: 250px">
+                                                <h:link outcome="visualizar"><h:graphicImage height="100" width="150" name="aceite.png" library="images"/></h:link><br></br> <hr></hr>                                                       
+                                                <h:link style="color: #85bb5c" outcome="visualizar">Visualizar</h:link>
+                                            </p:card>
+                                        </li>
+                                        <li> 
+                                            <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: #white; width: 210px; max-height: 250px">
+                                                <h:link outcome="visualizar"><h:graphicImage height="100" width="150" name="aceite.png" library="images"/></h:link><br></br> <hr></hr>                                                       
+                                                <h:link style="color: #85bb5c" outcome="visualizar">Visualizar</h:link>
+                                            </p:card>
+                                        </li>              
+                                        <li> 
+                                            <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: #white; width: 210px; max-height: 250px">
+                                                <h:link outcome="visualizar"><h:graphicImage height="100" width="150" name="aceite.png" library="images"/></h:link><br></br> <hr></hr>                                                       
+                                                <h:link style="color: #85bb5c" outcome="visualizar">Visualizar</h:link>
+                                            </p:card>
+                                        </li>-->
                 </ul>
             </h:form>
         </section>

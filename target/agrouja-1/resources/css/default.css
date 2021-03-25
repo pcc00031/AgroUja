@@ -16,7 +16,7 @@ h1 {
 }
 
 .h1-contact{
-    display: inline-block; /*Para que el bloque no ocupe todo el ancho*/
+    display: inline-block;
     font-family: Open Sans;
     position: relative;
     margin-bottom: 30px;
@@ -95,7 +95,6 @@ p{
 .site-header {
     background-color: seagreen;
     -webkit-backdrop-filter: saturate(180%) blur(20px);
-    backdrop-filter: saturate(180%) blur(20px);
     padding-bottom: 1%;
 }
 .site-header a {

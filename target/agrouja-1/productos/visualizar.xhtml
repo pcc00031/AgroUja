@@ -7,6 +7,7 @@
                 xmlns:h="http://java.sun.com/jsf/html">
 
     <ui:define name="left">
+
         <p:card style="width: available; margin-top: 3%; margin-bottom: 4%; padding-top: 0;">
             <h:graphicImage width="100%" name="aceite.png" library="images"/>
         </p:card>
@@ -17,21 +18,25 @@
     </ui:define>
 
     <ui:define name="content">
-        <p:card style="margin-top: 1%; margin-bottom: 1%;">
+        <h:form>
+            <p:card style="margin-top: 1%; margin-bottom: 1%;">
 
-            <f:facet name="title">
-                Aceite
-            </f:facet>
-            <f:facet name="subtitle">
-                Varias botellas de aceite de la mejor procedencia.
-                <hr></hr>
-                <br>*** Página sujeta a mejoras ***</br>
-                <br><p:button outcome="/productos/editar" styleClass="ui-button-success" value="Editar producto" icon="pi pi-pencil" /></br>
-            </f:facet>
-            <f:facet name="footer">
-                Precio: 1000€
-            </f:facet>
-        </p:card>
+                <f:facet name="title">
+                    Aceite
+                </f:facet>
+                <f:facet name="subtitle">
+
+                    <hr></hr>
+                    #{prodCtrl.producto.descripcion}
+                    <br>*** Página sujeta a mejoras ***</br>
+                    <br><p:button outcome="/productos/editar" styleClass="ui-button-success" value="Editar producto" icon="pi pi-pencil" /></br>
+                </f:facet>
+                <f:facet name="footer">
+                    Precio: 1000€
+                </f:facet>
+            </p:card>
+        </h:form>
     </ui:define>
+
 
 </ui:composition>
