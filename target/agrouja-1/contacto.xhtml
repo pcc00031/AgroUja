@@ -7,7 +7,7 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="left">
-        
+
     </ui:define>
 
     <ui:define name="right">
@@ -33,12 +33,15 @@
                     <p>Mallas invernaderos.</p>
                 </li>
             </ul>
+
             <p>Para conocer más sobre nuestros productos y procesos, le invitamos a ponerse en contacto con nuestra empresa rellenado el siguiente formulario:</p>
-            <p:commandButton update="formulario" value="Formulario" style="font-size: 12px" action="#{ctrlFormulario.foo()}"/>
+            <h:form>
+                <p:commandButton update="formulario" value="Formulario" style="font-size: 12px" action="#{ctrlFormulario.foo()}"/>
+            </h:form>
         </div>
         <div class="qs">
             <h:panelGroup id="formulario" layout="block">
-                <h:form rendered="#{not (ctrlFormulario.bar)}" class="form-contact">
+                <h:form rendered="#{ctrlFormulario.bar}" class="form-contact">
                     <p:inputText styleClass="form-control" placeholder="Nombre" 
                                  value="" required="true" >
                     </p:inputText>
@@ -48,7 +51,7 @@
                     <p:inputText styleClass="form-control" placeholder="Email" 
                                  value="" required="true">
                     </p:inputText>
-                   
+
                     <p:selectOneListbox id="advanced" value="#{selectOneView.country}" converter="#{countryConverter}"
                                         var="c" filter="true" filterMatchMode="contains">
                         <f:selectItems value="#{selectOneView.countries}" var="country" itemLabel="#{country.name}" itemValue="#{country}"/>
@@ -59,12 +62,12 @@
                             <h:outputText value="#{c.name}"/>
                         </p:column>
                     </p:selectOneListbox>
-                    
+
                     <p:inputText styleClass="form-control" placeholder="Asunto" 
                                  value="" required="true">
                     </p:inputText>
                     <p:inputTextarea rows="5" cols="90" maxlength="500" counter="display"
-                         counterTemplate="{0} characters remaining." autoResize="false"/>
+                                     counterTemplate="{0} characters remaining." autoResize="false"/>
                     <h:outputText id="display"/>
                 </h:form>
             </h:panelGroup>
