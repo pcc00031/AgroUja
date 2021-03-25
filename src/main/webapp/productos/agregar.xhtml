@@ -18,17 +18,17 @@
                     <p:outputLabel for="input1" value="Precio"/>
                     <p:inputNumber id="input1" value="#{prodCtrl.producto.precio}" modifyValueOnWheel="false" required="true"/>
                     <p:outputLabel  value="Estado"/>
-                    <p:selectOneRadio required="true">
+                    <p:selectOneRadio value="#{prodCtrl.producto.estado}" required="true">
                         <f:selectItem value="#{prodCtrl.producto.estado}" itemValue="Nuevo" itemLabel="Nuevo"/>
                         <f:selectItem value="#{prodCtrl.producto.estado}" itemValue="Usado" itemLabel="Usado"/>
                     </p:selectOneRadio>
-                    <p:outputLabel  value="Tipo de promoción"/>
-                    <p:selectOneRadio required="true">
-                        <f:selectItem value="#{prodCtrl.producto.categoria}" itemValue="Venta" itemLabel="Venta"/>
-                        <f:selectItem value="#{prodCtrl.producto.categoria}" itemValue="Alquiler" itemLabel="Alquiler"/>
+                    <p:outputLabel  value="#{prodCtrl.producto.ventAlq}" />
+                    <p:selectOneRadio  value="#{prodCtrl.producto.ventAlq}" required="true">
+                        <f:selectItem value="#{prodCtrl.producto.ventAlq}" itemValue="Venta" itemLabel="Venta"/>
+                        <f:selectItem value="#{prodCtrl.producto.ventAlq}" itemValue="Alquiler" itemLabel="Alquiler"/>
                     </p:selectOneRadio>
                     <p:outputLabel for="@next" value="Categoría"/>
-                    <p:selectOneMenu id="option">
+                    <p:selectOneMenu value="#{prodCtrl.producto.categoria}" id="option">
                         <f:selectItem value="#{prodCtrl.producto.categoria}" itemLabel="Desconocida" itemValue="Otro"/>
                         <f:selectItem value="#{prodCtrl.producto.categoria}" itemLabel="Comestible" itemValue="Comestible"/>
                         <f:selectItem value="#{prodCtrl.producto.categoria}" itemLabel="Maquinaria" itemValue="Maquinaria"/>
@@ -36,11 +36,11 @@
 
                     </p:selectOneMenu>
                     <p:outputLabel value="Marca"/>
-                    <p:selectOneMenu  id="option1" >
+                    <p:selectOneMenu  value="#{prodCtrl.producto.marca}" id="option1" >
 
-                        <f:selectItem value="#{prodCtrl.producto.marca}" itemLabel="Desconocida" itemValue="Nose"/>
-                        <f:selectItem value="#{prodCtrl.producto.marca}" itemLabel="AgroUja" itemValue="erer"/>
-                        <f:selectItem value="#{prodCtrl.producto.marca}" itemLabel="Nueva marca" itemValue="asd"/>
+                        <f:selectItem value="#{prodCtrl.producto.marca}" itemLabel="Desconocida" itemValue="Desconocida"/>
+                        <f:selectItem value="#{prodCtrl.producto.marca}" itemLabel="AgroUja" itemValue="AgroUja"/>
+                        <f:selectItem value="#{prodCtrl.producto.marca}" itemLabel="Nueva marca" itemValue="Otra"/>
 
                     </p:selectOneMenu>
 

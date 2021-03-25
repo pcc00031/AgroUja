@@ -18,12 +18,14 @@ public class ProductosDAO {
     private Map<Integer, Producto> productos = null;
     private boolean destacadoSi = true;
     private boolean destacadoNo = false;
+    private Integer idProducto = 1;
 
     public ProductosDAO() {
         if (productos == null) {
             productos = new HashMap<>();
-            productos.put(1, new Producto(1, "Aceite", "El mejor aceite", "AgroUja", "aceite.png", "Nuevo", "Comestible", "Venta", destacadoSi, 10.4));
-            productos.put(2, new Producto(2, "Pala", "La mejor pala", "AgroUja", "pala.png", "Nuevo", "Herramienta", "Venta", destacadoSi, 5.7));
+            productos.put(idProducto, new Producto(idProducto++, "Aceite", "El mejor aceite", "AgroUja", "aceite.png", "Nuevo", "Comestible", "Venta", destacadoSi, 10.4));
+            productos.put(idProducto, new Producto(idProducto++, "Pala", "La mejor pala", "AgroUja", "pala.png", "Nuevo", "Herramienta", "Venta", destacadoSi, 5.7));
+            productos.put(idProducto, new Producto(idProducto++, "Tractor", "El mejor tractor", "AgroUja", "tractor.png", "Nuevo", "Herramienta", "Venta", destacadoSi, 50000.7));
         }
     }
 
@@ -36,7 +38,11 @@ public class ProductosDAO {
     }
 
     public boolean crea(Producto p) {
-        productos.put(p.getId(), new Producto(p));
+        Producto np = new Producto(p);
+        np.setId(idProducto);
+        productos.put(idProducto, np);
+        p.setId(idProducto);
+        idProducto++;
         return true;
     }
 

@@ -46,9 +46,14 @@ public class ProductosController implements Serializable {
         producto = productosDAO.buscaId(producto.getId());
     }
 
-    public String visualiza() {
-        recupera(producto.getId());
-        return "/visualizar" + producto.getId();
+    public String visualiza(Integer id) {
+        recupera(id);
+        return "visualizar?faces-redirect=true&id=" + producto.getId();
+    }
+    
+    public String editar(){
+        recupera();
+        return "editar?faces-redirect=true&id=" + producto.getId();
     }
 
     public String crea() {
@@ -58,11 +63,11 @@ public class ProductosController implements Serializable {
         return "visualizar?faces-redirect=true&id=" + producto.getId();
     }
 
-    public String borrar(Integer id) {
-        recupera(id);
+    public String borrar() {
+        recupera();
         log.info("Borrando producto: " + producto.getId());
         productosDAO.borra(producto);
-        return "index?faces-redirect=true&isbn=";
+        return "index?faces-redirect";
     }
 
     public void recupera(Integer id) {

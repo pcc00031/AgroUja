@@ -15,8 +15,12 @@ public class Producto implements Serializable {
 //TODO establecer constraints a las variables
 //TODO comprobar que todo funciona
 //TODO imagen
-//TODO visualizar 
 //TODO agregar mas productos
+//TODO editar producto
+//TODO buscar producto
+//TODO comparar producto
+//TODO mensajes
+
     @Id
     private Integer id;
     @Size
