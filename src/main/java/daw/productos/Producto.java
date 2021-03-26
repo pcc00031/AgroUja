@@ -1,6 +1,8 @@
 package daw.productos;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.Min;
@@ -15,10 +17,7 @@ public class Producto implements Serializable {
 
 //TODO imagen
 //TODO agregar mas productos
-//TODO buscar por categori
-//TODO buscar por marca
 //TODO comparar producto
-    
     @Id
     private Integer id;
 
@@ -29,12 +28,16 @@ public class Producto implements Serializable {
     @Size(max = 250,
             message = "La descripción no debe ser superior a (max)")
     private String descripcion = "Sin descripción";
+
     private String marca;
     private String imagen;
     private String estado; //> Nuevo / usado
     private String categoria;
     private String ventAlq; //> Venta / Alquiler
     private boolean destacado;
+
+    private Integer rating = 0;
+    private List<String> comentarios = null;
 
     @Min(0)
     @Positive(message = "El precio no puede ser negativo")
@@ -72,6 +75,7 @@ public class Producto implements Serializable {
         this.ventAlq = ventAlq;
         this.destacado = destacado;
         this.precio = precio;
+        this.comentarios = new ArrayList<String>();
     }
 
     /**
@@ -89,6 +93,8 @@ public class Producto implements Serializable {
         this.ventAlq = p.ventAlq;
         this.destacado = p.destacado;
         this.precio = p.precio;
+        this.comentarios = p.comentarios;
+        this.rating = p.rating;
     }
 
     /* GETTERS Y SETTERS */
@@ -172,4 +178,23 @@ public class Producto implements Serializable {
         this.precio = precio;
     }
 
+    public Integer getRating() {
+        return rating;
+    }
+
+    public void setRating(Integer rating) {
+        this.rating = rating;
+    }
+
+    public List<String> getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(List<String> comentarios) {
+        this.comentarios = comentarios;
+    }
+
+    public void addComent(String comentario) {
+        this.comentarios.add(comentario);
+    }
 }

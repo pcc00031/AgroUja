@@ -25,10 +25,17 @@ public class ProductosDAO {
             productos = new HashMap<>();
             subProductos = new HashMap<>();
             productos.put(idProducto, new Producto(idProducto++, "Aceite", "El mejor aceite", "AgroUja", "aceite.png", "Nuevo", "Comestible", "Venta", destacadoSi, 10.4));
-            productos.put(idProducto, new Producto(idProducto++, "Pala", "La mejor pala", "AgroUja", "pala.png", "Nuevo", "Herramienta", "Venta", destacadoNo, 5.7));
-            productos.put(idProducto, new Producto(idProducto++, "Tractor", "El mejor tractor", "AgroUja", "tractor.png", "Nuevo", "Herramienta", "Venta", destacadoSi, 50000.7));
+            productos.put(idProducto, new Producto(idProducto++, "Pala", "La mejor pala", "AgroUja", "pala.png", "Nuevo", "Maquinaria", "Venta", destacadoNo, 5.7));
+            productos.put(idProducto, new Producto(idProducto++, "Tractor", "El mejor tractor", "AgroUja", "tractor.png", "Nuevo", "Maquinaria", "Venta", destacadoSi, 50000.7));
         }
 
+    }
+
+    public boolean agregarComent(Producto p, String coment) {
+        System.out.println(p.getId());
+        productos.get(p.getId()).addComent(coment);
+
+        return true;
     }
 
     public Producto buscaId(Integer id) {
@@ -78,6 +85,42 @@ public class ProductosDAO {
 
     public Map<Integer, Producto> getSubProductos() {
         return subProductos;
+    }
+
+    public boolean buscarMarca(String marca) {
+        subProductos.clear();
+        if (marca.contentEquals("Otra")) {
+            for (Map.Entry<Integer, Producto> entry : productos.entrySet()) {
+                if (!entry.getValue().getMarca().contentEquals("AgroUja")) {
+                    subProductos.put(entry.getKey(), entry.getValue());
+                }
+            }
+        } else {
+            for (Map.Entry<Integer, Producto> entry : productos.entrySet()) {
+                if (entry.getValue().getMarca().contentEquals(marca)) {
+                    subProductos.put(entry.getKey(), entry.getValue());
+                }
+            }
+        }
+        return true;
+    }
+
+    public boolean buscarCategoria(String categoria) {
+        subProductos.clear();
+        if (categoria.contentEquals("Otra")) {
+            for (Map.Entry<Integer, Producto> entry : productos.entrySet()) {
+                if (!entry.getValue().getCategoria().contentEquals("Comestible") && !entry.getValue().getCategoria().contentEquals("Maquinaria")) {
+                    subProductos.put(entry.getKey(), entry.getValue());
+                }
+            }
+        } else {
+            for (Map.Entry<Integer, Producto> entry : productos.entrySet()) {
+                if (entry.getValue().getCategoria().contentEquals(categoria)) {
+                    subProductos.put(entry.getKey(), entry.getValue());
+                }
+            }
+        }
+        return true;
     }
 
 }

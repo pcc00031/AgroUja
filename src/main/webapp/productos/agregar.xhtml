@@ -8,10 +8,8 @@
                 xmlns:f="http://java.sun.com/jsf/core">
 
     <ui:define  name="content">
-
-        <p:tooltip/>
         <h:form>
-            <p:messages id="messages" showDetail="true" closable="true">
+            <p:messages id="messages" closable="true" >
                 <p:autoUpdate/>
             </p:messages>
         </h:form>
@@ -48,7 +46,6 @@
                     <p:selectOneMenu  value="#{prodCtrl.producto.marca}" editable="true" id="option1" >
                         <f:selectItem value="#{prodCtrl.producto.marca}" itemLabel="Desconocida" itemValue="Desconocida"/>
                         <f:selectItem value="#{prodCtrl.producto.marca}" itemLabel="AgroUja" itemValue="AgroUja"/>
-                        <f:selectItem value="#{prodCtrl.producto.marca}" itemLabel="Nueva marca" itemValue="Otra"/>
                     </p:selectOneMenu>
 
                     <p:outputLabel for="dest" value="Destacado"/>

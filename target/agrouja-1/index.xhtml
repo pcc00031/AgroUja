@@ -7,7 +7,11 @@
     <ui:define name="content">
         <h:body>
 
-            <h1>AGROUJA</h1>
+            <p:card>
+                <p:contentFlow value="#{carr.images}" var="image">
+                    <p:graphicImage value="/#{image}" styleClass="content" />
+                </p:contentFlow>
+            </p:card>
 
 
         </h:body>

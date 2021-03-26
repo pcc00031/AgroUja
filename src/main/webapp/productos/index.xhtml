@@ -10,46 +10,37 @@
         <h:form>
             <aside>
 
-                <p:card style="margin-top: 5%; padding-top: 1%; background-color: white; width: available; max-height: 270px">
-                    <p:selectOneRadio id="customRadio" value="" layout="custom">
-                        <f:selectItem itemLabel="Red" itemValue="Red"/>
-                        <f:selectItem itemLabel="Green" itemValue="Green"/>
-                        <f:selectItem itemLabel="Blue" itemValue="Blue"/>
-                    </p:selectOneRadio>
-                    <h5>Seleccione categoría</h5><hr></hr>
-                    <h:panelGrid  columns="2" cellpadding="5">
-                        <p:radioButton id="opt1" for="customRadio" itemIndex="0"/>
-                        <h:outputLabel for="opt1" value="Todos los elementos"/>
+                <p:card style="margin-top: 5%; padding-top: 1%; background-color: white; width: available; max-height: 310px">
+                    <f:facet name="title">
+                        <h3 style="font-size: 20px">Seleccione categoría: </h3> 
+                    </f:facet> 
+                    <hr></hr>
+                    <f:facet name="subtitle">
+                        <hr></hr>
 
-                        <p:radioButton id="opt2" for="customRadio" itemIndex="1"/>
-                        <h:outputLabel for="opt2" value="Aceites"/>
-
-                        <p:radioButton id="opt3" for="customRadio" itemIndex="2"/>
-                        <h:outputLabel for="opt3" value="Herramientas"/>
-
-                    </h:panelGrid>
-                    <center>  <p:button styleClass="ui-button-success" value="Buscar" icon="pi pi-search" /></center>
+                        <p:selectOneRadio value="#{prodCtrl.categoria}" layout="responsive" columns="1" unselectable="true">
+                            <f:selectItem itemLabel="Comestible" itemValue="Comestible"/>
+                            <f:selectItem itemLabel="Maquinaria" itemValue="Maquinaria"/>
+                            <f:selectItem itemLabel="Otra" itemValue="Otra"/>
+                        </p:selectOneRadio>
+                    </f:facet> 
+                    <center>  <p:commandButton styleClass="ui-button-success" value="Buscar" icon="pi pi-search" action="#{prodCtrl.buscarCategoria()}"/></center>
                 </p:card>
                 <br></br>
-                <center>    <p>*Sin funcionalidad aún*</p></center>
-                <p:card style="padding-top: 1%; margin-bottom: 10%; background-color: #white; width: available; max-height: 270px">
-                    <p:selectOneRadio id="customRadio1" value="" layout="custom">
-                        <f:selectItem itemLabel="marc" itemValue="marc"/>
-                        <f:selectItem itemLabel="marc1" itemValue="marc1"/>
-                        <f:selectItem itemLabel="marc2" itemValue="marc2"/>
-                    </p:selectOneRadio>
-                    <h5>Seleccione marca</h5><hr></hr>
-                    <h:panelGrid style="color: #black;" columns="2" cellpadding="5">
-                        <p:radioButton id="opt4" for="customRadio1" itemIndex="1"/>
-                        <h:outputLabel for="opt4" value="Todos los elementos"/>
+                <p:card style="margin-top: 5%; padding-top: 1%; background-color: white; width: available; max-height: 310px">
+                    <f:facet name="title">
+                        <h3 style="font-size: 20px">Seleccione marca: </h3> 
+                    </f:facet> 
+                    <hr></hr>
+                    <f:facet name="subtitle">
+                        <hr></hr>
 
-                        <p:radioButton id="opt5" for="customRadio1" itemIndex="1"/>
-                        <h:outputLabel for="opt5" value="AgroUja"/>
-
-                        <p:radioButton id="opt6" for="customRadio1" itemIndex="2"/>
-                        <h:outputLabel for="opt6" value="Desconocida"/>
-                    </h:panelGrid>
-                    <center>  <p:button styleClass="ui-button-success" value="Buscar" icon="pi pi-search" /></center>
+                        <p:selectOneRadio value="#{prodCtrl.marca}" layout="responsive" columns="1" unselectable="true">
+                            <f:selectItem itemLabel="AgroUja" itemValue="AgroUja"/>
+                            <f:selectItem itemLabel="Otra" itemValue="Otra"/>
+                        </p:selectOneRadio>
+                    </f:facet> 
+                    <center>  <p:commandButton styleClass="ui-button-success" value="Buscar" icon="pi pi-search" action="#{prodCtrl.buscarMarca()}"/></center>
                 </p:card>
             </aside>
         </h:form>
@@ -72,7 +63,7 @@
 
         <section>
             <h:form>
-                
+
                 <ul>
                     <h6 style="font-style: italic">Productos encontrados: #{prodCtrl.subProductos.size()}</h6>
                     <ui:repeat var="p" value="#{prodCtrl.subProductos}">

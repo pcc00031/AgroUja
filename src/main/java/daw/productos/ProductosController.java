@@ -19,6 +19,9 @@ public class ProductosController implements Serializable {
     private Producto producto;
     private List<Producto> productos;
     private String busca;
+    private String comentario;
+    private String categoria;
+    private String marca;
 
     /* INICIALIZADOES , GETTERS Y SETTERS */
     public ProductosController() {
@@ -35,8 +38,32 @@ public class ProductosController implements Serializable {
         return subProductos;
     }
 
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
+    }
+
+    public String getComentario() {
+        return comentario;
+    }
+
     public String getBusca() {
         return busca;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
     }
 
     public void setBusca(String busca) {
@@ -104,4 +131,28 @@ public class ProductosController implements Serializable {
         return "index?faces-redirect=true";
     }
 
+    public String addComent() {
+        recupera();
+        log.info("Agregando comentario: " + comentario + " al producto-" + producto.getId());
+        productosDAO.agregarComent(producto, comentario);
+        return "visualizar?faces-redirect=true&id=" + producto.getId();
+    }
+
+    public String buscarCategoria() {
+        if (categoria.contentEquals("")) {
+            categoria = "xxx";
+        }
+        log.info("Buscando producto con categoria: " + categoria);
+        productosDAO.buscarCategoria(categoria);
+        return "index?faces-redirect=true";
+    }
+
+    public String buscarMarca() {
+        if (marca.contentEquals("")) {
+            marca = "xxx";
+        }
+        log.info("Buscando producto con marca: " + marca);
+        productosDAO.buscarMarca(marca);
+        return "index?faces-redirect=true";
+    }
 }
