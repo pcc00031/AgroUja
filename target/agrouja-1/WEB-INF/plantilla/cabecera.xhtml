@@ -1,22 +1,24 @@
 
 <html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
     xmlns:h="http://xmlns.jcp.org/jsf/html" 
     xmlns:p="http://primefaces.org/ui">
 
     <div id="top">
-        <nav class="site-header sticky-top py-1">
+    <nav class="site-header sticky-top py-1">
 
-            <div style="font-size: 13px; " class="container d-flex flex-column flex-md-row justify-content-between">
-                <ul> <li><h:link  outcome="/index">AGROUJA</h:link></li></ul>
-                <ul> <li><h:link  outcome="/productos/index">Productos</h:link></li></ul>
-                <ul> <li class="margenmov"><h:link  outcome="/contacto">Contacto</h:link></li></ul>
-                <a class="py-2 d-none d-md-inline-block margenmov" ></a>
-                <ul> <li style="width: 125px"><h:link  outcome="/login">Iniciar Sesión</h:link></li></ul>
-                <ul> <li><h:link  outcome="/registro">Registro</h:link></li></ul>
-                <h:link outcome="/usuario/index"> <p:avatar icon="pi pi-user" shape="circle" styleClass="p-mr-2" style="padding: 1%;margin-bottom: 20%;margin-top: 10%;background: #006600;color: white" /></h:link>
-            </div>
-        </nav>
-    </div>  
+        <div style="font-size: 13px; " class="container d-flex flex-column flex-md-row justify-content-between">
+            <ul> <li><h:link  outcome="/index">AGROUJA</h:link></li></ul>
+            <ul> <li><h:link  outcome="/productos/index">Productos</h:link></li></ul>
+            <ul> <li class="margenmov"><h:link  outcome="/contacto">Contacto</h:link></li></ul>
+            <a class="py-2 d-none d-md-inline-block margenmov" ></a>
+            <ul> <li style="width: 125px"><h:link  outcome="/login">Iniciar Sesión</h:link></li></ul>
+            <ul> <li><h:link  outcome="/registro">Registro</h:link></li></ul>
+            <h:link outcome="/usuario/index"> <p:avatar icon="pi pi-user" shape="circle" styleClass="p-mr-2" style="padding: 1%;margin-bottom: 20%;margin-top: 10%;background: #006600;color: white" /></h:link>
+        </div>
+    </nav>
+</div>  
 </html>
 
 

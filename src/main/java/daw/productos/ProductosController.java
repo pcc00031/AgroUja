@@ -15,8 +15,10 @@ public class ProductosController implements Serializable {
     private final Logger log = Logger.getLogger(ProductosController.class.getName());
     @Inject
     private ProductosDAO productosDAO;
+    private List<Producto> subProductos;
     private Producto producto;
     private List<Producto> productos;
+    private String busca;
 
     /* INICIALIZADOES , GETTERS Y SETTERS */
     public ProductosController() {
@@ -26,6 +28,19 @@ public class ProductosController implements Serializable {
     public void init() {
         producto = new Producto();
         productos = productosDAO.buscaTodos();
+        subProductos = productosDAO.buscaTodosSub();
+    }
+
+    public List<Producto> getSubProductos() {
+        return subProductos;
+    }
+
+    public String getBusca() {
+        return busca;
+    }
+
+    public void setBusca(String busca) {
+        this.busca = busca;
     }
 
     public Producto getProducto() {
@@ -50,8 +65,8 @@ public class ProductosController implements Serializable {
         recupera(id);
         return "visualizar?faces-redirect=true&id=" + producto.getId();
     }
-    
-    public String editar(){
+
+    public String edita() {
         recupera();
         return "editar?faces-redirect=true&id=" + producto.getId();
     }
@@ -67,12 +82,26 @@ public class ProductosController implements Serializable {
         recupera();
         log.info("Borrando producto: " + producto.getId());
         productosDAO.borra(producto);
-        return "index?faces-redirect";
+        return "index?faces-redirect=true";
     }
 
     public void recupera(Integer id) {
-        log.info("Recuperando producto: " + producto.getId());
+//        log.info("Recuperando producto: " + producto.getId());
         producto = productosDAO.buscaId(id);
+    }
+
+    public String editar() {
+        productosDAO.edita(producto);
+        return "visualizar?faces-redirect=true&id=" + producto.getId();
+    }
+
+    public String buscarNombre() {
+        if (busca.contentEquals("")) {
+            busca = "xxx";
+        }
+        log.info("Buscando producto que contiene: " + busca);
+        productosDAO.buscarNombre(busca);
+        return "index?faces-redirect=true";
     }
 
 }

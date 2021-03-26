@@ -31,7 +31,7 @@
                     <center>  <p:button styleClass="ui-button-success" value="Buscar" icon="pi pi-search" /></center>
                 </p:card>
                 <br></br>
-
+                <center>    <p>*Sin funcionalidad aún*</p></center>
                 <p:card style="padding-top: 1%; margin-bottom: 10%; background-color: #white; width: available; max-height: 270px">
                     <p:selectOneRadio id="customRadio1" value="" layout="custom">
                         <f:selectItem itemLabel="marc" itemValue="marc"/>
@@ -50,12 +50,10 @@
                         <h:outputLabel for="opt6" value="Desconocida"/>
                     </h:panelGrid>
                     <center>  <p:button styleClass="ui-button-success" value="Buscar" icon="pi pi-search" /></center>
-
                 </p:card>
-
-
             </aside>
         </h:form>
+
     </ui:define>
 
     <ui:define name="content">
@@ -63,9 +61,10 @@
         <h:form>
             <p:menubar style="max-height: 60px">
                 <p:menuitem outcome="agregar" value="Nuevo producto" icon="pi pi-fw pi-plus"/>
-                <p:menuitem  value="Comparar productos" icon="pi pi-fw pi-copy"/>
+                <p:menuitem  value="Comparar productos (*SIN FUNCIONALIDAD*)" icon="pi pi-fw pi-copy"/>
                 <f:facet name="options">    
-                    <p:inputText placeholder="Search"/> <i class="pi pi-fw pi-search"/>   
+                    <p:inputText placeholder="Buscar producto" value="#{prodCtrl.busca}"/>
+                    <p:commandButton icon="pi pi-fw pi-search" action="#{prodCtrl.buscarNombre()}"/>
                 </f:facet>
             </p:menubar>
 
@@ -73,8 +72,10 @@
 
         <section>
             <h:form>
+                
                 <ul>
-                    <ui:repeat var="p" value="#{prodCtrl.productos}">
+                    <h6 style="font-style: italic">Productos encontrados: #{prodCtrl.subProductos.size()}</h6>
+                    <ui:repeat var="p" value="#{prodCtrl.subProductos}">
                         <li> 
                             <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: white; width: 210px; max-height: 250px">
                                 <h:link onclick="#{prodCtrl.visualiza(p.id)}" outcome="#{prodCtrl.visualiza(p.id)}"><h:graphicImage height="100" width="150" name="#{p.imagen}" library="images"/></h:link><br></br> <hr></hr>                                                       
@@ -82,54 +83,18 @@
                             </p:card>
                         </li>
                     </ui:repeat>
-                    <!--                    <li> 
-                                            <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: #white; width: 210px; max-height: 250px">
-                                                <h:link outcome="visualizar"><h:graphicImage height="100" width="150" name="pala.png" library="images"/></h:link><br></br> <hr></hr>                                                       
-                                                <h:link style="color: #85bb5c" outcome="visualizar">Visualizar</h:link>
-                                            </p:card>
-                                        </li>
-                                        <li> 
-                                            <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: #white; width: 210px; max-height: 250px">
-                                                <h:link outcome="visualizar"><h:graphicImage height="100" width="150" name="pala.png" library="images"/></h:link><br></br> <hr></hr>                                                       
-                                                <h:link style="color: #85bb5c" outcome="visualizar">Visualizar</h:link>
-                                            </p:card>
-                                        </li>
-                                        <li> 
-                                            <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: #white; width: 210px; max-height: 250px">
-                                                <h:link outcome="visualizar"><h:graphicImage height="100" width="150" name="pala.png" library="images"/></h:link><br></br> <hr></hr>                                                       
-                                                <h:link style="color: #85bb5c" outcome="visualizar">Visualizar</h:link>
-                                            </p:card>
-                                        </li>
-                                        <li> 
-                                            <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: #white; width: 210px; max-height: 250px">
-                                                <h:link outcome="visualizar"><h:graphicImage height="100" width="150" name="pala.png" library="images"/></h:link><br></br> <hr></hr>                                                       
-                                                <h:link style="color: #85bb5c" outcome="visualizar">Visualizar</h:link>
-                                            </p:card>
-                                        </li>
-                                        <li> 
-                                            <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: #white; width: 210px; max-height: 250px">
-                                                <h:link outcome="visualizar"><h:graphicImage height="100" width="150" name="aceite.png" library="images"/></h:link><br></br> <hr></hr>                                                       
-                                                <h:link style="color: #85bb5c" outcome="visualizar">Visualizar</h:link>
-                                            </p:card>
-                                        </li>
-                                        <li> 
-                                            <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: #white; width: 210px; max-height: 250px">
-                                                <h:link outcome="visualizar"><h:graphicImage height="100" width="150" name="aceite.png" library="images"/></h:link><br></br> <hr></hr>                                                       
-                                                <h:link style="color: #85bb5c" outcome="visualizar">Visualizar</h:link>
-                                            </p:card>
-                                        </li>
-                                        <li> 
-                                            <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: #white; width: 210px; max-height: 250px">
-                                                <h:link outcome="visualizar"><h:graphicImage height="100" width="150" name="aceite.png" library="images"/></h:link><br></br> <hr></hr>                                                       
-                                                <h:link style="color: #85bb5c" outcome="visualizar">Visualizar</h:link>
-                                            </p:card>
-                                        </li>              
-                                        <li> 
-                                            <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: #white; width: 210px; max-height: 250px">
-                                                <h:link outcome="visualizar"><h:graphicImage height="100" width="150" name="aceite.png" library="images"/></h:link><br></br> <hr></hr>                                                       
-                                                <h:link style="color: #85bb5c" outcome="visualizar">Visualizar</h:link>
-                                            </p:card>
-                                        </li>-->
+                </ul>
+                <ul>
+                    <h6 style="font-style: italic">Productos totales: #{prodCtrl.productos.size()}</h6>
+                    <ui:repeat var="p" value="#{prodCtrl.productos}">
+
+                        <li> 
+                            <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: white; width: 210px; max-height: 250px">
+                                <h:link onclick="#{prodCtrl.visualiza(p.id)}" outcome="#{prodCtrl.visualiza(p.id)}"><h:graphicImage height="100" width="150" name="#{p.imagen}" library="images"/></h:link><br></br> <hr></hr>                                                       
+                                <h:link style="color: #669900" onclick="#{prodCtrl.visualiza(p.id)}" outcome="#{prodCtrl.visualiza(p.id)}">#{p.nombre}</h:link>
+                            </p:card>
+                        </li>
+                    </ui:repeat>
                 </ul>
             </h:form>
         </section>

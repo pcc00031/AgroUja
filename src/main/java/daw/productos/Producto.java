@@ -3,7 +3,8 @@ package daw.productos;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
 /**
@@ -12,26 +13,31 @@ import javax.validation.constraints.Size;
 @Entity()
 public class Producto implements Serializable {
 
-//TODO establecer constraints a las variables
-//TODO comprobar que todo funciona
 //TODO imagen
 //TODO agregar mas productos
-//TODO editar producto
-//TODO buscar producto
+//TODO buscar por categori
+//TODO buscar por marca
 //TODO comparar producto
-//TODO mensajes
-
+    
     @Id
     private Integer id;
-    @Size
+
+    @Size(min = 2, max = 25,
+            message = "La longitud del nombre debe estar entre {min} y {max} caracteres")
     private String nombre;
-    private String descripcion;
+
+    @Size(max = 250,
+            message = "La descripción no debe ser superior a (max)")
+    private String descripcion = "Sin descripción";
     private String marca;
     private String imagen;
     private String estado; //> Nuevo / usado
     private String categoria;
     private String ventAlq; //> Venta / Alquiler
     private boolean destacado;
+
+    @Min(0)
+    @Positive(message = "El precio no puede ser negativo")
     private double precio;
 
     /* CONSTRUCTORES */
