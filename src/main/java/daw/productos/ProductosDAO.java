@@ -1,10 +1,11 @@
 package daw.productos;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import javax.enterprise.context.ApplicationScoped;
 
@@ -27,8 +28,13 @@ public class ProductosDAO {
             productos.put(idProducto, new Producto(idProducto++, "Aceite", "El mejor aceite", "AgroUja", "aceite.png", "Nuevo", "Comestible", "Venta", destacadoSi, 10.4));
             productos.put(idProducto, new Producto(idProducto++, "Pala", "La mejor pala", "AgroUja", "pala.png", "Nuevo", "Maquinaria", "Venta", destacadoNo, 5.7));
             productos.put(idProducto, new Producto(idProducto++, "Tractor", "El mejor tractor", "AgroUja", "tractor.png", "Nuevo", "Maquinaria", "Venta", destacadoSi, 50000.7));
-        }
+            productos.put(idProducto, new Producto(idProducto++, "Malla Agrícola", "La mejor malla agrícola", "AgroUja", "malla.jpg", "Nuevo", "Maquinaria", "Venta", destacadoSi, 5000.7));
+            productos.put(idProducto, new Producto(idProducto++, "Excavadora", "La mejor excavadora", "AgroUja", "excavadora.png", "Nuevo", "Maquinaria", "Venta", destacadoSi, 50000.7));
+            productos.put(idProducto, new Producto(idProducto++, "Motosierra", "La mejor motosierra", "AgroUja", "motosierra.png", "Nuevo", "Maquinaria", "Venta", destacadoSi, 250.7));
+            productos.put(idProducto, new Producto(idProducto++, "Azada", "La mejor azada", "AgroUja", "azada.png", "Nuevo", "Maquinaria", "Venta", destacadoSi, 50.7));
+            productos.put(idProducto, new Producto(idProducto++, "Mejor aceite", "El mejor aceite del mundo", "AgroUja", "mejoraceite.jpg", "Nuevo", "Comestible", "Venta", destacadoSi, 50.7));
 
+        }
     }
 
     public boolean agregarComent(Producto p, String coment) {
@@ -123,4 +129,10 @@ public class ProductosDAO {
         return true;
     }
 
+// Metodo para ordenar
+//    public List<Producto> ordenar(){
+//        List<Producto> ordNombre = new ArrayList<>(productos.values());
+//        Collections.sort(ordNombre,Comparator.comparing(Producto::getNombre));
+//        return ordNombre;
+//    }
 }

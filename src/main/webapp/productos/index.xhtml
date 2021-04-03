@@ -53,7 +53,9 @@
             <p:menubar style="max-height: 60px">
                 <p:menuitem outcome="agregar" value="Nuevo producto" icon="pi pi-fw pi-plus"/>
                 <p:menuitem  value="Comparar productos (*SIN FUNCIONALIDAD*)" icon="pi pi-fw pi-copy"/>
-                <f:facet name="options">    
+
+                <f:facet name="options"> 
+                    <!--                  boton para ordenar ->  <p:commandButton value="Ordenar" action=""/>-->
                     <p:inputText placeholder="Buscar producto" value="#{prodCtrl.busca}"/>
                     <p:commandButton icon="pi pi-fw pi-search" action="#{prodCtrl.buscarNombre()}"/>
                 </f:facet>
@@ -62,30 +64,38 @@
         </h:form>
 
         <section>
-            <h:form>
 
+            <h:form rendered="#{prodCtrl.mostrar}">   <!-- Cambiar -->
                 <ul>
                     <h6 style="font-style: italic">Productos encontrados: #{prodCtrl.subProductos.size()}</h6>
-                    <ui:repeat var="p" value="#{prodCtrl.subProductos}">
-                        <li> 
-                            <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: white; width: 210px; max-height: 250px">
-                                <h:link onclick="#{prodCtrl.visualiza(p.id)}" outcome="#{prodCtrl.visualiza(p.id)}"><h:graphicImage height="100" width="150" name="#{p.imagen}" library="images"/></h:link><br></br> <hr></hr>                                                       
-                                <h:link style="color: #669900" onclick="#{prodCtrl.visualiza(p.id)}" outcome="#{prodCtrl.visualiza(p.id)}">#{p.nombre}</h:link>
-                            </p:card>
-                        </li>
-                    </ui:repeat>
+                    <div style="margin-left: 5.5%; margin-right: 2%">
+                        <ui:repeat var="p" value="#{prodCtrl.subProductos}">
+                            <li> 
+                                <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: white; width: 210px; max-height: 250px">
+                                    <h:link onclick="#{prodCtrl.visualiza(p.id)}" outcome="#{prodCtrl.visualiza(p.id)}"><h:graphicImage height="100" width="150" name="#{p.imagen}" library="images"/></h:link><br></br> <hr></hr>                                                       
+                                    <h:link style="color: #669900" onclick="#{prodCtrl.visualiza(p.id)}" outcome="#{prodCtrl.visualiza(p.id)}">#{p.nombre}</h:link>
+                                </p:card>
+                            </li>
+                        </ui:repeat>
+                    </div>
                 </ul>
+            </h:form>
+            <h:form rendered="#{prodCtrl.mostrar}">
                 <ul>
                     <h6 style="font-style: italic">Productos totales: #{prodCtrl.productos.size()}</h6>
-                    <ui:repeat var="p" value="#{prodCtrl.productos}">
+                    <div style="margin-left: 5.5%; margin-right: 2%">
 
-                        <li> 
-                            <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: white; width: 210px; max-height: 250px">
-                                <h:link onclick="#{prodCtrl.visualiza(p.id)}" outcome="#{prodCtrl.visualiza(p.id)}"><h:graphicImage height="100" width="150" name="#{p.imagen}" library="images"/></h:link><br></br> <hr></hr>                                                       
-                                <h:link style="color: #669900" onclick="#{prodCtrl.visualiza(p.id)}" outcome="#{prodCtrl.visualiza(p.id)}">#{p.nombre}</h:link>
-                            </p:card>
-                        </li>
-                    </ui:repeat>
+                        <ui:repeat var="p" value="#{prodCtrl.productos}">
+
+                            <li> 
+                                <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: white; width: 210px; max-height: 250px">
+                                    <h:link onclick="#{prodCtrl.visualiza(p.id)}" outcome="#{prodCtrl.visualiza(p.id)}"><h:graphicImage height="100" width="150" name="#{p.imagen}" library="images"/></h:link><br></br> <hr></hr>                                                       
+                                    <h:link style="color: #669900" onclick="#{prodCtrl.visualiza(p.id)}" outcome="#{prodCtrl.visualiza(p.id)}">#{p.nombre}</h:link>
+                                    <br><b>#{p.precio}€</b></br>
+                                </p:card>
+                            </li>
+                        </ui:repeat>
+                    </div>
                 </ul>
             </h:form>
         </section>

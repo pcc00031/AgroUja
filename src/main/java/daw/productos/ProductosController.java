@@ -22,6 +22,8 @@ public class ProductosController implements Serializable {
     private String comentario;
     private String categoria;
     private String marca;
+    private boolean mostrar = true;
+
 
     /* INICIALIZADOES , GETTERS Y SETTERS */
     public ProductosController() {
@@ -50,12 +52,16 @@ public class ProductosController implements Serializable {
         return busca;
     }
 
-    public String getCategoria() {
-        return categoria;
+    public void setMostrar(boolean mostrar) {
+        this.mostrar = mostrar;
     }
 
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
+    public boolean isMostrar() {
+        return mostrar;
+    }
+
+    public String getCategoria() {
+        return categoria;
     }
 
     public String getMarca() {
@@ -128,6 +134,8 @@ public class ProductosController implements Serializable {
         }
         log.info("Buscando producto que contiene: " + busca);
         productosDAO.buscarNombre(busca);
+        setMostrar(false);
+        System.out.println(mostrar);
         return "index?faces-redirect=true";
     }
 
@@ -144,6 +152,7 @@ public class ProductosController implements Serializable {
         }
         log.info("Buscando producto con categoria: " + categoria);
         productosDAO.buscarCategoria(categoria);
+        mostrar = !mostrar;
         return "index?faces-redirect=true";
     }
 
@@ -153,6 +162,12 @@ public class ProductosController implements Serializable {
         }
         log.info("Buscando producto con marca: " + marca);
         productosDAO.buscarMarca(marca);
+        mostrar = !mostrar;
         return "index?faces-redirect=true";
     }
+
+//  Metodo para ordenar
+//    public void ordNombre() {
+//        productos = productosDAO.ordenar();
+//    }
 }
