@@ -15,9 +15,8 @@ import javax.validation.constraints.Size;
 @Entity()
 public class Producto implements Serializable {
 
-//TODO imagen
+//FIXME imagen
 //TODO agregar mas productos
-//TODO comparar producto
     @Id
     private Integer id;
 

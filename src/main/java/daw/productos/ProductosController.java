@@ -64,6 +64,10 @@ public class ProductosController implements Serializable {
         return categoria;
     }
 
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
     public String getMarca() {
         return marca;
     }
@@ -134,8 +138,8 @@ public class ProductosController implements Serializable {
         }
         log.info("Buscando producto que contiene: " + busca);
         productosDAO.buscarNombre(busca);
-        setMostrar(false);
-        System.out.println(mostrar);
+//        setMostrar(false);
+//        System.out.println(mostrar);
         return "index?faces-redirect=true";
     }
 
@@ -152,7 +156,7 @@ public class ProductosController implements Serializable {
         }
         log.info("Buscando producto con categoria: " + categoria);
         productosDAO.buscarCategoria(categoria);
-        mostrar = !mostrar;
+//        mostrar = !mostrar;
         return "index?faces-redirect=true";
     }
 
@@ -162,7 +166,7 @@ public class ProductosController implements Serializable {
         }
         log.info("Buscando producto con marca: " + marca);
         productosDAO.buscarMarca(marca);
-        mostrar = !mostrar;
+//        mostrar = !mostrar;
         return "index?faces-redirect=true";
     }
 
