@@ -7,11 +7,11 @@
     <ui:define name="content">
         <h:body>
 
-            <p:card>
-                <p:contentFlow value="#{carr.images}" var="image">
-                    <p:graphicImage value="/#{image}" styleClass="content" />
-                </p:contentFlow>
-            </p:card>
+            <p:carousel autoPlayInterval="4000" numVisible="1">
+                <h:graphicImage library="images" name="tractorcar.jpg"/>
+                <h:graphicImage library="images" name="Motosierracar.jpg" />
+                <h:graphicImage library="images" name="fungicarr.jpg" />
+            </p:carousel>
 
 
         </h:body>
