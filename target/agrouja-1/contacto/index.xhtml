@@ -72,9 +72,9 @@
                         <h:outputText id="display"/>
                     
                     </p:fieldset>
-                        <p:commandButton type="reset" value="Enviar  " id="formulario" style="font-size: 12px; margin: 1%" action="#{ctrlFormulario.crea()}" icon="pi pi-check" styleClass="ui-button-success" iconPos="right"/>
-                        <!--<p:commandButton type="button" value="Enviar" style="font-size: 12px; margin: 1%" action="#{ctrlFormulario.crea()}" icon="pi pi-check" iconPos="right" styleClass="ui-button-success"/>-->
-                        <h:link outcome="formularios"><p:commandButton type="button" value="Ver formularios  " style="font-size: 12px; margin: 1%" icon="pi pi-external-link" styleClass="ui-button-secondary" iconPos="right"/></h:link>
+                    <p:commandButton value="Enviar  " id="formulario" style="font-size: 12px; margin: 1%" action="#{ctrlFormulario.crea()}" icon="pi pi-check" styleClass="ui-button-success" iconPos="right"/>
+                        
+                    <p:linkButton outcome="formularios" value="Ver formularios" style="font-size: 12px; margin: 1%" icon="pi pi-external-link" iconPos="right" styleClass="ui-button-secondary">Ver formularios</p:linkButton>
                         
                 </h:form>
             </h:panelGrid>

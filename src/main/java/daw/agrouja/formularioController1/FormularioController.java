@@ -66,9 +66,12 @@ public class FormularioController implements Serializable {
         return "Formulario"+contador++;
     }
     
-    public void crea(){
+    public String crea(){
         logger.info("Guardando formulario");
         formulariosDAO.crea(formulario);
+        //formularios=formulariosDAO.buscaTodos();
+        this.formulario=new Formulario();
+        return "";
     }
     
     public void recupera(){
@@ -78,6 +81,7 @@ public class FormularioController implements Serializable {
     }
     
     public void recupera(String email){
+        logger.info("Recuperando formulario "+email);
         formulario = formulariosDAO.buscaEmail(email);
     }
     

@@ -24,7 +24,7 @@ public class FormulariosDAO {
     public FormulariosDAO(){
         if (formularios==null){
             formularios=new HashMap<>();
-            formularios.put("tohtus",new Formulario("wgeewgweg", "wegwgwgwg", "tohtus", "wegwgwgwg", "wegwgwgwg", "wegwgwgwg"));
+            formularios.put("aloha@yopmail.com",new Formulario("Oha", "123456789", "aloha@yopmail.com", "Albania", "Pala rota", "Mi pala está rota"));
         }
     }
 
@@ -41,7 +41,8 @@ public class FormulariosDAO {
     }
 
     public boolean crea(Formulario f) {
-        formularios.put(f.getEmail(), f);
+        
+        formularios.put(f.getEmail(), new Formulario(f));
         return true;
     }
 }

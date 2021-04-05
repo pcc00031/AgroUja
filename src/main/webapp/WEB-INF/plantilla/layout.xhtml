@@ -21,15 +21,23 @@
     <h:body>
 
         <!--CABECERA-->
-        <ui:include src="/WEB-INF/plantilla/cabecera.xhtml"/>
+        <header>
+            <nav>
+                <ui:include src="/WEB-INF/plantilla/cabecera.xhtml"/>
+            </nav>
+        </header>
 
         <!--CONTENIDO-->
-        <div id="content" class="center_content" style="overflow: auto; height: 100%">
-            <ui:insert name="content">Content</ui:insert>
-        </div>
+        <main>
+            <div id="content" class="center_content" style="overflow: auto; height: 100%">
+                <ui:insert name="content">Content</ui:insert>
+            </div>
+        </main>
 
         <!--FOOTER-->
-        <ui:include src="/WEB-INF/plantilla/footer.xhtml"/>
+        <footer>
+            <ui:include src="/WEB-INF/plantilla/footer.xhtml"/>
+        </footer>
 
     </h:body>
 
