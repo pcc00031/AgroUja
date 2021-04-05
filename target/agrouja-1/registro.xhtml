@@ -12,19 +12,31 @@
             <p:fieldset  legend="Datos Personales">
                 <h:panelGrid columns="2">
                     <p:outputLabel for="Nomb" value="Nombre" />
-                    <p:inputText id="Nomb" required="true" />
+                    <p:inputText id="Nomb" value="#{usuarioCtrl.usuario.nombre}" required="true" />
 
                     <p:outputLabel for="Apell" value="Apellidos"  />
-                    <p:inputText id="Apell" required="true"/>
+                    <p:inputText id="Apell" value="#{usuarioCtrl.usuario.apellidos}" required="true"/>
 
                     <p:outputLabel  value="Sexo"/>
-                    <p:selectOneRadio>
-                        <f:selectItem itemValue="M" itemLabel="Masculino"/>
-                        <f:selectItem itemValue="F" itemLabel="Femenino"/>
+                    <p:selectOneRadio value="#{usuarioCtrl.usuario.sexo}">
+                        <f:selectItem itemValue="M" value="#{usuarioCtrl.usuario.sexo}" itemLabel="Masculino"/>
+                        <f:selectItem itemValue="F" value="#{usuarioCtrl.usuario.sexo}" itemLabel="Femenino"/>
                     </p:selectOneRadio>
+                    
+                    <p:outputLabel for="Corr" value="Correo"  />
+                    <p:inputText id="Corr" value="#{usuarioCtrl.usuario.correo}" required="true"/>
 
                     <p:outputLabel for="Fnac" value="Fec. Nacimiento"/>
-                    <p:calendar id="Fnac"  required="true"/>
+                    <p:calendar id="Fnac" value="#{usuarioCtrl.usuario.fnac}"  required="true"/>
+                    
+                    <p:outputLabel for="DatosTarj" value="Tarjeta"  />
+                    <p:inputText id="DatosTarj" value="#{usuarioCtrl.usuario.tarjeta}" required="true"/>
+                    
+                    <p:outputLabel for="Dir" value="Direccion"  />
+                    <p:inputText id="Dir" value="#{usuarioCtrl.usuario.direccion}" required="true"/>
+                    
+                    <p:outputLabel for="Tlf" value="Telefono"  />
+                    <p:inputText id="Tlf" value="#{usuarioCtrl.usuario.telef}" required="true"/>
                 </h:panelGrid>
             </p:fieldset>
 
@@ -34,15 +46,16 @@
             <p:fieldset legend="Cuenta">
                 <h:panelGrid columns="2">
                     <p:outputLabel for="User" value="Usuario"/>
-                    <p:inputText id="User" required="true" />
+                    <p:inputText id="User" value="#{usuarioCtrl.usuario.usuario}" required="true" />
 
                     <p:outputLabel for="Clave" value="Contraseña"/>
-                    <p:password id="Clave" required="true"/>
+                    <p:password id="Clave" value="#{usuarioCtrl.usuario.contraseña}" required="true"/>
 
                     <p:outputLabel for="repClave" value="Repetir Contraseña"/>
                     <p:password id="repClave" required="true"/>
                     
-                    <p:commandButton  value="Registrar"/>
+                    <p:commandButton value="Registrar" action="#{usuarioCtrl.crea()}"/>
+                    <p:commandButton value="Recuperar cuenta" action="#{usuarioCtrl.recupera()}"/>
                     
                 </h:panelGrid>
             </p:fieldset>

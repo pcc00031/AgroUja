@@ -60,6 +60,11 @@ public class usuarioController implements Serializable {
         usuarioDao.guarda(getUsuario());
         return "visualiza?faces-redirect=true&id=" + getUsuario().getId();
     }
+    
+    public String borra() {
+        usuarioDao.borra(Usuario.getId());
+        return "visualiza?faces-redirect=true&id=" + getUsuario().getId();
+    }
 
     /**
      * @return the Usuario
