@@ -3,25 +3,35 @@
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="/WEB-INF/plantilla/layout-usu.xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:p="http://primefaces.org/ui">
-
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+    
+    <ui:define name="metadata">
+        <f:metadata>
+            <f:viewParam name="id" value="#{usuarioCtrl.usuario.id}"/>
+            <f:viewAction action="#{usuarioCtrl.recupera()}" />
+        </f:metadata> 
+        
+    </ui:define>
     <ui:define name="content">
         <h:head><label><h4>Editar usuario</h4></label></h:head>
-        <h:form><label></label><p:inputText placeholder="Nombre"></p:inputText><br></br>
-                <label></label><p:inputText placeholder="Apellidos"></p:inputText><br></br>
-                <label></label><p:inputTextarea rows="6" cols="33" placeholder="Biografía"/><br></br>
-                <label></label><p:password placeholder="Contraseña"></p:password><br></br>
-                <label></label><p:password placeholder="Confirmar contraseña"></p:password><br></br>
-                <label></label><p:inputText placeholder="Nombre de usuario"></p:inputText><br></br>
-                <label> FOTO DE PERFIL <input type="file" name="Seleccionar archivo"></input></label><br></br>
-                <label></label><p:inputText placeholder="Correo electrónico"></p:inputText><br></br>
-                <label> FECHA DE NACIMIENTO <input type="date" name="Fecha de nacimiento"></input></label><br></br>
-                <label></label><p:inputText placeholder="Teléfono"></p:inputText><br></br>
-                <label></label> DATOS TARJETA DE PAGO  <p:inputText placeholder="Número tarjeta"></p:inputText><p:inputText placeholder="Fecha caducidad"></p:inputText><p:inputText placeholder="Clave seguridad"></p:inputText><br></br>
-                <label></label><p:inputText placeholder="Dirección de envío"></p:inputText><br></br>
-                <label></label><p:inputText placeholder="Teléfono"></p:inputText></h:form>
-        <br><p:button styleClass="ui-button-success" value="Guardar cambios" onclick="JavaScript: alert('¡Cambios guardados satisfactoriamente!')" icon="pi pi-check"/></br>
-        
+        <h:form><label></label><p:inputText placeholder="Nombre" value="#{usuarioCtrl.usuario.nombre}"></p:inputText><br></br>
+            <label></label><p:inputText placeholder="Apellidos" value="#{usuarioCtrl.usuario.apellidos}"></p:inputText><br></br>
+            <label></label><p:password placeholder="Contraseña" value="#{usuarioCtrl.usuario.contraseña}"></p:password><br></br>
+            <label></label><p:inputText placeholder="Nombre de usuario" value="#{usuarioCtrl.usuario.usuario}"></p:inputText><br></br>
+            <!--<label> FOTO DE PERFIL <input type="file" name="Seleccionar archivo"></input></label><br></br>-->
+            <label></label> <p:selectOneRadio value="#{usuarioCtrl.usuario.sexo}">
+                                <f:selectItem itemValue="M" value="#{usuarioCtrl.usuario.sexo}" itemLabel="Masculino"/>
+                                <f:selectItem itemValue="F" value="#{usuarioCtrl.usuario.sexo}" itemLabel="Femenino"/>
+                            </p:selectOneRadio>
+            <label></label><p:inputText placeholder="Correo electrónico" value="#{usuarioCtrl.usuario.correo}"></p:inputText><br></br>
+            <label> <p:inputText type="date" placeholder="Fecha de nacimiento" value="#{usuarioCtrl.usuario.fnac}"/></label><br></br>
+            <label></label><p:inputText placeholder="Teléfono" value="#{usuarioCtrl.usuario.telef}"></p:inputText><br></br>
+            <label></label><p:inputText placeholder="Número tarjeta" value="#{usuarioCtrl.usuario.tarjeta}"></p:inputText><!--<p:inputText placeholder="Fecha caducidad"></p:inputText><p:inputText placeholder="Clave seguridad"></p:inputText>--><br></br>
+            <label></label><p:inputText placeholder="Dirección de envío" value="#{usuarioCtrl.usuario.direccion}"></p:inputText><br></br>
+            <br><h:commandButton action="#{usuarioCtrl.guarda()}" styleClass="ui-button-success" value="Guardar cambios" onclick="JavaScript: alert('¡Cambios guardados satisfactoriamente!')" /></br>
+            <br><h:commandButton action="#{usuarioCtrl.borrar()}" styleClass="ui-button-success" value="Eliminar usuario" onclick="JavaScript: alert('¡Usuario eliminado satisfactoriamente!')"/></br>
+        </h:form>
     </ui:define>
 
 </ui:composition>

@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <cc:attribute name="value"/>
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <article>
+            <div>
+                <b>Nombre:</b> #{cc.attrs.value.nombre}
+            </div>
+            <div>
+                <b>Telefono: </b> #{cc.attrs.value.telefono}
+            </div>
+            <div>
+                <b>Email: </b> #{cc.attrs.value.email}
+            </div>
+            <div>
+                <b>Pais: </b> #{cc.attrs.value.pais}
+            </div>
+            <div>
+                <b>Asunto: </b> #{cc.attrs.value.asunto}
+            </div>
+            <div>
+                <b>Mensaje: </b> #{cc.attrs.value.mensaje}
+            </div>
+        </article>
+    </cc:implementation>
+</html>

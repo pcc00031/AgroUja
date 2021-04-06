@@ -6,14 +6,14 @@
                 xmlns:p="http://primefaces.org/ui">
     <ui:define name="content">
         <h:body>
-            <h:form>
-                <p:contentFlow>
-                    <p:graphicImage library="images" value="1" name="img1.jpg" styleClass="content"/>
-                    <p:graphicImage library="images" value="1" name="img2.jpg" styleClass="content"/>
-                    <p:graphicImage library="images" value="1" name="img3.jpg" styleClass="content"/>
 
-                </p:contentFlow>
-            </h:form>
+            <p:carousel autoPlayInterval="4000" numVisible="1">
+                <h:graphicImage library="images" name="tractorcar.jpg"/>
+                <h:graphicImage library="images" name="Motosierracar.jpg" />
+                <h:graphicImage library="images" name="fungicarr.jpg" />
+            </p:carousel>
+
+
         </h:body>
     </ui:define>
 
