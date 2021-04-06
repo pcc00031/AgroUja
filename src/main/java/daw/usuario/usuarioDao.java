@@ -73,7 +73,7 @@ public class UsuarioDao implements  Serializable {
     }
 
     
-   public boolean edita(Usuario u) {
+   public boolean guarda(Usuario u) {
         boolean result = false;
         if (Usuario.containsKey(u.getId())) {
             Usuario nu = new Usuario(u);

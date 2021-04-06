@@ -11,7 +11,7 @@
         <h:form>
             <p:fieldset  legend="Datos Personales">
                 <h:panelGrid columns="2">
-                    <p:outputLabel for="Nomb" value="#{usuarioCtrl.usuarios.size()}" />
+                    <p:outputLabel for="Nomb" value="Nombre" />
                     <p:inputText id="Nomb" value="#{usuarioCtrl.usuario.nombre}" />
 
                     <p:outputLabel for="Apell" value="Apellidos"  />
@@ -55,7 +55,7 @@
                     <p:password id="repClave" />
                     
                     <h:commandButton value="Registrar" action="#{usuarioCtrl.crea()}"/>
-                    <h:commandButton value="Mostrar" action="#{usuarioCtrl.muestra()}"/>
+                    <h:commandButton value="Mostrar" action="#{usuarioCtrl.muestra(usuarioCtrl.usuario.id)}"/>
                     
                 </h:panelGrid>
             </p:fieldset>

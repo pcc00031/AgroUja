@@ -47,8 +47,15 @@ public class UsuarioController implements Serializable {
         Usuario = usuarioDao.buscaId(Usuario.getId());
     }
 
+     public void recupera2(int id) {
+        Usuario = usuarioDao.buscaId(id);
+    }
     public String muestra(int id) {
         recupera2(id);
+        return "usuario/mostrar?faces-redirect=true&id=" + Usuario.getId();
+    }
+     public String guarda() {
+        usuarioDao.guarda(Usuario);
         return "mostrar?faces-redirect=true&id=" + Usuario.getId();
     }
 
@@ -60,7 +67,7 @@ public class UsuarioController implements Serializable {
     public String crea() {
         logger.info("Creando Usuario: " + Usuario.getId());
         usuarioDao.crea(Usuario);
-        return "registro?faces-redirect";
+        return "mostrar?faces-redirect";
     }
 
     public String borrar() {
@@ -70,9 +77,7 @@ public class UsuarioController implements Serializable {
         return "index?faces-redirect=true";
     }
 
-    public void recupera2(int id) {
-        Usuario = usuarioDao.buscaId(id);
-    }
+    
 
     /**
      * @return the Usuario
