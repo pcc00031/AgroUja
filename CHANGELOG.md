@@ -1,5 +1,24 @@
 # CHANGELOG - AGROUJA
 
+## [0.0.2] - 2021-04-05
+#### Added
+
+- clases java: Producto, ProductosDAO & ProductosController - @pcc00031
+    - Buscar por nombre, marca y categoría
+    - Alta, borrado y edición de producto
+    - 8 productos agregados
+    - Agregar comentarios a un producto
+- clases java: Usuario, UsuariosDAO & UsuariosController - @cmp00070 , @jgr00059
+    - Alta, borrado, edición y recuperación de cuenta
+    - 4 usuarios agregados
+- clases java: Formulario, FormulariosDAO & FormulariosController - @cga00037
+    - Crear y visualizar formularios
+
+### Fixed
+
+- correcto uso de etiquetas semánticas
+- carousel de la página principal
+- apartados visuales: posicionamiento de header y footer
 
 ## [0.0.1] - 2021-03-22
 #### Added
@@ -21,10 +40,5 @@
 
 - solapamiento de funciones .css
 - apartados visuales 
-
-
-
-
-
 
 
