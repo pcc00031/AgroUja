@@ -14,7 +14,7 @@ import javax.validation.constraints.Size;
  * @author Equipo
  */
 @Entity()
-public class usuario implements Serializable {
+public class Usuario implements Serializable {
 
 
    
@@ -34,12 +34,12 @@ public class usuario implements Serializable {
     private int telef;
 
     
-    public usuario() {
+    public Usuario() {
        id=0;
     }
 
    
-    public usuario(int _id, String _Nombre,  String _Apellidos,String _Sexo, String _usuario, String _Contraseña, String _Correo , String _fnac,String _tarjeta, String _direccion, int _telef) {
+    public Usuario(int _id, String _Nombre,  String _Apellidos,String _Sexo, String _usuario, String _Contraseña, String _Correo , String _fnac,String _tarjeta, String _direccion, int _telef) {
         id= _id;
         Nombre = _Nombre;
         Apellidos = _Apellidos;
@@ -54,7 +54,7 @@ public class usuario implements Serializable {
     }
 
     
-    public usuario(usuario u) {
+    public Usuario(Usuario u) {
          id= u.id;
         Nombre = u.Nombre;
         Apellidos = u.Apellidos;

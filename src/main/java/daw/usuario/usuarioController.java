@@ -15,68 +15,76 @@ import javax.inject.Named;
 
 @Named(value = "usuarioCtrl")
 @ViewScoped
-public class usuarioController implements Serializable {
+public class UsuarioController implements Serializable {
 
-    private final Logger logger = Logger.getLogger(usuarioController.class.getName());
+    private final Logger logger = Logger.getLogger(UsuarioController.class.getName());
 
    @Inject        
-    private usuarioDao usuarioDao;
-    private usuario Usuario;
-    private List<usuario> usuarios;
+    private UsuarioDao usuarioDao;
+    private Usuario Usuario;
+    private List<Usuario> usuarios;
    
 
-    public usuarioController() {
+    public UsuarioController() {
     }
 
     @PostConstruct
     public void init() {
-        setUsuario(new usuario());
+        Usuario = new Usuario();
         usuarios = usuarioDao.buscaTodos();
     }
 
    
     
-    public List<usuario> getUsuarios() {
+    public List<Usuario> getUsuarios() {
         return usuarioDao.buscaTodos();
     }
 
-    public void recupera() {
-        setUsuario(usuarioDao.buscaId(getUsuario().getId()));
-        if (getUsuario() == null) {            
-           /* fc.addMessage(null, new FacesMessage("El usuario indicado no existe"));*/
-        }
+   
+    
+     public void recupera() {
+        logger.info("Recuperando usuario: " + Usuario.getId());
+        Usuario = usuarioDao.buscaId(Usuario.getId());
     }
 
-    
+    public String muestra(int id) {
+        recupera2(id);
+        return "mostrar?faces-redirect=true&id=" + Usuario.getId();
+    }
+
+    public String edita() {
+        recupera();
+        return "editar?faces-redirect=true&id=" + Usuario.getId();
+    }
+
     public String crea() {
-        getUsuario().setId(0);
-        usuarioDao.crea(getUsuario());
-        return "visualiza?faces-redirect=true&id=" + getUsuario().getId();
+        logger.info("Creando Usuario: " + Usuario.getId());
+        usuarioDao.crea(Usuario);
+        return "registro?faces-redirect";
     }
 
-    
-    public String guarda() {
-
-        usuarioDao.guarda(getUsuario());
-        return "visualiza?faces-redirect=true&id=" + getUsuario().getId();
+    public String borrar() {
+        recupera();
+        logger.info("Borrando producto: " + Usuario.getId());
+        usuarioDao.borra(Usuario);
+        return "index?faces-redirect=true";
     }
-    
-    public String borra() {
-        usuarioDao.borra(Usuario.getId());
-        return "visualiza?faces-redirect=true&id=" + getUsuario().getId();
+
+    public void recupera2(int id) {
+        Usuario = usuarioDao.buscaId(id);
     }
 
     /**
      * @return the Usuario
      */
-    public usuario getUsuario() {
+    public Usuario getUsuario() {
         return Usuario;
     }
 
     /**
      * @param Usuario the Usuario to set
      */
-    public void setUsuario(usuario Usuario) {
+    public void setUsuario(Usuario Usuario) {
         this.Usuario = Usuario;
     }
 }
