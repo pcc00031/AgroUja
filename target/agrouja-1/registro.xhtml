@@ -19,15 +19,15 @@
 
                     <p:outputLabel  value="Sexo"/>
                     <p:selectOneRadio value="#{usuarioCtrl.usuario.sexo}">
-                        <f:selectItem itemValue="M" value="#{usuarioCtrl.usuario.sexo}" itemLabel="Masculino"/>
-                        <f:selectItem itemValue="F" value="#{usuarioCtrl.usuario.sexo}" itemLabel="Femenino"/>
+                        <f:selectItem itemValue="M"  itemLabel="Masculino"/>
+                        <f:selectItem itemValue="F"  itemLabel="Femenino"/>
                     </p:selectOneRadio>
                     
                     <p:outputLabel for="Corr" value="Correo"  />
                     <p:inputText id="Corr" value="#{usuarioCtrl.usuario.correo}" />
 
                     <p:outputLabel for="Fnac" value="Fec. Nacimiento"/>
-                    <p:calendar id="Fnac" value="#{usuarioCtrl.usuario.fnac}"  />
+                    <p:inputText id="Fnac" value="#{usuarioCtrl.usuario.fnac}"  />
                     
                     <p:outputLabel for="DatosTarj" value="Tarjeta"  />
                     <p:inputText id="DatosTarj" value="#{usuarioCtrl.usuario.tarjeta}" />

@@ -25,9 +25,9 @@
                                 <f:selectItem itemValue="F" value="#{usuarioCtrl.usuario.sexo}" itemLabel="Femenino"/>
                             </p:selectOneRadio>
             <label></label><p:inputText placeholder="Correo electrónico" value="#{usuarioCtrl.usuario.correo}"></p:inputText><br></br>
-            <label> FECHA DE NACIMIENTO <input type="date" name="Fecha de nacimiento" value="#{usuarioCtrl.usuario.fnac}"></input></label><br></br>
+            <label> <p:inputText type="date" placeholder="Fecha de nacimiento" value="#{usuarioCtrl.usuario.fnac}"/></label><br></br>
             <label></label><p:inputText placeholder="Teléfono" value="#{usuarioCtrl.usuario.telef}"></p:inputText><br></br>
-            <label></label> DATOS TARJETA DE PAGO  <p:inputText placeholder="Número tarjeta" value="#{usuarioCtrl.usuario.tarjeta}"></p:inputText><!--<p:inputText placeholder="Fecha caducidad"></p:inputText><p:inputText placeholder="Clave seguridad"></p:inputText>--><br></br>
+            <label></label><p:inputText placeholder="Número tarjeta" value="#{usuarioCtrl.usuario.tarjeta}"></p:inputText><!--<p:inputText placeholder="Fecha caducidad"></p:inputText><p:inputText placeholder="Clave seguridad"></p:inputText>--><br></br>
             <label></label><p:inputText placeholder="Dirección de envío" value="#{usuarioCtrl.usuario.direccion}"></p:inputText><br></br>
             <br><h:commandButton action="#{usuarioCtrl.guarda()}" styleClass="ui-button-success" value="Guardar cambios" onclick="JavaScript: alert('¡Cambios guardados satisfactoriamente!')" /></br>
             <br><h:commandButton action="#{usuarioCtrl.borrar()}" styleClass="ui-button-success" value="Eliminar usuario" onclick="JavaScript: alert('¡Usuario eliminado satisfactoriamente!')"/></br>
