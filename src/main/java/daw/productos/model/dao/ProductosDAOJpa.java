@@ -22,7 +22,7 @@ public class ProductosDAOJpa
 
     private final Logger logger = Logger.getLogger(ProductosDAOJpa.class.getName());
 
-    @PersistenceContext(unitName = "agroPU")
+    @PersistenceContext
     private EntityManager em;
 
     public ProductosDAOJpa() {

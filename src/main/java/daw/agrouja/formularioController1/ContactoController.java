@@ -7,6 +7,8 @@ package daw.agrouja.formularioController1;
 
 import daw.agrouja.formulario1.Formulario;
 import daw.agrouja.formulariosDAO1.FormulariosDAO;
+import daw.productos.qualifiers.DAOJpa;
+import daw.productos.qualifiers.DAOMap;
 import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Logger;
@@ -24,23 +26,22 @@ import javax.inject.Named;
 
 @Named("ctrlFormulario")
 @ViewScoped
-public class FormularioController implements Serializable {
-    
-    private final Logger logger = Logger.getLogger(FormularioController.class.getName());
-    
+public class ContactoController implements Serializable {
+
+    private final Logger logger = Logger.getLogger(ContactoController.class.getName());
 
     
     private boolean bar=false;
     private int contador = 1;
     
-    @Inject 
+    @Inject @DAOJpa
     private FormulariosDAO formulariosDAO;
     
     private Formulario formulario;
     
     List<Formulario> formularios;
     
-    public FormularioController(){   
+    public ContactoController(){   
     }
     
     @PostConstruct

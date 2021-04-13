@@ -5,23 +5,29 @@
  */
 package daw.agrouja.formulario1;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  *
  * @author Carlos
  */
+
+@Entity
 public class Formulario {
+    @Id
+    private String email="";
     private String nombre="";
     private String telefono="";
-    private String email="";
     private String pais="";
     private String asunto="";
     private String mensaje="";
 
-    public Formulario(String nombre, String telefono, String email, String pais,
+    public Formulario(String email, String nombre, String telefono, String pais,
             String asunto, String mensaje) {
+        this.email = email;
         this.nombre = nombre;
         this.telefono = telefono;
-        this.email = email;
         this.pais = pais;
         this.asunto = asunto;
         this.mensaje = mensaje;
@@ -32,9 +38,9 @@ public class Formulario {
     }
 
     public Formulario(Formulario f) { 
-        this.nombre = f.nombre;
-        this.telefono = f.telefono;
         this.email = f.email;
+        this.nombre = f.nombre;
+        this.telefono = f.telefono; 
         this.pais = f.pais;
         this.asunto = f.asunto;
         this.mensaje = f.mensaje;
