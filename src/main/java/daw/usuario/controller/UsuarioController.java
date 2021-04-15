@@ -47,11 +47,11 @@ public class UsuarioController implements Serializable {
    
     
      public void recupera() {
-        logger.info("Recuperando usuario: " + Usuario.getId());
+        logger.info("Recuperando Usuario: " + Usuario.getId());
         Usuario = usuarioDao.buscaId(Usuario.getId());
     }
 
-     public void recupera2(int id) {
+     public void recupera2(Integer id) {
         Usuario = usuarioDao.buscaId(id);
     }
     public String muestra(int id) {
@@ -69,14 +69,14 @@ public class UsuarioController implements Serializable {
     }
 
     public String crea() {
-        logger.info("Creando Usuario: " + Usuario.getId());
         usuarioDao.crea(Usuario);
-        return "mostrar?faces-redirect";
+        logger.info("Creando Usuario: " + Usuario.getId());
+        return "usuario/mostrar?faces-redirect=true&id=" + Usuario.getId();
     }
 
     public String borrar() {
         recupera();
-        logger.info("Borrando producto: " + Usuario.getId());
+        logger.info("Borrando Usuario: " + Usuario.getId());
         usuarioDao.borra(Usuario);
         return "index?faces-redirect=true";
     }

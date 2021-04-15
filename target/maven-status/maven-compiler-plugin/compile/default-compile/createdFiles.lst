@@ -9,7 +9,6 @@ daw\agrouja\country1\Country.class
 daw\usuario\user\Usuario.class
 daw\agrouja\fileuploadbean1\FileUploadBean.class
 daw\agrouja\selectOneView1\SelectOneView.class
-daw\agrouja\resources\Carrousel.class
 daw\usuario\dao\UsuarioDAOMap.class
 daw\agrouja\MessagesView.class
 daw\agrouja\formulariosDAO1\FormulariosDAO.class

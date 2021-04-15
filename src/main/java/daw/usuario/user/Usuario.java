@@ -7,6 +7,8 @@ package daw.usuario.user;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Size;
 
@@ -19,19 +21,20 @@ public class Usuario implements Serializable {
 
    
     @Id
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     
-    private String Nombre;
-    private String Apellidos;
-    private String usuario;
+    private String Nombre="";
+    private String Apellidos="";
+    private String usuario="";
     @Size(min = 8,max =20, message = "{La contraseña debe tener como mínimo 8 cáracteres y 20 como máximo}" )
-    private String Contraseña;
-    private String Sexo;
-    private String Correo; 
-    private String fnac;
-    private String tarjeta;
-    private String direccion;
-    private int telef;
+    private String Contraseña="";
+    private String Sexo="";
+    private String Correo=""; 
+    private String fnac="";
+    private String tarjeta="";
+    private String direccion="";
+    private int telef=0;
 
     
     public Usuario() {

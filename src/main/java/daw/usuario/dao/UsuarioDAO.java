@@ -12,7 +12,6 @@ package daw.usuario.dao;
 
 
 import daw.usuario.user.Usuario;
-import daw.productos.model.Producto;
 import java.util.List;
 
 

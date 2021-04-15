@@ -3,7 +3,6 @@ package daw.productos.model.dao;
 import daw.productos.model.Producto;
 import daw.productos.qualifiers.DAOJpa;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
