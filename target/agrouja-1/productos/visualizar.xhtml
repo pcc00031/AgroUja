@@ -55,7 +55,9 @@
                 </f:facet> 
             </p:card>
             <br>   <center><h1>Agregar comentario</h1></center></br>
-            <br><p:inputTextarea style="margin-left: 5%;" rows="6" cols="150" value="#{prodCtrl.comentario}"  ></p:inputTextarea></br>
+            <br>
+                <p:inputTextarea style="margin-left: 13%;width: 900px; margin-right: 5%" rows="5" value="#{prodCtrl.producto.comentario}"  ></p:inputTextarea>
+            </br>
             <br> <center> <p:commandButton styleClass="ui-button-success" value="Confirmar" icon="pi pi-comment" action ="#{prodCtrl.addComent()}"/> </center></br>
             <br></br>
             <center><h1>Lista de comentarios</h1></center>

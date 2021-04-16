@@ -18,7 +18,7 @@
                     <f:facet name="subtitle">
                         <hr></hr>
 
-                        <p:selectOneRadio value="#{prodCtrl.categoria}" layout="responsive" columns="1" unselectable="true">
+                        <p:selectOneRadio value="#{prodCtrl.producto.buscaCat}" layout="responsive" columns="1" unselectable="true">
                             <f:selectItem itemLabel="Comestible" itemValue="Comestible"/>
                             <f:selectItem itemLabel="Maquinaria" itemValue="Maquinaria"/>
                             <f:selectItem itemLabel="Otra" itemValue="Otra"/>
@@ -35,7 +35,7 @@
                     <f:facet name="subtitle">
                         <hr></hr>
 
-                        <p:selectOneRadio value="#{prodCtrl.marca}" layout="responsive" columns="1" unselectable="true">
+                        <p:selectOneRadio value="#{prodCtrl.producto.buscaMarca}" layout="responsive" columns="1" unselectable="true">
                             <f:selectItem itemLabel="AgroUja" itemValue="AgroUja"/>
                             <f:selectItem itemLabel="Otra" itemValue="Otra"/>
                         </p:selectOneRadio>
@@ -56,7 +56,7 @@
 
                 <f:facet name="options"> 
                     <!--                  boton para ordenar ->  <p:commandButton value="Ordenar" action=""/>-->
-                    <p:inputText placeholder="Buscar producto" value="#{prodCtrl.busca}"/>
+                    <p:inputText placeholder="Buscar producto" value="#{prodCtrl.producto.buscaNomb}"/>
                     <p:commandButton icon="pi pi-fw pi-search" action="#{prodCtrl.buscarNombre()}"/>
                 </f:facet>
             </p:menubar>
