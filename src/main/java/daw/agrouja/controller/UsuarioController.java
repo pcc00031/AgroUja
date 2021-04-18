@@ -15,6 +15,8 @@ import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 
 @Named(value = "usuarioCtrl")
 @ViewScoped
@@ -95,5 +97,12 @@ public class UsuarioController implements Serializable {
      */
     public void setUsuario(Usuario Usuario) {
         this.Usuario = Usuario;
+    }
+    
+    @Inject HttpServletRequest request;
+    public String logout() throws ServletException{
+        request.logout();
+        request.getSession().invalidate();
+        return "/index?faces-redirect=true";
     }
 }

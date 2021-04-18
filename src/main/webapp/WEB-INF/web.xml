@@ -50,4 +50,20 @@
         <max-pool-size>10</max-pool-size>
         <min-pool-size>5</min-pool-size>
     </data-source>
+    <security-role>
+        <role-name>USUARIOS</role-name>
+    </security-role>
+    <security-role>
+        <role-name>ADMINISTRADORES</role-name>
+    </security-role>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Usuarios identificados</web-resource-name>
+            <url-pattern>/productos/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>USUARIOS</role-name>
+            <role-name>ADMINISTRADORES</role-name>
+        </auth-constraint>
+    </security-constraint>
 </web-app>

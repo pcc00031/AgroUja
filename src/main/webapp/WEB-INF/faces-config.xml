@@ -24,4 +24,19 @@
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_3.xsd">
 
+    @EmbeddedIdentityStoreDefinition({
+        <!--@Credentials(callerName="admin", password="admin", groups={"ADMINISTRADORES"}),
+        @Credentials(callerName="jesus", password="jesus", groups={"USUARIOS"})-->
+    })
+    @FormAuthenticationMechanismDefinition(
+        loginToContinue=@LoginToContinue(
+            loginPage="/login.jsf",
+            errorPage="/login.jsf?error",
+            useForwardToLogin=false
+        )
+    )
+    @ApplicationScoped
+    @FacesConfig
+    public class AppConfig{}
+    
 </faces-config>
