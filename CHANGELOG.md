@@ -6,6 +6,7 @@
 - clases java: ProductosDAOJpa & ProductosDAOMap - @pcc00031
 - clases java: UsuarioDAOJpa & UsuarioDAOMap - @cmp00070 
 - clases java: FormularioDAOJpa, FormularioDAOMap - @cga00037
+- clases java: UsuarioIdentityStore, UsuarioLoginController, AppConfig - @jgr00059
 - qualifiers: DAOJpa & DAOMap - @pcc00031 , @cmp00070 , @jgr00059 , @cga00037
 
 ### Fixed
@@ -16,6 +17,7 @@
 - Atributos excesivos de ProductoController pasados al bean de Productos - @pcc00031
 - SelectOneMenu & SelecOneView eliminadas - @pcc00031 , @cmp00070 , @jgr00059 , @cga00037
 - Creación de usuario corregida - @cmp00070
+- Implementación de security-role y security-constraint para control de acceso a recursos en web.xml, implementación de formulario estándar de autenticación en vista login.xhtml - @jgr00059
 
 ## [0.0.2] - 2021-04-05
 #### Added
