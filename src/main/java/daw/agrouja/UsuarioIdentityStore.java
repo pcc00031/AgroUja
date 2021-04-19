@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import javax.enterprise.context.ApplicationScoped;
 import javax.security.enterprise.credential.UsernamePasswordCredential;
 import javax.security.enterprise.identitystore.CredentialValidationResult;
 import javax.security.enterprise.identitystore.IdentityStore;
@@ -18,6 +19,7 @@ import javax.security.enterprise.identitystore.IdentityStore;
  *
  * @author Jesus
  */
+@ApplicationScoped
 public class UsuarioIdentityStore implements IdentityStore {
     private Map<String,String> credenciales;
     
