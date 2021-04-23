@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -46,10 +47,13 @@ public class Producto implements Serializable {
     private boolean destacado;
 
     private Integer rating = 0;
-    private List<String> comentarios = null;
 
     @Positive(message = "El precio no puede ser negativo o cero")
     private double precio = 0;
+
+    //Claves foraneas
+    private Usuario idUsuario = null;
+    private List<Comentario> comentarios = null;
 
     //Métodos específicos
     private String buscaNomb;
@@ -89,7 +93,6 @@ public class Producto implements Serializable {
         this.ventAlq = ventAlq;
         this.destacado = destacado;
         this.precio = precio;
-        this.comentarios = new ArrayList<String>();
     }
 
     /**
@@ -200,21 +203,16 @@ public class Producto implements Serializable {
         this.rating = rating;
     }
 
-    public List<String> getComentarios() {
+    public List<Comentario> getComentarios() {
         return comentarios;
     }
 
-    public void setComentarios(List<String> comentarios) {
+    public void setComentarios(List<Comentario> comentarios) {
         this.comentarios = comentarios;
     }
 
     public void addComent(String comentario) {
-        if (this.comentarios == null) {
-            this.comentarios = new ArrayList<String>();
-            this.comentarios.add(comentario);
-        } else {
-            this.comentarios.add(comentario);
-        }
+//FIXME
     }
 
     public String getBuscaNomb() {
@@ -247,6 +245,14 @@ public class Producto implements Serializable {
 
     public void setBuscaMarca(String buscaMarca) {
         this.buscaMarca = buscaMarca;
+    }
+
+    public Usuario getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(Usuario idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
 }

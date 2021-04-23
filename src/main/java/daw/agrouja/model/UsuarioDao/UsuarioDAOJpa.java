@@ -5,11 +5,11 @@
  */
 package daw.agrouja.model.UsuarioDao;
 
-
 import daw.agrouja.model.Usuario;
 import daw.agrouja.qualifiers.DAOJpa;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
@@ -23,8 +23,6 @@ import javax.transaction.Transactional;
 @Transactional
 
 public class UsuarioDAOJpa implements UsuarioDAO, Serializable {
-        
-   
 
     private final Logger logger = Logger.getLogger(UsuarioDAOJpa.class.getName());
 
@@ -68,9 +66,8 @@ public class UsuarioDAOJpa implements UsuarioDAO, Serializable {
         }
         return creado;
     }
-    
-    
-      @Override
+
+    @Override
     public void borra(Usuario u) {
         try {
             u = em.find(Usuario.class, u.getId());
@@ -79,10 +76,15 @@ public class UsuarioDAOJpa implements UsuarioDAO, Serializable {
             logger.log(Level.SEVERE, ex.getMessage(), ex);
         }
     }
-    
+
     @Override
-    public boolean guarda(Usuario u) { 
+    public boolean guarda(Usuario u) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
+    @Override
+    public String[] login(Usuario u) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

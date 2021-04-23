@@ -9,30 +9,31 @@ public class Comentario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id_comentario;
+    private Integer id_comentario;
 
     @Size(max = 250,
             message = "La descripción no debe ser superior a (max)")
-    String descripcion = "";
+    private String descripcion = "";
 
-    Integer id_cliente;
-    Integer id_producto;
+    // Claves foraneas
+    private Usuario id_usuario = null;
+    private Producto id_producto = null;
 
     /* CONSTRUCTORES */
     public Comentario() {
         id_comentario = 0;
     }
 
-    public Comentario(Integer id_comentario, String descripcion, Integer id_cliente, Integer id_producto) {
+    public Comentario(String desc, Integer id_comentario, Usuario id_usuario, Producto id_producto) {
+        this.descripcion = desc;
         this.id_comentario = id_comentario;
-        this.id_cliente = id_cliente;
+        this.id_usuario = id_usuario;
         this.id_producto = id_producto;
-        this.descripcion = descripcion;
     }
 
     public Comentario(Comentario com) {
         this.id_comentario = com.id_comentario;
-        this.id_cliente = com.id_cliente;
+        this.id_usuario = com.id_usuario;
         this.id_producto = com.id_producto;
         this.descripcion = com.descripcion;
     }
@@ -54,19 +55,19 @@ public class Comentario {
         this.descripcion = descripcion;
     }
 
-    public Integer getId_cliente() {
-        return id_cliente;
+    public Usuario getId_usuario() {
+        return id_usuario;
     }
 
-    public void setId_cliente(Integer id_cliente) {
-        this.id_cliente = id_cliente;
+    public void setId_usuario(Usuario id_usuario) {
+        this.id_usuario = id_usuario;
     }
 
-    public Integer getId_producto() {
+    public Producto getId_producto() {
         return id_producto;
     }
 
-    public void setId_producto(Integer id_producto) {
+    public void setId_producto(Producto id_producto) {
         this.id_producto = id_producto;
     }
 

@@ -11,6 +11,10 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import javax.enterprise.context.ApplicationScoped;
+import daw.agrouja.model.UsuarioDao.UsuarioDAOJpa;
+import daw.agrouja.qualifiers.DAOJpa;
+import daw.agrouja.qualifiers.DAOMap;
+import javax.inject.Inject;
 import javax.security.enterprise.credential.UsernamePasswordCredential;
 import javax.security.enterprise.identitystore.CredentialValidationResult;
 import javax.security.enterprise.identitystore.IdentityStore;
@@ -20,23 +24,29 @@ import javax.security.enterprise.identitystore.IdentityStore;
  * @author Jesus
  */
 @ApplicationScoped
+
 public class UsuarioIdentityStore implements IdentityStore {
-    private Map<String,String> credenciales;
-    
+
+    private final Map<String, String> credenciales;
+
     public UsuarioIdentityStore() {
-        credenciales=new HashMap<>();
-        credenciales.put("admin", "admin");
-        credenciales.put("jesus", "jesus");
+        credenciales = new HashMap<>();
+        credenciales.put("jgr00059", "jesus");
+        credenciales.put("pcc00031", "pedro");
+        credenciales.put("cmp00070", "cristian");
+        credenciales.put("cga00037", "carlos");
     }
+
     public CredentialValidationResult validate(UsernamePasswordCredential usernamePasswordCredential) {
-        String username=usernamePasswordCredential.getCaller();
-        String password=usernamePasswordCredential.getPasswordAsString();
-        
-        String validPassword=credenciales.get(username);
-        if(validPassword!=null&&validPassword.equals(password)) {
-            Set<String> roles=new HashSet<>(Arrays.asList("USUARIOS"));
+        String username = usernamePasswordCredential.getCaller();
+        String password = usernamePasswordCredential.getPasswordAsString();
+
+        String validPassword = credenciales.get(username);
+        if (validPassword != null && validPassword.equals(password)) {
+            Set<String> roles = new HashSet<>(Arrays.asList("USUARIOS"));
             return new CredentialValidationResult(username, roles);
         }
         return CredentialValidationResult.INVALID_RESULT;
     }
+
 }

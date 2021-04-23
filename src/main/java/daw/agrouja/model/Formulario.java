@@ -12,16 +12,19 @@ import javax.persistence.Id;
  *
  * @author Carlos
  */
-
 @Entity
 public class Formulario {
+
     @Id
-    private String email="";
-    private String nombre="";
-    private String telefono="";
-    private String pais="";
-    private String asunto="";
-    private String mensaje="";
+    private String email = "";
+    private String nombre = "";
+    private String telefono = "";
+    private String pais = "";
+    private String asunto = "";
+    private String mensaje = "";
+    
+    // Claves foraneas
+    private String idUsuario;
 
     public Formulario(String email, String nombre, String telefono, String pais,
             String asunto, String mensaje) {
@@ -32,20 +35,20 @@ public class Formulario {
         this.asunto = asunto;
         this.mensaje = mensaje;
     }
-    
+
     public Formulario(String email) {
         this.email = email;
     }
 
-    public Formulario(Formulario f) { 
+    public Formulario(Formulario f) {
         this.email = f.email;
         this.nombre = f.nombre;
-        this.telefono = f.telefono; 
+        this.telefono = f.telefono;
         this.pais = f.pais;
         this.asunto = f.asunto;
         this.mensaje = f.mensaje;
     }
-    
+
     public Formulario() {
     }
 
@@ -131,6 +134,14 @@ public class Formulario {
      */
     public void setMensaje(String mensaje) {
         this.mensaje = mensaje;
+    }
+
+    public String getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(String idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
 }

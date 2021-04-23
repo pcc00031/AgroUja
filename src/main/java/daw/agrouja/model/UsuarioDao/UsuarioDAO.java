@@ -9,14 +9,11 @@ package daw.agrouja.model.UsuarioDao;
  *
  * @author Equipo
  */
-
-
 import daw.agrouja.model.Usuario;
 import java.util.List;
-
+import java.util.Map;
 
 public interface UsuarioDAO {
-
 
     public Usuario buscaId(int id);
 
@@ -28,6 +25,6 @@ public interface UsuarioDAO {
 
     public boolean guarda(Usuario u);
 
-    
-}
+   public String[] login(Usuario u);
 
+}

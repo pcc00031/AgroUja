@@ -5,7 +5,9 @@
  */
 package daw.agrouja.model;
 
+import daw.agrouja.model.ProductoDao.ProductosDAOJpa;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,55 +20,56 @@ import javax.validation.constraints.Size;
 @Entity()
 public class Usuario implements Serializable {
 
-
-   
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    
-    private String Nombre="";
-    private String Apellidos="";
-    private String usuario="";
-    @Size(min = 8,max =20, message = "{La contraseña debe tener como mínimo 8 cáracteres y 20 como máximo}" )
-    private String Contraseña="";
-    private String Sexo="";
-    private String Correo=""; 
-    private String fnac="";
-    private String tarjeta="";
-    private String direccion="";
-    private int telef=0;
 
-    
+    private String Nombre = "";
+    private String Apellidos = "";
+    private String usuario = "";
+    @Size(min = 8, max = 20, message = "{La contraseña debe tener como mínimo 8 cáracteres y 20 como máximo}")
+    private String Contraseña = "";
+    private String Sexo = "";
+    private String Correo = "";
+    private String fnac = "";
+    private String tarjeta = "";
+    private String direccion = "";
+    private int telef = 0;
+
+    // Claves foraneas
+    private List<Producto> prodVentAlq = null;
+    private List<Producto> compraAlq = null;
+    private List<Formulario> formularios = null;
+    private List<Comentario> comentarios = null;
+
     public Usuario() {
-       id=0;
+        id = 0;
     }
 
-   
-    public Usuario(int _id, String _Nombre,  String _Apellidos,String _Sexo, String _usuario, String _Contraseña, String _Correo , String _fnac,String _tarjeta, String _direccion, int _telef) {
-        id= _id;
+    public Usuario(int _id, String _Nombre, String _Apellidos, String _Sexo, String _usuario, String _Contraseña, String _Correo, String _fnac, String _tarjeta, String _direccion, int _telef) {
+        id = _id;
         Nombre = _Nombre;
         Apellidos = _Apellidos;
-        usuario=_usuario;
+        usuario = _usuario;
         Contraseña = _Contraseña;
         Correo = _Correo;
-        Sexo=_Sexo;
+        Sexo = _Sexo;
         fnac = _fnac;
-        tarjeta= _tarjeta;
+        tarjeta = _tarjeta;
         direccion = _direccion;
         telef = _telef;
     }
 
-    
     public Usuario(Usuario u) {
-         id= u.id;
+        id = u.id;
         Nombre = u.Nombre;
         Apellidos = u.Apellidos;
-        usuario=u.usuario;
+        usuario = u.usuario;
         Contraseña = u.Contraseña;
-        Sexo= u.Sexo;
+        Sexo = u.Sexo;
         Correo = u.Correo;
         fnac = u.fnac;
-        tarjeta= u.tarjeta;
+        tarjeta = u.tarjeta;
         direccion = u.direccion;
         telef = u.telef;
     }

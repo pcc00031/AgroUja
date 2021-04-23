@@ -101,4 +101,8 @@ public class ContactoController implements Serializable {
     public void setBar(boolean bar){
         this.bar=bar;
     }       
+    
+    public void UsuarioCont(String usu){
+       formulario.setIdUsuario(usu);
+    }
 }

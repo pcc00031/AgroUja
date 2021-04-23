@@ -72,6 +72,8 @@
                         <h:outputText id="display"/>
                     
                     </p:fieldset>
+                    #{ctrlFormulario.UsuarioCont(request.remoteUser)}
+                    <p> #{ctrlFormulario.formulario.idUsuario} </p>
                     <p:commandButton value="Enviar  " id="formulario" style="font-size: 12px; margin: 1%" action="#{ctrlFormulario.crea()}" icon="pi pi-check" styleClass="ui-button-success" iconPos="right"/>
                         
                     <p:linkButton outcome="formularios" value="Ver formularios" style="font-size: 12px; margin: 1%" icon="pi pi-external-link" iconPos="right" styleClass="ui-button-secondary">Ver formularios</p:linkButton>
