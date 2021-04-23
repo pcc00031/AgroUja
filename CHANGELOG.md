@@ -1,5 +1,29 @@
 # CHANGELOG - AGROUJA
 
+## [0.0.3] - 2021-04-19
+#### Added
+
+- clases java: ProductosDAOJpa & ProductosDAOMap - @pcc00031
+- clases java: UsuarioDAOJpa & UsuarioDAOMap - @cmp00070 
+- clases java: FormularioDAOJpa, FormularioDAOMap - @cga00037
+- clases java: UsuarioIdentityStore, UsuarioLoginController, AppConfig - @jgr00059
+- Implementación de security-role y security-constraint para control de acceso a recursos en web.xml - @jgr00059
+- Implementación de formulario estándar de autenticación en vista login.xhtml - @jgr00059
+- qualifiers: DAOJpa & DAOMap - @pcc00031 , @cmp00070 , @jgr00059 , @cga00037
+
+### Fixed
+
+- Organización paquetes AgroUja - @pcc00031 , @cmp00070 , @jgr00059 , @cga00037
+- Corrección clases .java correspondientes a Usuario - @cmp00070
+- Cambio de nombre FormularioController -> ContactoController - @cga00037
+- Atributos excesivos de ProductoController pasados al bean de Productos - @pcc00031
+- SelectOneMenu & SelecOneView eliminadas - @pcc00031 , @cmp00070 , @jgr00059 , @cga00037
+- Creación de usuario corregida - @cmp00070
+
+### To Do
+
+- Algunos métodos JPA en productos - @pcc00031
+
 ## [0.0.2] - 2021-04-05
 #### Added
 
