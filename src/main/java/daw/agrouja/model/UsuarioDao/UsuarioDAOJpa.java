@@ -83,8 +83,15 @@ public class UsuarioDAOJpa implements UsuarioDAO, Serializable {
     }
 
     @Override
-    public String[] login(Usuario u) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Usuario buscaPorNombre(String nombre) {
+        Usuario u = null;
+        try {
+            Query q = em.createQuery("Select u from Usuario u where u.usuario=:nombre", Usuario.class).setParameter("nombre", nombre);
+            u = (Usuario) q.getSingleResult();
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
+        }
+        return u;
     }
 
 }

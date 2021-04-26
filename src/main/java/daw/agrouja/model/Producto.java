@@ -47,12 +47,13 @@ public class Producto implements Serializable {
     private boolean destacado;
 
     private Integer rating = 0;
+    private Boolean favorito = false;
 
     @Positive(message = "El precio no puede ser negativo o cero")
     private double precio = 0;
 
     //Claves foraneas
-    private Usuario idUsuario = null;
+    private String idUsuario = null;
     private List<Comentario> comentarios = null;
 
     //Métodos específicos
@@ -247,12 +248,20 @@ public class Producto implements Serializable {
         this.buscaMarca = buscaMarca;
     }
 
-    public Usuario getIdUsuario() {
+    public String getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(Usuario idUsuario) {
+    public void setIdUsuario(String idUsuario) {
         this.idUsuario = idUsuario;
+    }
+
+    public Boolean getFavorito() {
+        return favorito;
+    }
+
+    public void setFavorito(Boolean favorito) {
+        this.favorito = favorito;
     }
 
 }

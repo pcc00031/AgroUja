@@ -49,8 +49,10 @@
                     </div>           
                 </f:facet>
                 <f:facet name="footer">
+                    <br> <p><i>Publicado por:</i> #{prodCtrl.producto.idUsuario}</p></br>
                     <p:rating cancel="false" style="margin-bottom: 5%; color: yellow; float: right"/>
-                    <br><h3>Precio: #{prodCtrl.producto.precio}€</h3></br>
+                    <h3>Precio: #{prodCtrl.producto.precio}€</h3>
+                    
 
                 </f:facet> 
             </p:card>

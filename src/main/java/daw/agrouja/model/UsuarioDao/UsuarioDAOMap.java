@@ -5,6 +5,7 @@
  */
 package daw.agrouja.model.UsuarioDao;
 
+import daw.agrouja.UsuarioIdentityStore;
 import daw.agrouja.qualifiers.DAOMap;
 import daw.agrouja.model.Usuario;
 import java.io.Serializable;
@@ -33,6 +34,7 @@ public class UsuarioDAOMap implements UsuarioDAO, Serializable {
 
     private Map<Integer, Usuario> Usuario = null;
     private int idUser = 1;
+    private UsuarioIdentityStore credenciales;
 
     public UsuarioDAOMap() {
         if (Usuario == null) {
@@ -89,8 +91,9 @@ public class UsuarioDAOMap implements UsuarioDAO, Serializable {
     }
 
     @Override
-    public String[] login(Usuario u) {
-        String a[] = {u.getUsuario(), u.getContraseña()};
-        return credentials = a;
+    public Usuario buscaPorNombre(String nombre) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+
 }

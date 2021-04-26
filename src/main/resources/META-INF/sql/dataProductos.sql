@@ -8,3 +8,7 @@ insert into Producto (nombre, descripcion, marca, imagen, estado, categoria, ven
 insert into Producto (nombre, descripcion, marca, imagen, estado, categoria, ventAlq, destacado, precio) values ('Mejor aceite', 'El mejor aceite del mundo', 'AgroUja', 'mejoraceite.jpg', 'Nuevo', 'Comestible', 'Venta', true, 50.7);
 
 insert into Formulario (email, nombre, telefono, pais, asunto, mensaje) values ('Trolololo@yopmail.com', 'Trol', '123456789', 'Alemania', 'Tractor roto', 'Tractor no furula');
+
+insert into Usuario (Nombre, Apellidos) values ('Roberto', 'Antonio');
+
+UPDATE producto SET idUsuario = 'pcc00031' WHERE marca = 'AgroUja';

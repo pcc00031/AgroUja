@@ -12,8 +12,8 @@ import java.util.Map;
 import java.util.Set;
 import javax.enterprise.context.ApplicationScoped;
 import daw.agrouja.model.UsuarioDao.UsuarioDAOJpa;
+import daw.agrouja.model.Usuario;
 import daw.agrouja.qualifiers.DAOJpa;
-import daw.agrouja.qualifiers.DAOMap;
 import javax.inject.Inject;
 import javax.security.enterprise.credential.UsernamePasswordCredential;
 import javax.security.enterprise.identitystore.CredentialValidationResult;
@@ -27,6 +27,7 @@ import javax.security.enterprise.identitystore.IdentityStore;
 
 public class UsuarioIdentityStore implements IdentityStore {
 
+    //@Inject @DAOJpa
     private final Map<String, String> credenciales;
 
     public UsuarioIdentityStore() {
@@ -41,6 +42,8 @@ public class UsuarioIdentityStore implements IdentityStore {
         String username = usernamePasswordCredential.getCaller();
         String password = usernamePasswordCredential.getPasswordAsString();
 
+        credenciales.put(username, password);
+
         String validPassword = credenciales.get(username);
         if (validPassword != null && validPassword.equals(password)) {
             Set<String> roles = new HashSet<>(Arrays.asList("USUARIOS"));
@@ -48,5 +51,4 @@ public class UsuarioIdentityStore implements IdentityStore {
         }
         return CredentialValidationResult.INVALID_RESULT;
     }
-
 }

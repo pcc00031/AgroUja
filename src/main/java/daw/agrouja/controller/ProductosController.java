@@ -104,7 +104,7 @@ public class ProductosController implements Serializable {
         }
         log.info("Buscando producto que contiene: " + producto.getBuscaNomb());
         productosDAO.buscarNombre(producto.getBuscaNomb());
-                subProductos = productosDAO.buscaTodosSub();
+        subProductos = productosDAO.buscaTodosSub();
         System.out.println(subProductos.size());
         return "index?faces-redirect=true";
     }
@@ -127,6 +127,10 @@ public class ProductosController implements Serializable {
         productosDAO.buscarMarca(producto.getBuscaMarca());
         System.out.println(subProductos.size());
         return "index?faces-redirect=true";
+    }
+
+    public void usuComent(String usu) {
+
     }
 
 }

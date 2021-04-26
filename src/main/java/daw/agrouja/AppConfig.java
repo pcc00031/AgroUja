@@ -16,28 +16,23 @@ import org.glassfish.soteria.identitystores.annotation.EmbeddedIdentityStoreDefi
  *
  * @author Jesus
  */
-@EmbeddedIdentityStoreDefinition({
-        @Credentials(callerName="jgr00059", password="jesus", groups={"ADMINISTRADORES"}),
-        @Credentials(callerName="pcc00031", password="pedro", groups={"ADMINISTRADORES"}),
-        @Credentials(callerName="cga00037", password="carlos", groups={"ADMINISTRADORES"}),
-        @Credentials(callerName="cmp00070", password="cristian", groups={"ADMINISTRADORES"}),
-        
-    })
-    /**@BasicAuthenticationMechanismDefinition*/
-    @FormAuthenticationMechanismDefinition(
-        loginToContinue=@LoginToContinue(
-            loginPage="/login.jsf",
-            errorPage="/login.jsf?error",
-            useForwardToLogin=false
+//@EmbeddedIdentityStoreDefinition({
+//    @Credentials(callerName = "jgr00059", password = "jesus", groups = {"ADMINISTRADORES"}),
+//    @Credentials(callerName = "pcc00031", password = "pedro", groups = {"ADMINISTRADORES"}),
+//    @Credentials(callerName = "cga00037", password = "carlos", groups = {"ADMINISTRADORES"}),
+//    @Credentials(callerName = "cmp00070", password = "cristian", groups = {"ADMINISTRADORES"}),})
+/**
+ * @BasicAuthenticationMechanismDefinition
+ */
+@FormAuthenticationMechanismDefinition(
+        loginToContinue = @LoginToContinue(
+                loginPage = "/login.jsf",
+                errorPage = "/login.jsf?error",
+                useForwardToLogin = false
         )
-    )
-    /**@CustomFormAuthenticacionMechanismDefinition(
-        loginToContinue=@LoginToContinue(
-            loginPage="/customlogin.jsf",
-            errorPage="",
-            useForwardToLogin=false*/
-    @ApplicationScoped
-    @FacesConfig
+)
+@ApplicationScoped
+@FacesConfig
 public class AppConfig {
-    
+
 }

@@ -29,7 +29,6 @@ public class UsuarioController implements Serializable {
     private UsuarioDAO usuarioDao;
     private Usuario Usuario;
     private List<Usuario> usuarios;
-   
 
     public UsuarioController() {
     }
@@ -39,15 +38,11 @@ public class UsuarioController implements Serializable {
         Usuario = new Usuario();
         usuarios = usuarioDao.buscaTodos();
     }
-
-   
     
     public List<Usuario> getUsuarios() {
         return usuarioDao.buscaTodos();
     }
-
    
-    
      public void recupera() {
         logger.info("Recuperando Usuario: " + Usuario.getId());
         Usuario = usuarioDao.buscaId(Usuario.getId());
@@ -73,6 +68,7 @@ public class UsuarioController implements Serializable {
     public String crea() {
         usuarioDao.crea(Usuario);
         logger.info("Creando Usuario: " + Usuario.getId());
+        
         return "usuario/mostrar?faces-redirect=true&id=" + Usuario.getId();
     }
 
@@ -82,8 +78,6 @@ public class UsuarioController implements Serializable {
         usuarioDao.borra(Usuario);
         return "index?faces-redirect=true";
     }
-
-    
 
     /**
      * @return the Usuario

@@ -24,7 +24,7 @@ public class Formulario {
     private String mensaje = "";
     
     // Claves foraneas
-    private String idUsuario;
+    private String idUsuario; 
 
     public Formulario(String email, String nombre, String telefono, String pais,
             String asunto, String mensaje) {

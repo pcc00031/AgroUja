@@ -23,11 +23,12 @@ and open the template in the editor.
 
             <h1 class="panel-heading">Visualizar Usuario</h1>
             <h:messages class="text-danger"/>
-            <ui:fragment  rendered="#{usuarioCtrl.usuario != null}">    
+                
 
                 <!-- use custom composite component -->
+                <section>
                 <daw:usuario value="#{usuarioCtrl.usuario}"/>
-                
+                </section>
                 <h:form>
 
                     <h:commandButton  styleClass="btn btn-default" value="Editar" action="#{usuarioCtrl.edita()}"/>
@@ -35,7 +36,7 @@ and open the template in the editor.
                     <h:commandButton styleClass="btn btn-danger" value="Borrar" action="#{usuarioCtrl.borrar()}"/>
                     
                 </h:form>
-            </ui:fragment>
+            
 
         </div>
     </ui:define>

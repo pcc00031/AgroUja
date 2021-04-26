@@ -25,6 +25,6 @@ public interface UsuarioDAO {
 
     public boolean guarda(Usuario u);
 
-   public String[] login(Usuario u);
+    public Usuario buscaPorNombre(String nombre);
 
 }
