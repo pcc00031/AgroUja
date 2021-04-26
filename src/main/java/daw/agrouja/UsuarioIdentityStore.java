@@ -13,6 +13,7 @@ import java.util.Set;
 import javax.enterprise.context.ApplicationScoped;
 import daw.agrouja.model.UsuarioDao.UsuarioDAOJpa;
 import daw.agrouja.model.Usuario;
+import daw.agrouja.model.UsuarioDao.UsuarioDAO;
 import daw.agrouja.qualifiers.DAOJpa;
 import javax.inject.Inject;
 import javax.security.enterprise.credential.UsernamePasswordCredential;
@@ -27,25 +28,19 @@ import javax.security.enterprise.identitystore.IdentityStore;
 
 public class UsuarioIdentityStore implements IdentityStore {
 
-    //@Inject @DAOJpa
-    private final Map<String, String> credenciales;
+    @Inject
+    @DAOJpa
+    private UsuarioDAO usuarioDAO;
 
     public UsuarioIdentityStore() {
-        credenciales = new HashMap<>();
-        credenciales.put("jgr00059", "jesus");
-        credenciales.put("pcc00031", "pedro");
-        credenciales.put("cmp00070", "cristian");
-        credenciales.put("cga00037", "carlos");
     }
 
     public CredentialValidationResult validate(UsernamePasswordCredential usernamePasswordCredential) {
         String username = usernamePasswordCredential.getCaller();
         String password = usernamePasswordCredential.getPasswordAsString();
+        Usuario usuarioEnc = usuarioDAO.buscaPorNombre(username);
 
-        credenciales.put(username, password);
-
-        String validPassword = credenciales.get(username);
-        if (validPassword != null && validPassword.equals(password)) {
+        if (usuarioEnc != null && usuarioEnc.getPassword().equals(password)) {
             Set<String> roles = new HashSet<>(Arrays.asList("USUARIOS"));
             return new CredentialValidationResult(username, roles);
         }

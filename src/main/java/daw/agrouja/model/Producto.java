@@ -35,7 +35,7 @@ public class Producto implements Serializable {
             message = "La longitud de la marca debe estar entre {min} y {max} caracteres")
     private String marca;
 
-    private String imagen;
+    private String imagen = "prod.png";
 
     private String estado; //> Nuevo / usado
 

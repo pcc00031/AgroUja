@@ -1,65 +1,66 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="/WEB-INF/plantilla/layout.xhtml"
-                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:c="http://java.sun.com/jsp/jstl/core">
 
     <ui:define name="content">
+        <h:form>
+            <p:messages id="messages" closable="true" >
+                <p:autoUpdate/>
+            </p:messages>
+        </h:form>
 
         <h:form>
-            <p:fieldset  legend="Datos Personales">
+            <p:fieldset style="padding-left: 12%; padding-right: 10%; display: block; margin-left: 20%; margin-right: 20%" legend="Datos Personales">
                 <h:panelGrid columns="2">
                     <p:outputLabel for="Nomb" value="Nombre" />
-                    <p:inputText id="Nomb" value="#{usuarioCtrl.usuario.nombre}" />
+                    <p:inputText required="true" id="Nomb" value="#{usuarioCtrl.usuario.nombre}" />
 
                     <p:outputLabel for="Apell" value="Apellidos"  />
-                    <p:inputText id="Apell" value="#{usuarioCtrl.usuario.apellidos}" />
+                    <p:inputText required="true" id="Apell" value="#{usuarioCtrl.usuario.apellidos}" />
+
+                    <p:outputLabel for="Corr" value="Correo"  />
+                    <p:inputText required="true" id="Corr" value="#{usuarioCtrl.usuario.correo}" />
 
                     <p:outputLabel  value="Sexo"/>
                     <p:selectOneRadio value="#{usuarioCtrl.usuario.sexo}">
-                        <f:selectItem itemValue="M"  itemLabel="Masculino"/>
-                        <f:selectItem itemValue="F"  itemLabel="Femenino"/>
+                        <f:selectItem itemValue="Masculino"  itemLabel="M"/>
+                        <f:selectItem itemValue="Femenino"  itemLabel="F"/>
                     </p:selectOneRadio>
-
-                    <p:outputLabel for="Corr" value="Correo"  />
-                    <p:inputText id="Corr" value="#{usuarioCtrl.usuario.correo}" />
-
-                    <p:outputLabel for="Fnac" value="Fec. Nacimiento"/>
-                    <p:inputText id="Fnac" value="#{usuarioCtrl.usuario.fnac}"  />
 
                     <p:outputLabel for="DatosTarj" value="Tarjeta"  />
                     <p:inputText id="DatosTarj" value="#{usuarioCtrl.usuario.tarjeta}" />
 
                     <p:outputLabel for="Dir" value="Direccion"  />
                     <p:inputText id="Dir" value="#{usuarioCtrl.usuario.direccion}" />
-
                     <p:outputLabel for="Tlf" value="Telefono"  />
                     <p:inputText id="Tlf" value="#{usuarioCtrl.usuario.telef}" />
+
+                    <p:outputLabel for="fec" value="F. Nac"/>
+                    <p:inputText id="fec" value="#{usuarioCtrl.usuario.fnac}"/>
+
+                    <p:outputLabel for="img" value="Imagen"/>
+                    <p:inputText id="img" value="#{usuarioCtrl.usuario.avatar}" type="file" />
+
                 </h:panelGrid>
             </p:fieldset>
-
-
             <br></br>
-
-            <p:fieldset legend="Cuenta">
+            <p:fieldset style="padding-left: 12%; padding-right: 10%; display: block; margin-left: 20%; margin-right: 20%" legend="Cuenta">
                 <h:panelGrid columns="2">
-                    <c:if test="#{param.error!=null}">
-                        <p class="alert alert-danger">Error de autenticación</p>
-                    </c:if>
-                    <p:outputLabel>Usuario</p:outputLabel>
-                    <input type="text" name="j_username" value="#{usuarioCtrl.usuario.usuario}"/>
-                    <p:outputLabel>Clave</p:outputLabel>
-                    <input type="password" name="j_password" value="#{usuarioCtrl.usuario.contraseña}"/>
-                    <h:commandButton value="Registrar" action="#{usuarioCtrl.crea()}"/>
+                    <p:outputLabel for="usu" value="Usuario"  />
+                    <p:inputText required="true" id="usu" value="#{usuarioCtrl.usuario.nickname}" />
+                    <p:outputLabel for="cont" value="Contraseña"  />
+                    <p:inputText required="true" id="cont" value="#{usuarioCtrl.usuario.password}" />
+                    <p:commandButton value="Registrar" styleClass="ui-button-success" action="#{usuarioCtrl.crea()}"/>
                 </h:panelGrid>
             </p:fieldset>
 
         </h:form>
-
-
 
     </ui:define>
 

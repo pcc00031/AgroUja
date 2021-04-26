@@ -13,16 +13,19 @@
         <article>
             <br></br>
             <div>
-               <b>Nombre </b> #{cc.attrs.value.nombre}
+                <b>Nombre </b> #{cc.attrs.value.nombre}
             </div>
             <div>
                 <b>Apellidos: </b> #{cc.attrs.value.apellidos}
             </div>
             <div>
-                <b>Nombre de Usuario:</b> #{cc.attrs.value.usuario}
+                <b>Nombre de Usuario:</b> #{cc.attrs.value.nickname}
             </div>
             <div>
                 <b>Correo Electrónico:</b> #{cc.attrs.value.correo}
+            </div>
+            <div>
+                <b>Sexo:</b> #{cc.attrs.value.sexo}
             </div>
             <div>
                 <b>Fecha de nacimiento:</b> #{cc.attrs.value.fnac}
@@ -36,7 +39,7 @@
             <div>
                 <b>Teléfono:</b> #{cc.attrs.value.telef}
             </div>
-            
+            <p>hola: #{request.remoteUser}</p>
         </article>
     </cc:implementation>
 </html>

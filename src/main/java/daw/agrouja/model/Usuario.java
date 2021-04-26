@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
 /**
@@ -24,17 +25,27 @@ public class Usuario implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String Nombre = "";
-    private String Apellidos = "";
-    private String usuario = "";
-    @Size(min = 8, max = 20, message = "{La contraseña debe tener como mínimo 8 cáracteres y 20 como máximo}")
-    private String Contraseña = "";
-    private String Sexo = "";
-    private String Correo = "";
-    private String fnac = "";
-    private String tarjeta = "";
-    private String direccion = "";
-    private int telef = 0;
+    @Size(min = 2, max = 20, message = "La longitud del nombre debe estar entre {min} y {max} caracteres")
+    private String nombre = "";
+
+    @Size(min = 2, max = 30, message = "La longitud de los apellidos debe estar entre {min} y {max} caracteres")
+    private String apellidos = "";
+
+    @Size(min = 2, max = 20, message = "La longitud del nombre de usuario debe estar entre {min} y {max} caracteres")
+    private String nickname = "";
+
+    @Size(min = 6, max = 20, message = "La longitud de la contraseña debe estar entre {min} y {max} caracteres")
+    private String password = "";
+
+    @Size(min = 8, max = 30, message = "La longitud del correo debe estar entre {min} y {max} caracteres")
+    private String correo = "";
+
+    private String direccion;
+    private int tarjeta;
+    private int telef;
+    private String sexo = "Desconocido";
+    private String fnac = "dd/mm/yyyy";
+    private String avatar = "user.png";
 
     // Claves foraneas
     private List<Producto> prodVentAlq = null;
@@ -44,16 +55,17 @@ public class Usuario implements Serializable {
 
     public Usuario() {
         id = 0;
+        direccion = "No proporcionada";
     }
 
-    public Usuario(int _id, String _Nombre, String _Apellidos, String _Sexo, String _usuario, String _Contraseña, String _Correo, String _fnac, String _tarjeta, String _direccion, int _telef) {
+    public Usuario(int _id, String _Nombre, String _Apellidos, String _Sexo, String _usuario, String _Contraseña, String _Correo, String _fnac, int _tarjeta, String _direccion, int _telef) {
         id = _id;
-        Nombre = _Nombre;
-        Apellidos = _Apellidos;
-        usuario = _usuario;
-        Contraseña = _Contraseña;
-        Correo = _Correo;
-        Sexo = _Sexo;
+        nombre = _Nombre;
+        apellidos = _Apellidos;
+        nickname = _usuario;
+        password = _Contraseña;
+        correo = _Correo;
+        sexo = _Sexo;
         fnac = _fnac;
         tarjeta = _tarjeta;
         direccion = _direccion;
@@ -62,16 +74,17 @@ public class Usuario implements Serializable {
 
     public Usuario(Usuario u) {
         id = u.id;
-        Nombre = u.Nombre;
-        Apellidos = u.Apellidos;
-        usuario = u.usuario;
-        Contraseña = u.Contraseña;
-        Sexo = u.Sexo;
-        Correo = u.Correo;
+        nombre = u.nombre;
+        apellidos = u.apellidos;
+        nickname = u.nickname;
+        password = u.password;
+        sexo = u.sexo;
+        correo = u.correo;
         fnac = u.fnac;
         tarjeta = u.tarjeta;
         direccion = u.direccion;
         telef = u.telef;
+        avatar = u.avatar;
     }
 
     /**
@@ -92,70 +105,70 @@ public class Usuario implements Serializable {
      * @return the Nombre
      */
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
     /**
      * @param Nombre the Nombre to set
      */
     public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
+        this.nombre = Nombre;
     }
 
     /**
      * @return the Apellidos
      */
     public String getApellidos() {
-        return Apellidos;
+        return apellidos;
     }
 
     /**
      * @param Apellidos the Apellidos to set
      */
     public void setApellidos(String Apellidos) {
-        this.Apellidos = Apellidos;
+        this.apellidos = Apellidos;
     }
 
     /**
      * @return the Usuario
      */
-    public String getUsuario() {
-        return usuario;
+    public String getNickname() {
+        return nickname;
     }
 
     /**
-     * @param usuario the Usuario to set
+     * @param nickname the Usuario to set
      */
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     /**
-     * @return the Contraseña
+     * @return the password
      */
-    public String getContraseña() {
-        return Contraseña;
+    public String getPassword() {
+        return password;
     }
 
     /**
-     * @param Contraseña the Contraseña to set
+     * @param password the password to set
      */
-    public void setContraseña(String Contraseña) {
-        this.Contraseña = Contraseña;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     /**
      * @return the Correo
      */
     public String getCorreo() {
-        return Correo;
+        return correo;
     }
 
     /**
      * @param Correo the Correo to set
      */
     public void setCorreo(String Correo) {
-        this.Correo = Correo;
+        this.correo = Correo;
     }
 
     /**
@@ -175,14 +188,14 @@ public class Usuario implements Serializable {
     /**
      * @return the tarjeta
      */
-    public String getTarjeta() {
+    public int getTarjeta() {
         return tarjeta;
     }
 
     /**
      * @param tarjeta the tarjeta to set
      */
-    public void setTarjeta(String tarjeta) {
+    public void setTarjeta(int tarjeta) {
         this.tarjeta = tarjeta;
     }
 
@@ -218,13 +231,22 @@ public class Usuario implements Serializable {
      * @return the Sexo
      */
     public String getSexo() {
-        return Sexo;
+        return sexo;
     }
 
     /**
      * @param Sexo the Sexo to set
      */
     public void setSexo(String Sexo) {
-        this.Sexo = Sexo;
+        this.sexo = Sexo;
     }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
 }

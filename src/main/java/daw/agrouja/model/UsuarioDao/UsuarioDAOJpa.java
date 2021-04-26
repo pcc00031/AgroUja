@@ -86,7 +86,7 @@ public class UsuarioDAOJpa implements UsuarioDAO, Serializable {
     public Usuario buscaPorNombre(String nombre) {
         Usuario u = null;
         try {
-            Query q = em.createQuery("Select u from Usuario u where u.usuario=:nombre", Usuario.class).setParameter("nombre", nombre);
+            Query q = em.createQuery("Select u from Usuario u where u.nickname=:nombre", Usuario.class).setParameter("nombre", nombre);
             u = (Usuario) q.getSingleResult();
         } catch (Exception ex) {
             logger.log(Level.SEVERE, ex.getMessage(), ex);
