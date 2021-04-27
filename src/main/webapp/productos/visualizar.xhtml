@@ -33,9 +33,13 @@
                 <f:facet name="title">
                     <h1>
                         #{prodCtrl.producto.nombre}
-                        <p:commandButton style="float: right" styleClass="ui-button-danger" value="Borrar producto" icon="pi pi-times" action ="#{prodCtrl.borrar()}"/> 
-                        <p style="color: white; float: right"> he</p>
-                        <p:commandButton style="float: right" styleClass="ui-button-success" value="Editar producto" icon="pi pi-pencil" action ="#{prodCtrl.edita()}"/> 
+                        #{usuarioCtrl.recupera2(prodCtrl.producto.idUsuario)}
+
+                        <c:if test="">
+                            <p:commandButton style="float: right" styleClass="ui-button-danger" value="Borrar producto" icon="pi pi-times" action ="#{prodCtrl.borrar()}"/> 
+                            <p style="color: white; float: right"> he</p>
+                            <p:commandButton style="float: right" styleClass="ui-button-success" value="Editar producto" icon="pi pi-pencil" action ="#{prodCtrl.edita()}"/> 
+                        </c:if>
                     </h1>
                 </f:facet>
                 <f:facet name="subtitle">
@@ -48,20 +52,32 @@
                         <br><b>En: </b>#{prodCtrl.producto.ventAlq}</br>
                     </div>           
                 </f:facet>
-                <f:facet name="footer">
-                    <br> <p><i>Publicado por:</i> #{prodCtrl.producto.idUsuario}</p></br>
+                <f:facet name="footer">                    
+                    <br> <p><i>Publicado por:</i> #{usuarioCtrl.usuario.nickname}</p></br>
                     <p:rating cancel="false" style="margin-bottom: 5%; color: yellow; float: right"/>
                     <h3>Precio: #{prodCtrl.producto.precio}€</h3>
-                    
+
 
                 </f:facet> 
             </p:card>
-            <br>   <center><h1>Agregar comentario</h1></center></br>
-            <br>
-                <p:inputTextarea style="margin-left: 13%;width: 900px; margin-right: 5%" rows="5" value="#{prodCtrl.producto.comentario}"  ></p:inputTextarea>
-            </br>
-            <br> <center> <p:commandButton styleClass="ui-button-success" value="Confirmar" icon="pi pi-comment" action ="#{prodCtrl.addComent()}"/> </center></br>
-            <br></br>
+            <c:if test="#{request.isUserInRole('USUARIOS')}">
+                <br>   <center><h1>Agregar comentario</h1></center></br>
+                <br>
+                    <p:inputTextarea style="margin-left: 13%;width: 900px; margin-right: 5%" rows="5" value="#{prodCtrl.producto.comentario}"  ></p:inputTextarea>
+                </br>
+                <br> <center> <p:commandButton styleClass="ui-button-success" value="Confirmar" icon="pi pi-comment" action ="#{prodCtrl.addComent()}"/> </center></br>
+                <br></br>
+            </c:if>
+
+            <c:if test="#{request.isUserInRole('ADEMINISTRADORES')}">
+                <br>   <center><h1>Agregar comentario</h1></center></br>
+                <br>
+                    <p:inputTextarea style="margin-left: 13%;width: 900px; margin-right: 5%" rows="5" value="#{prodCtrl.producto.comentario}"  ></p:inputTextarea>
+                </br>
+                <br> <center> <p:commandButton styleClass="ui-button-success" value="Confirmar" icon="pi pi-comment" action ="#{prodCtrl.addComent()}"/> </center></br>
+                <br></br>
+            </c:if>
+
             <center><h1>Lista de comentarios</h1></center>
             <ui:repeat var="p" value="#{prodCtrl.producto.comentarios}">
 

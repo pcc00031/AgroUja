@@ -16,11 +16,11 @@ import org.glassfish.soteria.identitystores.annotation.EmbeddedIdentityStoreDefi
  *
  * @author Jesus
  */
-//@EmbeddedIdentityStoreDefinition({
-//    @Credentials(callerName = "jgr00059", password = "jesus", groups = {"ADMINISTRADORES"}),
-//    @Credentials(callerName = "pcc00031", password = "pedro", groups = {"ADMINISTRADORES"}),
-//    @Credentials(callerName = "cga00037", password = "carlos", groups = {"ADMINISTRADORES"}),
-//    @Credentials(callerName = "cmp00070", password = "cristian", groups = {"ADMINISTRADORES"}),})
+@EmbeddedIdentityStoreDefinition({
+    @Credentials(callerName = "jgr00059", password = "jesusg", groups = {"ADMINISTRADORES"}),
+    @Credentials(callerName = "pcc00031", password = "pedromejor", groups = {"ADMINISTRADORES"}),
+    @Credentials(callerName = "cga00037", password = "carlos", groups = {"ADMINISTRADORES"}),
+    @Credentials(callerName = "cmp00070", password = "cristian", groups = {"ADMINISTRADORES"}),})
 /**
  * @BasicAuthenticationMechanismDefinition
  */

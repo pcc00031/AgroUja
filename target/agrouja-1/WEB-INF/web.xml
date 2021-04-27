@@ -53,7 +53,7 @@
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>Usuarios identificados</web-resource-name>
-            <url-pattern>/productos/*</url-pattern>
+            <url-pattern>/productos/agregar.jsf</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <role-name>USUARIOS</role-name>

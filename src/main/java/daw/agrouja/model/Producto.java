@@ -53,7 +53,7 @@ public class Producto implements Serializable {
     private double precio = 0;
 
     //Claves foraneas
-    private String idUsuario = null;
+    private Integer idUsuario = null;
     private List<Comentario> comentarios = null;
 
     //Métodos específicos
@@ -248,11 +248,11 @@ public class Producto implements Serializable {
         this.buscaMarca = buscaMarca;
     }
 
-    public String getIdUsuario() {
+    public Integer getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(String idUsuario) {
+    public void setIdUsuario(Integer idUsuario) {
         this.idUsuario = idUsuario;
     }
 

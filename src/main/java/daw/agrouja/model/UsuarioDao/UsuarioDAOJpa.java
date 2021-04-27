@@ -5,6 +5,7 @@
  */
 package daw.agrouja.model.UsuarioDao;
 
+import daw.agrouja.model.Producto;
 import daw.agrouja.model.Usuario;
 import daw.agrouja.qualifiers.DAOJpa;
 import java.io.Serializable;
@@ -92,6 +93,20 @@ public class UsuarioDAOJpa implements UsuarioDAO, Serializable {
             logger.log(Level.SEVERE, ex.getMessage(), ex);
         }
         return u;
+    }
+
+    @Override
+    public List<Producto> buscaProductos(Usuario u) {
+//        List<Producto> lp = null;
+//        try {
+//            Query q = em.createQuery("Select p from Producto p, Usuario u where p.idUsuario=u.id", Producto.class);
+//            lp = q.getResultList();
+//        } catch (Exception ex) {
+//            logger.log(Level.SEVERE, ex.getMessage(), ex);
+//        }
+//        return lp;
+
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

@@ -7,6 +7,7 @@ package daw.agrouja.model;
 
 import daw.agrouja.model.ProductoDao.ProductosDAOJpa;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -48,10 +49,10 @@ public class Usuario implements Serializable {
     private String avatar = "user.png";
 
     // Claves foraneas
-    private List<Producto> prodVentAlq = null;
-    private List<Producto> compraAlq = null;
-    private List<Formulario> formularios = null;
-    private List<Comentario> comentarios = null;
+//    private List<Producto> productos;
+//    private List<Producto> prodsAdquiridos;
+//    private List<Formulario> formularios;
+//    private List<Comentario> comentarios;
 
     public Usuario() {
         id = 0;
@@ -248,5 +249,14 @@ public class Usuario implements Serializable {
     public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
+
+//    public List<Producto> getProductos() {
+//        return productos;
+//    }
+//
+//    public void setProductos(List<Producto> productos) {
+//
+//        this.productos = productos;
+//    }
 
 }

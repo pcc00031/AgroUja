@@ -2,6 +2,8 @@ package daw.agrouja.controller;
 
 import daw.agrouja.model.Producto;
 import daw.agrouja.model.ProductoDao.ProductosDAO;
+import daw.agrouja.model.Usuario;
+import daw.agrouja.model.UsuarioDao.UsuarioDAO;
 import daw.agrouja.qualifiers.DAOJpa;
 import daw.agrouja.qualifiers.DAOMap;
 import java.io.Serializable;
@@ -24,6 +26,7 @@ public class ProductosController implements Serializable {
     private List<Producto> subProductos;
     private Producto producto;
     private List<Producto> productos;
+    private UsuarioDAO usuarioDAO;
 
     /* INICIALIZADORES , GETTERS Y SETTERS */
     public ProductosController() {
@@ -129,8 +132,15 @@ public class ProductosController implements Serializable {
         return "index?faces-redirect=true";
     }
 
-    public void usuComent(String usu) {
-
+    public boolean equivalente(String user) {
+        boolean equiv = false;
+//        Usuario u = usuarioDAO.buscaId(producto.getId());
+        if (u.getNickname().equals(user)) {
+            equiv = true;
+            return equiv;
+        } else {
+            return equiv;
+        }
     }
 
 }

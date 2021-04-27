@@ -6,6 +6,7 @@
 package daw.agrouja.model.UsuarioDao;
 
 import daw.agrouja.UsuarioIdentityStore;
+import daw.agrouja.model.Producto;
 import daw.agrouja.qualifiers.DAOMap;
 import daw.agrouja.model.Usuario;
 import java.io.Serializable;
@@ -86,6 +87,11 @@ public class UsuarioDAOMap implements UsuarioDAO, Serializable {
 
     @Override
     public Usuario buscaPorNombre(String nombre) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Producto> buscaProductos(Usuario u) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

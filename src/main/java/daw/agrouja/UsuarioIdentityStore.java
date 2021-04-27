@@ -11,7 +11,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import javax.enterprise.context.ApplicationScoped;
-import daw.agrouja.model.UsuarioDao.UsuarioDAOJpa;
 import daw.agrouja.model.Usuario;
 import daw.agrouja.model.UsuarioDao.UsuarioDAO;
 import daw.agrouja.qualifiers.DAOJpa;
@@ -39,7 +38,22 @@ public class UsuarioIdentityStore implements IdentityStore {
         String username = usernamePasswordCredential.getCaller();
         String password = usernamePasswordCredential.getPasswordAsString();
         Usuario usuarioEnc = usuarioDAO.buscaPorNombre(username);
-
+        if (usuarioEnc != null && usuarioEnc.getPassword().equals(password) && username.equals("pcc00031")) {
+            Set<String> roles = new HashSet<>(Arrays.asList("ADMINISTRADORES"));
+            return new CredentialValidationResult(username, roles);
+        }
+        if (usuarioEnc != null && usuarioEnc.getPassword().equals(password) && username.equals("cmp00070")) {
+            Set<String> roles = new HashSet<>(Arrays.asList("ADMINISTRADORES"));
+            return new CredentialValidationResult(username, roles);
+        }
+        if (usuarioEnc != null && usuarioEnc.getPassword().equals(password) && username.equals("cga00037")) {
+            Set<String> roles = new HashSet<>(Arrays.asList("ADMINISTRADORES"));
+            return new CredentialValidationResult(username, roles);
+        }
+        if (usuarioEnc != null && usuarioEnc.getPassword().equals(password) && username.equals("jgr00059")) {
+            Set<String> roles = new HashSet<>(Arrays.asList("ADMINISTRADORES"));
+            return new CredentialValidationResult(username, roles);
+        }
         if (usuarioEnc != null && usuarioEnc.getPassword().equals(password)) {
             Set<String> roles = new HashSet<>(Arrays.asList("USUARIOS"));
             return new CredentialValidationResult(username, roles);

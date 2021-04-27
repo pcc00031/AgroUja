@@ -59,6 +59,7 @@
                     <p:outputLabel for="img" value="Imagen"/>
                     <p:inputText id="img" value="#{prodCtrl.producto.imagen}" type="file" />
 
+                    #{prodCtrl.producto.setIdUsuario(usuarioCtrl.usuId(request.remoteUser))}
 
                     <p:commandButton icon="pi pi-upload" value="Subir imagen"/>
                     <p:commandButton icon="pi pi-check" styleClass="ui-button-success" action="#{prodCtrl.crea()}" value="Añadir producto"/>

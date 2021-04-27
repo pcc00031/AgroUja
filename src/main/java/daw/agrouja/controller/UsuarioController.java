@@ -24,8 +24,10 @@ public class UsuarioController implements Serializable {
 
     private final Logger logger = Logger.getLogger(UsuarioController.class.getName());
 
-   @Inject
-   @DAOJpa        
+    @Inject
+    HttpServletRequest request;
+    @Inject
+    @DAOJpa
     private UsuarioDAO usuarioDao;
     private Usuario Usuario;
     private List<Usuario> usuarios;
@@ -37,25 +39,29 @@ public class UsuarioController implements Serializable {
     public void init() {
         Usuario = new Usuario();
         usuarios = usuarioDao.buscaTodos();
+        //recupera2(1);
+        //Usuario.setProductos(usuarioDao.buscaProductos(Usuario));
     }
-    
+
     public List<Usuario> getUsuarios() {
         return usuarioDao.buscaTodos();
     }
-   
-     public void recupera() {
+
+    public void recupera() {
         logger.info("Recuperando Usuario: " + Usuario.getId());
         Usuario = usuarioDao.buscaId(Usuario.getId());
     }
 
-     public void recupera2(Integer id) {
+    public void recupera2(Integer id) {
         Usuario = usuarioDao.buscaId(id);
     }
+
     public String muestra(int id) {
         recupera2(id);
         return "usuario/mostrar?faces-redirect=true&id=" + Usuario.getId();
     }
-     public String guarda() {
+
+    public String guarda() {
         usuarioDao.guarda(Usuario);
         return "mostrar?faces-redirect=true&id=" + Usuario.getId();
     }
@@ -68,7 +74,7 @@ public class UsuarioController implements Serializable {
     public String crea() {
         usuarioDao.crea(Usuario);
         logger.info("Creando Usuario: " + Usuario.getId());
-        
+
         return "usuario/mostrar?faces-redirect=true&id=" + Usuario.getId();
     }
 
@@ -76,7 +82,7 @@ public class UsuarioController implements Serializable {
         recupera();
         logger.info("Borrando Usuario: " + Usuario.getId());
         usuarioDao.borra(Usuario);
-        return "index?faces-redirect=true";
+        return "/index?faces-redirect=true";
     }
 
     /**
@@ -92,11 +98,22 @@ public class UsuarioController implements Serializable {
     public void setUsuario(Usuario Usuario) {
         this.Usuario = Usuario;
     }
-    
-    @Inject HttpServletRequest request;
-    public String logout() throws ServletException{
+
+    public String logout() throws ServletException {
         request.logout();
         request.getSession().invalidate();
+        System.out.println("hola?");
         return "/index?faces-redirect=true";
     }
+
+    public Integer usuId(String usu) {
+        Usuario = usuarioDao.buscaPorNombre(usu);
+        return Usuario.getId();
+    }
+
+    public String usuNick(int usu) {
+        Usuario = usuarioDao.buscaId(usu);
+        return Usuario.getNickname();
+    }
+
 }

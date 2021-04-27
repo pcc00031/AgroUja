@@ -17,20 +17,20 @@
         <h:head><label><h4>Editar usuario</h4></label></h:head>
         <h:form><label></label><p:inputText placeholder="Nombre" value="#{usuarioCtrl.usuario.nombre}"></p:inputText><br></br>
             <label></label><p:inputText placeholder="Apellidos" value="#{usuarioCtrl.usuario.apellidos}"></p:inputText><br></br>
-            <label></label><p:password placeholder="Contraseña" value="#{usuarioCtrl.usuario.contraseña}"></p:password><br></br>
-            <label></label><p:inputText placeholder="Nombre de usuario" value="#{usuarioCtrl.usuario.usuario}"></p:inputText><br></br>
+            <label></label><p:password placeholder="Contraseña" value="#{usuarioCtrl.usuario.password}"></p:password><br></br>
+            <label></label><p:inputText placeholder="Nombre de usuario" value="#{usuarioCtrl.usuario.nickname}"></p:inputText><br></br>
             <!--<label> FOTO DE PERFIL <input type="file" name="Seleccionar archivo"></input></label><br></br>-->
             <label></label> <p:selectOneRadio value="#{usuarioCtrl.usuario.sexo}">
-                                <f:selectItem itemValue="M" value="#{usuarioCtrl.usuario.sexo}" itemLabel="Masculino"/>
-                                <f:selectItem itemValue="F" value="#{usuarioCtrl.usuario.sexo}" itemLabel="Femenino"/>
+                                <f:selectItem itemValue="M"  itemLabel="Masculino"/>
+                                <f:selectItem itemValue="F"  itemLabel="Femenino"/>
                             </p:selectOneRadio>
             <label></label><p:inputText placeholder="Correo electrónico" value="#{usuarioCtrl.usuario.correo}"></p:inputText><br></br>
             <label> <p:inputText type="date" placeholder="Fecha de nacimiento" value="#{usuarioCtrl.usuario.fnac}"/></label><br></br>
             <label></label><p:inputText placeholder="Teléfono" value="#{usuarioCtrl.usuario.telef}"></p:inputText><br></br>
             <label></label><p:inputText placeholder="Número tarjeta" value="#{usuarioCtrl.usuario.tarjeta}"></p:inputText><!--<p:inputText placeholder="Fecha caducidad"></p:inputText><p:inputText placeholder="Clave seguridad"></p:inputText>--><br></br>
             <label></label><p:inputText placeholder="Dirección de envío" value="#{usuarioCtrl.usuario.direccion}"></p:inputText><br></br>
-            <br><h:commandButton action="#{usuarioCtrl.guarda()}" styleClass="ui-button-success" value="Guardar cambios" onclick="JavaScript: alert('¡Cambios guardados satisfactoriamente!')" /></br>
-            <br><h:commandButton action="#{usuarioCtrl.borrar()}" styleClass="ui-button-success" value="Eliminar usuario" onclick="JavaScript: alert('¡Usuario eliminado satisfactoriamente!')"/></br>
+            <br><h:commandButton action="#{usuarioCtrl.guarda()}" styleClass="ui-button-success" value="Guardar cambios" /></br>
+            <br><h:commandButton action="#{usuarioCtrl.borrar()}" styleClass="ui-button-success" value="Eliminar usuario" /></br>
         </h:form>
     </ui:define>
 
