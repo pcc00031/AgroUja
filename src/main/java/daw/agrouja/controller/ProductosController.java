@@ -132,7 +132,7 @@ public class ProductosController implements Serializable {
         return "index?faces-redirect=true";
     }
 
-    public boolean equivalente(String user) {
+   /* public boolean equivalente(String user) {
         boolean equiv = false;
 //        Usuario u = usuarioDAO.buscaId(producto.getId());
         if (u.getNickname().equals(user)) {
@@ -141,6 +141,6 @@ public class ProductosController implements Serializable {
         } else {
             return equiv;
         }
-    }
+    }*/
 
 }

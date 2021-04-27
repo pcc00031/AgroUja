@@ -7,12 +7,23 @@
     <ui:define name="content">
         <h:body>
 
-            <p:carousel autoPlayInterval="4000" numVisible="1">
-                <h:graphicImage library="images" name="tractorcar.jpg"/>
-                <h:graphicImage library="images" name="Motosierracar.jpg" />
-                <h:graphicImage library="images" name="fungicarr.jpg" />
-            </p:carousel>
+            
 
+
+
+            <p:carousel autoPlayInterval="4000" numVisible="3" value="#{prodCtrl.productos}" var="p" responsive="true" style="width:500px">
+                    
+                    
+                           <h:graphicImage height="100" width="150" name="#{p.imagen}" library="images" />                                                       
+                        
+                  
+                    <!--                <h:graphicImage library="images" name="tractorcar.jpg"/>
+                                    <h:graphicImage library="images" name="Motosierracar.jpg" />
+                                    <h:graphicImage library="images" name="fungicarr.jpg" />-->
+                    
+                </p:carousel>
+
+            
 
         </h:body>
     </ui:define>
