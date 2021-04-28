@@ -36,5 +36,4 @@ public interface UsuarioDAO {
 
     public List<Formulario> buscaFormularios(Usuario u);
 
-    public void addFav(Producto p, Usuario u);
 }

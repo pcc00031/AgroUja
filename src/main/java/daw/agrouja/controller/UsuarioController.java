@@ -32,7 +32,7 @@ public class UsuarioController implements Serializable {
     @Inject
     @DAOJpa
     private UsuarioDAO usuarioDao;
-    @Inject 
+    @Inject
     private Principal principal;
     private Usuario Usuario;
     private List<Usuario> usuarios;
@@ -125,6 +125,11 @@ public class UsuarioController implements Serializable {
         return usuarioDao.buscaProductos(Usuario);
     }
 
+    public List<Producto> buscaProdsFavs() {
+        Usuario = usuarioDao.buscaPorNombre(principal.getName());
+        return usuarioDao.buscaProductosFavs(Usuario);
+    }
+
     public String usuAvatar(String u) {
         Usuario = usuarioDao.buscaPorNombre(u);
         return Usuario.getAvatar();
@@ -133,11 +138,8 @@ public class UsuarioController implements Serializable {
     public void addFav(Producto p, String u) {
         Usuario = usuarioDao.buscaPorNombre(u);
         logger.log(Level.INFO, "A\u00f1adiendo a favoritos producto-{0} a: {1}", new Object[]{p.getId(), Usuario.getNickname()});
-        usuarioDao.addFav(p, Usuario);
-        System.err.println(Usuario.getProdsFavs().size());
+        Usuario.getProdsFavs().add(p);
+        System.out.println(Usuario.getProdsFavs().size());
     }
-    
-        public List<Producto> buscaProdsFavs(Usuario u) {
-        return usuarioDao.buscaProductosFavs(u);
-    }
+
 }

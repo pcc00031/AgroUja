@@ -2,6 +2,7 @@ package daw.agrouja.controller;
 
 import daw.agrouja.model.Producto;
 import daw.agrouja.model.ProductoDao.ProductosDAO;
+import daw.agrouja.model.UsuarioDao.UsuarioDAO;
 import daw.agrouja.qualifiers.DAOJpa;
 import java.io.Serializable;
 import java.security.Principal;
@@ -26,7 +27,9 @@ public class ProductosController implements Serializable {
     private List<Producto> subProductos;
     private Producto producto;
     private List<Producto> productos;
-    private UsuarioController usu;
+    @Inject
+    @DAOJpa
+    private UsuarioDAO usu;
 
     /* INICIALIZADORES , GETTERS Y SETTERS */
     public ProductosController() {
@@ -72,12 +75,14 @@ public class ProductosController implements Serializable {
         return "editar?faces-redirect=true&id=" + producto.getId();
     }
 
-    public String crea() {        
-        log.log(Level.INFO, "Creando producto: {0}", producto.getId());
-        productosDAO.crea(producto);
-        //producto.setIdUsuario(usu.usuId(principal.getName()));
-  
-        return "visualizar?faces-redirect=true&id=" + producto.getId();
+    public String crea() {
+        System.out.println("golaaaa:");
+        producto.setIdUsuario(usu.buscaPorNombre(principal.getName()).getId());
+        if (productosDAO.crea(producto)) {
+            return "visualizar?faces-redirect=true&id=" + producto.getId();
+        } else {
+            return "/index";
+        }
     }
 
     public String borrar() {
@@ -134,18 +139,7 @@ public class ProductosController implements Serializable {
         return "index?faces-redirect=true";
     }
 
-    /* public boolean equivalente(String user) {
-        boolean equiv = false;
-//        Usuario u = usuarioDAO.buscaId(producto.getId());
-        if (u.getNickname().equals(user)) {
-            equiv = true;
-            return equiv;
-        } else {
-            return equiv;
-        }
-    }*/
-    
-    public Integer getUsu(){
-        return usu.usuId("pcc00031");
+    public String getUsu() {
+        return usu.buscaId(producto.getIdUsuario()).getNickname();
     }
 }

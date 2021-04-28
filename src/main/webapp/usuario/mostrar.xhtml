@@ -68,7 +68,7 @@ and open the template in the editor.
                     <br></br>
 
                     <br><h1>PRODUCTOS ADQUIRIDOS</h1></br>
-                    <p:carousel autoPlayInterval="4000" numVisible="3" value="#{prodCtrl.productos}" var="p" responsive="true" style="width: available">
+                    <p:carousel autoPlayInterval="4000" numVisible="3" var="p" responsive="true" style="width: available">
 
                         <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: white; max-height: 250px">
                             <f:facet name="title">
@@ -82,7 +82,7 @@ and open the template in the editor.
                     <br></br>
 
                     <br><h1>PRODUCTOS FAVORITOS</h1></br>
-                    <p:carousel autoPlayInterval="4000" numVisible="3" value="#{usuarioCtrl.usuario.prodsFavs}" var="p" responsive="true" style="width: available">
+                    <p:carousel autoPlayInterval="4000" numVisible="3" value="#{usuarioCtrl.buscaProdsFavs()}" var="p" responsive="true" style="width: available">
 
                         <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: white; max-height: 250px">
                             <f:facet name="title">
@@ -96,7 +96,7 @@ and open the template in the editor.
                     <br></br>
 
                     <br><h1>FORMULARIOS REALIZADOS</h1></br>
-                    <p:carousel autoPlayInterval="4000" numVisible="3" value="#{prodCtrl.productos}" var="p" responsive="true" style="width: available">
+                    <p:carousel autoPlayInterval="4000" numVisible="3" var="p" responsive="true" style="width: available">
 
                         <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: white; max-height: 250px">
                             <f:facet name="title">
