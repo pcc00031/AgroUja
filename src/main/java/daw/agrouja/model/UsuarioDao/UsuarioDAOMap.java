@@ -5,20 +5,17 @@
  */
 package daw.agrouja.model.UsuarioDao;
 
-import daw.agrouja.UsuarioIdentityStore;
+import daw.agrouja.model.Formulario;
 import daw.agrouja.model.Producto;
 import daw.agrouja.qualifiers.DAOMap;
 import daw.agrouja.model.Usuario;
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Vector;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import javax.enterprise.context.ApplicationScoped;
-import javax.persistence.EntityManager;
 
 /**
  *
@@ -29,13 +26,8 @@ import javax.persistence.EntityManager;
 
 public class UsuarioDAOMap implements UsuarioDAO, Serializable {
 
-    private final Logger logger = Logger.getLogger(UsuarioDAO.class.getName());
-    private String[] credentials = null;
-    private EntityManager em;
-
     private Map<Integer, Usuario> Usuario = null;
     private int idUser = 1;
-    private UsuarioIdentityStore credenciales;
 
     public UsuarioDAOMap() {
         if (Usuario == null) {
@@ -73,7 +65,6 @@ public class UsuarioDAOMap implements UsuarioDAO, Serializable {
     public boolean guarda(Usuario u) {
         boolean result = false;
         if (Usuario.containsKey(u.getId())) {
-            Usuario nu = new Usuario(u);
             Usuario.replace(u.getId(), u);
             result = true;
         }
@@ -95,5 +86,24 @@ public class UsuarioDAOMap implements UsuarioDAO, Serializable {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public List<Producto> buscaProductosAdq(Usuario u) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Producto> buscaProductosFavs(Usuario u) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Formulario> buscaFormularios(Usuario u) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void addFav(Producto p, Usuario u) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }

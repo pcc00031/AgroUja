@@ -1,10 +1,8 @@
 package daw.agrouja.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,16 +14,15 @@ import javax.validation.constraints.Size;
  */
 @Entity()
 public class Producto implements Serializable {
-
-//FIXME imagen
-//TODO crear clase Comentario
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Size(min = 2, max = 25,
+//FIXME imagen
+//TODO crear clase Comentario
+        @Size(min = 2, max = 25,
             message = "La longitud del nombre debe estar entre {min} y {max} caracteres")
-    private String nombre;
+    private String nombre = "";
 
     @Size(max = 250,
             message = "La descripción no debe ser superior a (max)")
@@ -33,41 +30,41 @@ public class Producto implements Serializable {
 
     @Size(min = 2, max = 10,
             message = "La longitud de la marca debe estar entre {min} y {max} caracteres")
-    private String marca;
+    private String marca = "";
 
     private String imagen = "prod.png";
 
-    private String estado; //> Nuevo / usado
+    private String estado = ""; //> Nuevo / usado
 
     @Size(min = 2, max = 10,
             message = "La longitud de la categoría debe estar entre {min} y {max} caracteres")
-    private String categoria;
+    private String categoria = "";
 
-    private String ventAlq; //> Venta / Alquiler
-    private boolean destacado;
+    private String ventAlq = ""; //> Venta / Alquiler
+    private boolean destacado = false;
 
-    private Integer rating = 0;
+    private Integer rating = 3;
     private Boolean favorito = false;
 
     @Positive(message = "El precio no puede ser negativo o cero")
     private double precio = 0;
 
     //Claves foraneas
-    private Integer idUsuario = null;
+    private Integer idUsuario = 0;
     private List<Comentario> comentarios = null;
 
-    //Métodos específicos
-    private String buscaNomb;
-    private String comentario;
-    private String buscaCat;
-    private String buscaMarca;
+    //Atributos específicos
+    private String buscaNomb = "";
+    private String comentario= "";
+    private String buscaCat= "";
+    private String buscaMarca= "";
 
     /* CONSTRUCTORES */
     /**
      * @brief Constructor por defecto
      */
     public Producto() {
-        id = 0;
+        this.id = 0;
     }
 
     /**
@@ -84,6 +81,7 @@ public class Producto implements Serializable {
      * @param precio
      */
     public Producto(Integer id, String nombre, String descripcion, String marca, String imagen, String estado, String categoria, String ventAlq, boolean destacado, double precio) {
+        this.id = 0;
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -101,6 +99,7 @@ public class Producto implements Serializable {
      * @param p
      */
     public Producto(Producto p) {
+        this.id = 0;
         this.id = p.id;
         this.nombre = p.nombre;
         this.descripcion = p.descripcion;

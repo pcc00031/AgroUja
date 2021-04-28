@@ -69,7 +69,6 @@ public class ProductosDAOMap implements ProductosDAO, Serializable {
     public boolean edita(Producto p) {
         boolean result = false;
         if (productos.containsKey(p.getId())) {
-            Producto nc = new Producto(p);
             productos.replace(p.getId(), p);
             result = true;
         }
@@ -79,11 +78,9 @@ public class ProductosDAOMap implements ProductosDAO, Serializable {
     @Override
     public void buscarNombre(String nombre) {
         subProductos.clear();
-        for (Map.Entry<Integer, Producto> entry : productos.entrySet()) {
-            if (entry.getValue().getNombre().toLowerCase().contains(nombre)) {
-                subProductos.put(entry.getKey(), entry.getValue());
-            }
-        }
+        productos.entrySet().stream().filter(entry -> (entry.getValue().getNombre().toLowerCase().contains(nombre))).forEachOrdered(entry -> {
+            subProductos.put(entry.getKey(), entry.getValue());
+        });
        
     }
 
@@ -91,17 +88,13 @@ public class ProductosDAOMap implements ProductosDAO, Serializable {
     public void buscarMarca(String marca) {
         subProductos.clear();
         if (marca.contentEquals("Otra")) {
-            for (Map.Entry<Integer, Producto> entry : productos.entrySet()) {
-                if (!entry.getValue().getMarca().contentEquals("AgroUja")) {
-                    subProductos.put(entry.getKey(), entry.getValue());
-                }
-            }
+            productos.entrySet().stream().filter(entry -> (!entry.getValue().getMarca().contentEquals("AgroUja"))).forEachOrdered(entry -> {
+                subProductos.put(entry.getKey(), entry.getValue());
+            });
         } else {
-            for (Map.Entry<Integer, Producto> entry : productos.entrySet()) {
-                if (entry.getValue().getMarca().contentEquals(marca)) {
-                    subProductos.put(entry.getKey(), entry.getValue());
-                }
-            }
+            productos.entrySet().stream().filter(entry -> (entry.getValue().getMarca().contentEquals(marca))).forEachOrdered(entry -> {
+                subProductos.put(entry.getKey(), entry.getValue());
+            });
         }
     }
 
@@ -109,17 +102,13 @@ public class ProductosDAOMap implements ProductosDAO, Serializable {
     public void buscarCategoria(String categoria) {
         subProductos.clear();
         if (categoria.contentEquals("Otra")) {
-            for (Map.Entry<Integer, Producto> entry : productos.entrySet()) {
-                if (!entry.getValue().getCategoria().contentEquals("Comestible") && !entry.getValue().getCategoria().contentEquals("Maquinaria")) {
-                    subProductos.put(entry.getKey(), entry.getValue());
-                }
-            }
+            productos.entrySet().stream().filter(entry -> (!entry.getValue().getCategoria().contentEquals("Comestible") && !entry.getValue().getCategoria().contentEquals("Maquinaria"))).forEachOrdered(entry -> {
+                subProductos.put(entry.getKey(), entry.getValue());
+            });
         } else {
-            for (Map.Entry<Integer, Producto> entry : productos.entrySet()) {
-                if (entry.getValue().getCategoria().contentEquals(categoria)) {
-                    subProductos.put(entry.getKey(), entry.getValue());
-                }
-            }
+            productos.entrySet().stream().filter(entry -> (entry.getValue().getCategoria().contentEquals(categoria))).forEachOrdered(entry -> {
+                subProductos.put(entry.getKey(), entry.getValue());
+            });
         }
         
     }

@@ -9,10 +9,10 @@ package daw.agrouja.model.UsuarioDao;
  *
  * @author Equipo
  */
+import daw.agrouja.model.Formulario;
 import daw.agrouja.model.Producto;
 import daw.agrouja.model.Usuario;
 import java.util.List;
-import java.util.Map;
 
 public interface UsuarioDAO {
 
@@ -29,5 +29,12 @@ public interface UsuarioDAO {
     public Usuario buscaPorNombre(String nombre);
 
     public List<Producto> buscaProductos(Usuario u);
-    
+
+    public List<Producto> buscaProductosAdq(Usuario u);
+
+    public List<Producto> buscaProductosFavs(Usuario u);
+
+    public List<Formulario> buscaFormularios(Usuario u);
+
+    public void addFav(Producto p, Usuario u);
 }

@@ -5,12 +5,12 @@
  */
 package daw.agrouja.model.UsuarioDao;
 
+import daw.agrouja.model.Formulario;
 import daw.agrouja.model.Producto;
 import daw.agrouja.model.Usuario;
 import daw.agrouja.qualifiers.DAOJpa;
 import java.io.Serializable;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
@@ -25,7 +25,7 @@ import javax.transaction.Transactional;
 
 public class UsuarioDAOJpa implements UsuarioDAO, Serializable {
 
-    private final Logger logger = Logger.getLogger(UsuarioDAOJpa.class.getName());
+    private static final Logger logger = Logger.getLogger(UsuarioDAOJpa.class.getName());
 
     @PersistenceContext
     private EntityManager em;
@@ -40,7 +40,7 @@ public class UsuarioDAOJpa implements UsuarioDAO, Serializable {
             u = em.find(Usuario.class, id);
         } catch (Exception ex) {
             logger.log(Level.SEVERE, ex.getMessage(), ex);
-        };
+        }
         return u;
     }
 
@@ -97,16 +97,49 @@ public class UsuarioDAOJpa implements UsuarioDAO, Serializable {
 
     @Override
     public List<Producto> buscaProductos(Usuario u) {
-//        List<Producto> lp = null;
-//        try {
-//            Query q = em.createQuery("Select p from Producto p, Usuario u where p.idUsuario=u.id", Producto.class);
-//            lp = q.getResultList();
-//        } catch (Exception ex) {
-//            logger.log(Level.SEVERE, ex.getMessage(), ex);
-//        }
-//        return lp;
+        List<Producto> lp = null;
+        try {
+            Query q = em.createQuery("Select p from Producto p, Usuario us where p.idUsuario=:u AND p.idUsuario=us.id", Producto.class).setParameter("u", u.getId());
+            if (q.getResultList() != null)
+            lp = q.getResultList();
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
+        }
+        return lp;
+    }
 
+    @Override
+    public List<Producto> buscaProductosAdq(Usuario u) {
+        List<Producto> lp = null;
+        try {
+            Query q = em.createQuery("Select p from Producto p, Usuario us where p.idUsuario=:u AND p.idUsuario=us.id", Producto.class).setParameter("u", u.getId());
+            lp = q.getResultList();
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
+        }
+        return lp;
+    }
+
+    @Override
+    public List<Producto> buscaProductosFavs(Usuario u) {
+        List<Producto> lp = null;
+        try {
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
+        }
+        return lp;
+    }
+
+    @Override
+    public List<Formulario> buscaFormularios(Usuario u) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void addFav(Producto p, Usuario u) {
+        System.out.println("Antes: " + u.getProdsFavs().size() + p.getNombre());
+        u.getProdsFavs().add(p);
+        System.out.println("Despues: " + u.getProdsFavs().size());
     }
 
 }

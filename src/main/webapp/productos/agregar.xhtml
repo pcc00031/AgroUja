@@ -25,27 +25,27 @@
 
                     <p:outputLabel for="@next" value="Estado"/>
                     <p:selectOneRadio value="#{prodCtrl.producto.estado}" required="true">
-                        <f:selectItem value="#{prodCtrl.producto.estado}" itemValue="Nuevo" itemLabel="Nuevo"/>
-                        <f:selectItem value="#{prodCtrl.producto.estado}" itemValue="Usado" itemLabel="Usado"/>
+                        <f:selectItem  itemValue="Nuevo" itemLabel="Nuevo"/>
+                        <f:selectItem  itemValue="Usado" itemLabel="Usado"/>
                     </p:selectOneRadio>
 
                     <p:outputLabel for="@next" value="Tipo de publicación" />
                     <p:selectOneRadio  value="#{prodCtrl.producto.ventAlq}" required="true">
-                        <f:selectItem value="#{prodCtrl.producto.ventAlq}" itemValue="Venta" itemLabel="Venta"/>
-                        <f:selectItem value="#{prodCtrl.producto.ventAlq}" itemValue="Alquiler" itemLabel="Alquiler"/>
+                        <f:selectItem  itemValue="Venta" itemLabel="Venta"/>
+                        <f:selectItem  itemValue="Alquiler" itemLabel="Alquiler"/>
                     </p:selectOneRadio>
 
                     <p:outputLabel for="@next" value="Categoría"/>
                     <p:selectOneMenu value="#{prodCtrl.producto.categoria}" editable="true"  id="option" >
-                        <f:selectItem value="#{prodCtrl.producto.categoria}" itemLabel="Desconocido" itemValue="Desconocido"/>
-                        <f:selectItem value="#{prodCtrl.producto.categoria}" itemLabel="Comestible" itemValue="Comestible"/>
-                        <f:selectItem value="#{prodCtrl.producto.categoria}"  itemLabel="Maquinaria" itemValue="Maquinaria"/>
+                        <f:selectItem  itemLabel="Desconocido" itemValue="Desconocido"/>
+                        <f:selectItem  itemLabel="Comestible" itemValue="Comestible"/>
+                        <f:selectItem   itemLabel="Maquinaria" itemValue="Maquinaria"/>
                     </p:selectOneMenu>
 
                     <p:outputLabel for="@next" value="Marca"/>
                     <p:selectOneMenu  value="#{prodCtrl.producto.marca}" editable="true" id="option1" >
-                        <f:selectItem value="#{prodCtrl.producto.marca}" itemLabel="Desconocida" itemValue="Desconocida"/>
-                        <f:selectItem value="#{prodCtrl.producto.marca}" itemLabel="AgroUja" itemValue="AgroUja"/>
+                        <f:selectItem  itemLabel="Desconocida" itemValue="Desconocida"/>
+                        <f:selectItem  itemLabel="AgroUja" itemValue="AgroUja"/>
                     </p:selectOneMenu>
 
                     <p:outputLabel for="dest" value="Destacado"/>
@@ -57,12 +57,10 @@
 
 
                     <p:outputLabel for="img" value="Imagen"/>
-                    <p:inputText id="img" value="#{prodCtrl.producto.imagen}" type="file" />
-
-                    #{prodCtrl.producto.setIdUsuario(usuarioCtrl.usuId(request.remoteUser))}
+                    <p:inputText id="img" value="#{prodCtrl.producto.imagen}" />
 
                     <p:commandButton icon="pi pi-upload" value="Subir imagen"/>
-                    <p:commandButton icon="pi pi-check" styleClass="ui-button-success" action="#{prodCtrl.crea()}" value="Añadir producto"/>
+                    <h:commandButton  styleClass="ui-button-success" action="#{prodCtrl.crea()}" value="Añadir producto"/>
 
 
                 </h:panelGrid>

@@ -34,18 +34,18 @@
                     </p:selectOneRadio>
 
                     <p:outputLabel for="DatosTarj" value="Tarjeta"  />
-                    <p:inputText id="DatosTarj" value="#{usuarioCtrl.usuario.tarjeta}" />
+                    <p:inputNumber id="DatosTarj" value="#{usuarioCtrl.usuario.tarjeta}" />
 
                     <p:outputLabel for="Dir" value="Direccion"  />
                     <p:inputText id="Dir" value="#{usuarioCtrl.usuario.direccion}" />
                     <p:outputLabel for="Tlf" value="Telefono"  />
-                    <p:inputText id="Tlf" value="#{usuarioCtrl.usuario.telef}" />
+                    <p:inputNumber id="Tlf" value="#{usuarioCtrl.usuario.telef}" />
 
                     <p:outputLabel for="fec" value="F. Nac"/>
                     <p:inputText id="fec" value="#{usuarioCtrl.usuario.fnac}"/>
 
                     <p:outputLabel for="img" value="Imagen"/>
-                    <p:inputText id="img" value="#{usuarioCtrl.usuario.avatar}" type="file" />
+                    <p:inputText id="img" value="#{usuarioCtrl.usuario.avatar}"/>
 
                 </h:panelGrid>
             </p:fieldset>

@@ -8,7 +8,7 @@ insert into Producto (nombre, descripcion, marca, imagen, estado, categoria, ven
 insert into Producto (nombre, descripcion, marca, imagen, estado, categoria, ventAlq, destacado, precio) values ('Azada', 'La mejor azada', 'AgroUja', 'azada.png', 'Nuevo', 'Maquinaria', 'Venta', true, 50.7);
 insert into Producto (nombre, descripcion, marca, imagen, estado, categoria, ventAlq, destacado, precio) values ('Mejor aceite', 'El mejor aceite del mundo', 'AgroUja', 'mejoraceite.jpg', 'Nuevo', 'Comestible', 'Venta', true, 50.7);
 
-UPDATE producto SET idUsuario = '1' WHERE marca = 'AgroUja';
+UPDATE producto SET idUsuario = '1' WHERE categoria = 'Comestible';
 
 --> Formularios de contacto
 insert into Formulario (email, nombre, telefono, pais, asunto, mensaje) values ('Trolololo@yopmail.com', 'Trol', '123456789', 'Alemania', 'Tractor roto', 'Tractor no furula');

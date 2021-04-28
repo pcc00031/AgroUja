@@ -5,6 +5,7 @@
  */
 package daw.agrouja.model;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -13,7 +14,7 @@ import javax.persistence.Id;
  * @author Carlos
  */
 @Entity
-public class Formulario {
+public class Formulario implements Serializable{
 
     @Id
     private String email = "";

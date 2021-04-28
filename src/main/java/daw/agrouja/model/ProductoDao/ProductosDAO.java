@@ -2,7 +2,6 @@ package daw.agrouja.model.ProductoDao;
 
 import daw.agrouja.model.Producto;
 import java.util.List;
-import java.util.Map;
 
 public interface ProductosDAO {
 
@@ -29,6 +28,4 @@ public interface ProductosDAO {
 
     public void buscarCategoria(String categoria);
 
-// Metodo para ordenar
-//    public List<Producto> ordenar();
 }

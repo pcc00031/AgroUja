@@ -8,13 +8,11 @@ package daw.agrouja.controller;
 import daw.agrouja.model.Formulario;
 import daw.agrouja.model.ContactoDao.FormulariosDAO;
 import daw.agrouja.qualifiers.DAOJpa;
-import daw.agrouja.qualifiers.DAOMap;
 import java.io.Serializable;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -28,7 +26,7 @@ import javax.inject.Named;
 @ViewScoped
 public class ContactoController implements Serializable {
 
-    private final Logger logger = Logger.getLogger(ContactoController.class.getName());
+    private static final Logger logger = Logger.getLogger(ContactoController.class.getName());
 
     
     private boolean bar=false;
@@ -76,13 +74,13 @@ public class ContactoController implements Serializable {
     }
     
     public void recupera(){
-        logger.info("Recuperando formulario "+formulario.getEmail());
+        logger.log(Level.INFO, "Recuperando formulario {0}", formulario.getEmail());
         formulario=formulariosDAO.buscaEmail(formulario.getEmail());
 
     }
     
     public void recupera(String email){
-        logger.info("Recuperando formulario "+email);
+        logger.log(Level.INFO, "Recuperando formulario {0}", email);
         formulario = formulariosDAO.buscaEmail(email);
     }
     

@@ -5,7 +5,6 @@
  */
 package daw.agrouja.model;
 
-import daw.agrouja.model.ProductoDao.ProductosDAOJpa;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
 /**
@@ -41,25 +39,27 @@ public class Usuario implements Serializable {
     @Size(min = 8, max = 30, message = "La longitud del correo debe estar entre {min} y {max} caracteres")
     private String correo = "";
 
-    private String direccion;
-    private int tarjeta;
-    private int telef;
+    private String direccion = "";
+    private Integer tarjeta = 0;
+    private Integer telef = 0;
     private String sexo = "Desconocido";
     private String fnac = "dd/mm/yyyy";
     private String avatar = "user.png";
 
     // Claves foraneas
-//    private List<Producto> productos;
-//    private List<Producto> prodsAdquiridos;
+ 
+    private List<Producto> productos = new ArrayList<>();
+    private List<Producto> prodsAdquiridos = new ArrayList<>();
+    private List<Producto> prodsFavs = new ArrayList<>();
 //    private List<Formulario> formularios;
 //    private List<Comentario> comentarios;
 
     public Usuario() {
-        id = 0;
-        direccion = "No proporcionada";
+        this.id = 0;
+       
     }
 
-    public Usuario(int _id, String _Nombre, String _Apellidos, String _Sexo, String _usuario, String _Contraseña, String _Correo, String _fnac, int _tarjeta, String _direccion, int _telef) {
+    public Usuario(Integer _id, String _Nombre, String _Apellidos, String _Sexo, String _usuario, String _Contraseña, String _Correo, String _fnac, Integer _tarjeta, String _direccion, Integer _telef) {
         id = _id;
         nombre = _Nombre;
         apellidos = _Apellidos;
@@ -91,14 +91,14 @@ public class Usuario implements Serializable {
     /**
      * @return the id
      */
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -189,14 +189,14 @@ public class Usuario implements Serializable {
     /**
      * @return the tarjeta
      */
-    public int getTarjeta() {
+    public Integer getTarjeta() {
         return tarjeta;
     }
 
     /**
      * @param tarjeta the tarjeta to set
      */
-    public void setTarjeta(int tarjeta) {
+    public void setTarjeta(Integer tarjeta) {
         this.tarjeta = tarjeta;
     }
 
@@ -217,14 +217,14 @@ public class Usuario implements Serializable {
     /**
      * @return the telef
      */
-    public int getTelef() {
+    public Integer getTelef() {
         return telef;
     }
 
     /**
      * @param telef the telef to set
      */
-    public void setTelef(int telef) {
+    public void setTelef(Integer telef) {
         this.telef = telef;
     }
 
@@ -250,13 +250,29 @@ public class Usuario implements Serializable {
         this.avatar = avatar;
     }
 
-//    public List<Producto> getProductos() {
-//        return productos;
-//    }
-//
-//    public void setProductos(List<Producto> productos) {
-//
-//        this.productos = productos;
-//    }
+    public List<Producto> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(List<Producto> productos) {
+
+        this.productos = productos;
+    }
+
+    public List<Producto> getProdsAdquiridos() {
+        return prodsAdquiridos;
+    }
+
+    public void setProdsAdquiridos(List<Producto> prodsAdquiridos) {
+        this.prodsAdquiridos = prodsAdquiridos;
+    }
+
+    public List<Producto> getProdsFavs() {
+        return prodsFavs;
+    }
+
+    public void setProdsFavs(List<Producto> prodsFavs) {
+        this.prodsFavs = prodsFavs;
+    }
 
 }

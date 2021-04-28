@@ -6,9 +6,7 @@
 package daw.agrouja;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 import javax.enterprise.context.ApplicationScoped;
 import daw.agrouja.model.Usuario;

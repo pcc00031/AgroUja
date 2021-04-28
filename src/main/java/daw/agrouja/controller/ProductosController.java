@@ -2,12 +2,11 @@ package daw.agrouja.controller;
 
 import daw.agrouja.model.Producto;
 import daw.agrouja.model.ProductoDao.ProductosDAO;
-import daw.agrouja.model.Usuario;
-import daw.agrouja.model.UsuarioDao.UsuarioDAO;
 import daw.agrouja.qualifiers.DAOJpa;
-import daw.agrouja.qualifiers.DAOMap;
 import java.io.Serializable;
+import java.security.Principal;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
@@ -18,15 +17,16 @@ import javax.inject.Named;
 @ViewScoped
 public class ProductosController implements Serializable {
 
-    private final Logger log = Logger.getLogger(ProductosController.class.getName());
+    private static final Logger log = Logger.getLogger(ProductosController.class.getName());
     @Inject
     @DAOJpa
-    //@DAOMap
     private ProductosDAO productosDAO;
+    @Inject
+    private Principal principal;
     private List<Producto> subProductos;
     private Producto producto;
     private List<Producto> productos;
-    private UsuarioDAO usuarioDAO;
+    private UsuarioController usu;
 
     /* INICIALIZADORES , GETTERS Y SETTERS */
     public ProductosController() {
@@ -57,7 +57,7 @@ public class ProductosController implements Serializable {
 
     /* METODOS PRINCIPALES */
     public void recupera() {
-        log.info("Recuperando producto: " + producto.getId());
+        log.log(Level.INFO, "Recuperando producto: {0}", producto.getId());
         producto = productosDAO.buscaId(producto.getId());
     }
 
@@ -68,19 +68,21 @@ public class ProductosController implements Serializable {
 
     public String edita() {
         recupera();
+        log.log(Level.INFO, "Editando producto: {0}", producto.getId());
         return "editar?faces-redirect=true&id=" + producto.getId();
     }
 
-    public String crea() {
-        log.info("Creando producto: " + producto.getId());
+    public String crea() {        
+        log.log(Level.INFO, "Creando producto: {0}", producto.getId());
         productosDAO.crea(producto);
-        recupera(producto.getId());
+        //producto.setIdUsuario(usu.usuId(principal.getName()));
+  
         return "visualizar?faces-redirect=true&id=" + producto.getId();
     }
 
     public String borrar() {
         recupera();
-        log.info("Borrando producto: " + producto.getId());
+        log.log(Level.INFO, "Borrando producto: {0}", producto.getId());
         productosDAO.borra(producto);
         return "index?faces-redirect=true";
     }
@@ -96,7 +98,7 @@ public class ProductosController implements Serializable {
     }
 
     public String addComent() {
-        log.info("Agregando comentario: " + producto.getComentario() + " al producto-" + producto.getId());
+        log.log(Level.INFO, "Agregando comentario: {0} al producto-{1}", new Object[]{producto.getComentario(), producto.getId()});
         productosDAO.agregarComent(producto, producto.getComentario());
         return "visualizar?faces-redirect=true&id=" + producto.getId();
     }
@@ -105,7 +107,7 @@ public class ProductosController implements Serializable {
         if (producto.getBuscaNomb().contentEquals("")) {
             producto.setBuscaNomb("xxx");
         }
-        log.info("Buscando producto que contiene: " + producto.getBuscaNomb());
+        log.log(Level.INFO, "Buscando producto que contiene: {0}", producto.getBuscaNomb());
         productosDAO.buscarNombre(producto.getBuscaNomb());
         subProductos = productosDAO.buscaTodosSub();
         System.out.println(subProductos.size());
@@ -116,7 +118,7 @@ public class ProductosController implements Serializable {
         if (producto.getBuscaCat().contentEquals("")) {
             producto.setBuscaCat("xxx");
         }
-        log.info("Buscando producto con categoria: " + producto.getBuscaCat());
+        log.log(Level.INFO, "Buscando producto con categoria: {0}", producto.getBuscaCat());
         productosDAO.buscarCategoria(producto.getBuscaCat());
         System.out.println(subProductos.size());
         return "index?faces-redirect=true";
@@ -126,13 +128,13 @@ public class ProductosController implements Serializable {
         if (producto.getBuscaMarca().contentEquals("") || producto.getBuscaMarca().contentEquals("Otra")) {
             producto.setBuscaMarca("xxx");
         }
-        log.info("Buscando producto con marca: " + producto.getBuscaMarca());
+        log.log(Level.INFO, "Buscando producto con marca: {0}", producto.getBuscaMarca());
         productosDAO.buscarMarca(producto.getBuscaMarca());
         System.out.println(subProductos.size());
         return "index?faces-redirect=true";
     }
 
-   /* public boolean equivalente(String user) {
+    /* public boolean equivalente(String user) {
         boolean equiv = false;
 //        Usuario u = usuarioDAO.buscaId(producto.getId());
         if (u.getNickname().equals(user)) {
@@ -142,5 +144,8 @@ public class ProductosController implements Serializable {
             return equiv;
         }
     }*/
-
+    
+    public Integer getUsu(){
+        return usu.usuId("pcc00031");
+    }
 }

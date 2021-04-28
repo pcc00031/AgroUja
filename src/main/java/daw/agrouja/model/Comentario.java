@@ -1,11 +1,14 @@
 package daw.agrouja.model;
 
+import java.io.Serializable;
+import javax.inject.Named;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Size;
 
-public class Comentario {
+@Named("coment")
+public class Comentario implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,7 +19,7 @@ public class Comentario {
     private String descripcion = "";
 
     // Claves foraneas
-    private String id_usuario = null;
+    private Integer id_usuario = 0;
 
     /* CONSTRUCTORES */
     public Comentario() {
@@ -51,11 +54,11 @@ public class Comentario {
         this.descripcion = descripcion;
     }
 
-    public String getId_usuario() {
+    public Integer getId_usuario() {
         return id_usuario;
     }
 
-    public void setId_usuario(String id_usuario) {
+    public void setId_usuario(Integer id_usuario) {
         this.id_usuario = id_usuario;
     }
 

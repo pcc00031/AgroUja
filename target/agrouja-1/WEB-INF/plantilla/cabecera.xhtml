@@ -20,7 +20,11 @@
                         <h:form style="margin-bottom: 0%">
                             <ul><li style="width: 150px"> <p:commandButton style="margin-bottom: 0%" styleClass="ui-button-success" action="#{usuarioCtrl.logout()}" value="Logout" /></li></ul>
                         </h:form>
-                        <h:link outcome="/usuario/mostrar.jsf?id=#{usuarioCtrl.usuId(request.remoteUser)}"> <p:avatar icon="pi pi-user" shape="circle" styleClass="p-mr-2" style="padding: 1%;margin-bottom: 20%;margin-top: 10%;background: #006600;color: white" /></h:link>
+                        <h:link outcome="/usuario/mostrar.jsf?id=#{usuarioCtrl.usuId(request.remoteUser)}"> 
+                            <p:avatar shape="circle" styleClass="p-mr-2" style="padding: 1%;margin-bottom: 20%;margin-top: 10%;background: #006600;color: white">
+                                <h:graphicImage name="#{usuarioCtrl.usuAvatar(request.remoteUser)}" library="images"/>
+                            </p:avatar>
+                        </h:link>
                     </c:when>
                     <c:when test="#{request.isUserInRole('ADMINISTRADORES')}">
                         <ul><li style="width: 160px"><i>Hola, admin #{request.remoteUser}</i></li></ul>
@@ -28,10 +32,14 @@
                             <ul><li style="width: 100px"> <p:commandButton style="margin-bottom: 0%" styleClass="ui-button-success" action="#{usuarioCtrl.logout()}" value="Logout" /></li></ul>
                         </h:form>                    
                         <ul><li style="width: 50px"> <h:link  outcome="/usuario/index">Listado</h:link></li></ul>
-                        <h:link outcome="/usuario/mostrar.jsf?id=#{usuarioCtrl.usuId(request.remoteUser)}"> <p:avatar icon="pi pi-user" shape="circle" styleClass="p-mr-2" style="padding: 1%;margin-bottom: 20%;margin-top: 10%;background: #006600;color: white" /></h:link>
+                        <h:link outcome="/usuario/mostrar.jsf?id=#{usuarioCtrl.usuId(request.remoteUser)}"> 
+                            <p:avatar shape="circle" styleClass="p-mr-2" style="padding: 1%;margin-bottom: 20%;margin-top: 10%;background: #006600;color: white">
+                                <h:graphicImage name="#{usuarioCtrl.usuAvatar(request.remoteUser)}" library="images"/>
+                            </p:avatar>
+                        </h:link>
                     </c:when>
                     <c:otherwise>
-                        <ul> <li style="width: 125px"><h:link  outcome="/login">Iniciar Sesión</h:link></li></ul>
+                        <ul> <li style="width: 125px"><h:link  outcome="/usuario/mostrar.jsf">Iniciar Sesión</h:link></li></ul>
                         <ul> <li><h:link  outcome="/registro">Registro</h:link></li></ul>
                     </c:otherwise>
                 </c:choose>

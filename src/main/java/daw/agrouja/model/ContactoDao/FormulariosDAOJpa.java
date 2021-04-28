@@ -26,7 +26,7 @@ import javax.transaction.Transactional;
 @DAOJpa
 @Transactional
 public class FormulariosDAOJpa implements FormulariosDAO{
-    private final Logger logger = Logger.getLogger(FormulariosDAOJpa.class.getName());
+    private static final Logger logger = Logger.getLogger(FormulariosDAOJpa.class.getName());
     
     @PersistenceContext
     private EntityManager em;

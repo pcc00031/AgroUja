@@ -5,11 +5,14 @@
  */
 package daw.agrouja.controller;
 
+import daw.agrouja.model.Producto;
 import daw.agrouja.qualifiers.DAOJpa;
 import daw.agrouja.model.Usuario;
 import daw.agrouja.model.UsuarioDao.UsuarioDAO;
 import java.io.Serializable;
+import java.security.Principal;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
@@ -22,13 +25,15 @@ import javax.servlet.http.HttpServletRequest;
 @ViewScoped
 public class UsuarioController implements Serializable {
 
-    private final Logger logger = Logger.getLogger(UsuarioController.class.getName());
+    private static final Logger logger = Logger.getLogger(UsuarioController.class.getName());
 
     @Inject
     HttpServletRequest request;
     @Inject
     @DAOJpa
     private UsuarioDAO usuarioDao;
+    @Inject 
+    private Principal principal;
     private Usuario Usuario;
     private List<Usuario> usuarios;
 
@@ -48,7 +53,7 @@ public class UsuarioController implements Serializable {
     }
 
     public void recupera() {
-        logger.info("Recuperando Usuario: " + Usuario.getId());
+        logger.log(Level.INFO, "Recuperando Usuario: {0}", Usuario.getId());
         Usuario = usuarioDao.buscaId(Usuario.getId());
     }
 
@@ -73,14 +78,14 @@ public class UsuarioController implements Serializable {
 
     public String crea() {
         usuarioDao.crea(Usuario);
-        logger.info("Creando Usuario: " + Usuario.getId());
+        logger.log(Level.INFO, "Creando Usuario: {0}", Usuario.getId());
 
         return "usuario/mostrar?faces-redirect=true&id=" + Usuario.getId();
     }
 
     public String borrar() {
         recupera();
-        logger.info("Borrando Usuario: " + Usuario.getId());
+        logger.log(Level.INFO, "Borrando Usuario: {0}", Usuario.getId());
         usuarioDao.borra(Usuario);
         return "/index?faces-redirect=true";
     }
@@ -102,7 +107,6 @@ public class UsuarioController implements Serializable {
     public String logout() throws ServletException {
         request.logout();
         request.getSession().invalidate();
-        System.out.println("hola?");
         return "/index?faces-redirect=true";
     }
 
@@ -116,4 +120,24 @@ public class UsuarioController implements Serializable {
         return Usuario.getNickname();
     }
 
+    public List<Producto> buscaProductos() {
+        Usuario = usuarioDao.buscaPorNombre(principal.getName());
+        return usuarioDao.buscaProductos(Usuario);
+    }
+
+    public String usuAvatar(String u) {
+        Usuario = usuarioDao.buscaPorNombre(u);
+        return Usuario.getAvatar();
+    }
+
+    public void addFav(Producto p, String u) {
+        Usuario = usuarioDao.buscaPorNombre(u);
+        logger.log(Level.INFO, "A\u00f1adiendo a favoritos producto-{0} a: {1}", new Object[]{p.getId(), Usuario.getNickname()});
+        usuarioDao.addFav(p, Usuario);
+        System.err.println(Usuario.getProdsFavs().size());
+    }
+    
+        public List<Producto> buscaProdsFavs(Usuario u) {
+        return usuarioDao.buscaProductosFavs(u);
+    }
 }
