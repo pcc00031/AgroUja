@@ -47,16 +47,17 @@ public class Usuario implements Serializable {
     private String avatar = "user.png";
 
     // Claves foraneas
- 
-    private List<Producto> productos = new ArrayList<>();
-    private List<Producto> prodsAdquiridos = new ArrayList<>();
-    private List<Producto> prodsFavs = new ArrayList<>();
+    //private List<Producto> productos;
+    //private List<Producto> prodsAdquiridos;
+    private List<Producto> prodsFavs;
 //    private List<Formulario> formularios;
-//    private List<Comentario> comentarios;
+    private List<Comentario> comentarios;
 
     public Usuario() {
         this.id = 0;
-       
+        //this.prodsAdquiridos = new ArrayList<>();
+        this.prodsFavs = new ArrayList<>();
+        this.comentarios = new ArrayList<>();
     }
 
     public Usuario(Integer _id, String _Nombre, String _Apellidos, String _Sexo, String _usuario, String _Contraseña, String _Correo, String _fnac, Integer _tarjeta, String _direccion, Integer _telef) {
@@ -71,6 +72,10 @@ public class Usuario implements Serializable {
         tarjeta = _tarjeta;
         direccion = _direccion;
         telef = _telef;
+
+        //prodsAdquiridos = new ArrayList<>();
+        prodsFavs = new ArrayList<>();
+        //productos = new ArrayList<>();
     }
 
     public Usuario(Usuario u) {
@@ -250,29 +255,31 @@ public class Usuario implements Serializable {
         this.avatar = avatar;
     }
 
-    public List<Producto> getProductos() {
-        return productos;
-    }
-
-    public void setProductos(List<Producto> productos) {
-
-        this.productos = productos;
-    }
-
-    public List<Producto> getProdsAdquiridos() {
-        return prodsAdquiridos;
-    }
-
-    public void setProdsAdquiridos(List<Producto> prodsAdquiridos) {
-        this.prodsAdquiridos = prodsAdquiridos;
-    }
-
+//    public List<Producto> getProdsAdquiridos() {
+//        return prodsAdquiridos;
+//    }
+//
+//    public void setProdsAdquiridos(List<Producto> prodsAdquiridos) {
+//        this.prodsAdquiridos = prodsAdquiridos;
+//    }
     public List<Producto> getProdsFavs() {
         return prodsFavs;
     }
 
+    public void addFav(Producto p) {
+        prodsFavs.add(0, p);
+    }
+
     public void setProdsFavs(List<Producto> prodsFavs) {
         this.prodsFavs = prodsFavs;
+    }
+
+    public List<Comentario> getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(List<Comentario> comentarios) {
+        this.comentarios = comentarios;
     }
 
 }

@@ -5,6 +5,7 @@
  */
 package daw.agrouja.controller;
 
+import daw.agrouja.model.Comentario;
 import daw.agrouja.model.Producto;
 import daw.agrouja.qualifiers.DAOJpa;
 import daw.agrouja.model.Usuario;
@@ -126,8 +127,10 @@ public class UsuarioController implements Serializable {
     }
 
     public List<Producto> buscaProdsFavs() {
+        System.out.println(Usuario.getProdsFavs().size());
         Usuario = usuarioDao.buscaPorNombre(principal.getName());
-        return usuarioDao.buscaProductosFavs(Usuario);
+        System.out.println(Usuario.getProdsFavs().size());
+        return Usuario.getProdsFavs();
     }
 
     public String usuAvatar(String u) {
@@ -135,11 +138,18 @@ public class UsuarioController implements Serializable {
         return Usuario.getAvatar();
     }
 
-    public void addFav(Producto p, String u) {
-        Usuario = usuarioDao.buscaPorNombre(u);
+    public void addFav(Producto p) {
+        Usuario = usuarioDao.buscaPorNombre(principal.getName());
         logger.log(Level.INFO, "A\u00f1adiendo a favoritos producto-{0} a: {1}", new Object[]{p.getId(), Usuario.getNickname()});
-        Usuario.getProdsFavs().add(p);
+        p.setFavorito(Boolean.TRUE);
+        Usuario.addFav(p);
         System.out.println(Usuario.getProdsFavs().size());
+        usuarioDao.addFav(Usuario);
     }
 
+    public List<Comentario> buscaComentarios() {
+        Usuario = usuarioDao.buscaPorNombre(principal.getName());
+        return usuarioDao.buscaComentarios(Usuario);
+    }
+    
 }

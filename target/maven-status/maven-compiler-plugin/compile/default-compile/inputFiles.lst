@@ -10,6 +10,7 @@ C:\NetBeans\AgroUja\src\main\java\daw\agrouja\model\UsuarioDao\UsuarioDAO.java
 C:\NetBeans\AgroUja\src\main\java\daw\agrouja\controller\UsuarioController.java
 C:\NetBeans\AgroUja\src\main\java\daw\agrouja\model\ProductoDao\ProductosDAOMap.java
 C:\NetBeans\AgroUja\src\main\java\daw\agrouja\AppConfig.java
+C:\NetBeans\AgroUja\src\main\java\daw\agrouja\controller\ComentarioController.java
 C:\NetBeans\AgroUja\src\main\java\daw\agrouja\fileuploadbean1\FileUploadBean.java
 C:\NetBeans\AgroUja\src\main\java\daw\agrouja\MessagesView.java
 C:\NetBeans\AgroUja\src\main\java\daw\agrouja\controller\ContactoController.java
@@ -20,8 +21,11 @@ C:\NetBeans\AgroUja\src\main\java\daw\agrouja\model\UsuarioDao\UsuarioDAOMap.jav
 C:\NetBeans\AgroUja\src\main\java\daw\agrouja\qualifiers\DAOJpa.java
 C:\NetBeans\AgroUja\src\main\java\daw\agrouja\model\ContactoDao\FormulariosDAOMap.java
 C:\NetBeans\AgroUja\src\main\java\daw\agrouja\country1\CountryService.java
+C:\NetBeans\AgroUja\src\main\java\daw\agrouja\model\ComentarioDao\ComentarioDAOMap.java
 C:\NetBeans\AgroUja\src\main\java\daw\agrouja\model\ProductoDao\ProductosDAOJpa.java
 C:\NetBeans\AgroUja\src\main\java\daw\agrouja\model\Formulario.java
+C:\NetBeans\AgroUja\src\main\java\daw\agrouja\model\ComentarioDao\ComentarioDAO.java
+C:\NetBeans\AgroUja\src\main\java\daw\agrouja\model\ComentarioDao\ComentarioDAOJpa.java
 C:\NetBeans\AgroUja\src\main\java\daw\agrouja\model\Comentario.java
 C:\NetBeans\AgroUja\src\main\java\daw\agrouja\UsuarioLoginController.java
 C:\NetBeans\AgroUja\src\main\java\daw\agrouja\model\ContactoDao\FormulariosDAO.java

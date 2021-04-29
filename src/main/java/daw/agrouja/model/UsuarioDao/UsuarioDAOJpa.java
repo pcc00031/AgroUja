@@ -5,6 +5,7 @@
  */
 package daw.agrouja.model.UsuarioDao;
 
+import daw.agrouja.model.Comentario;
 import daw.agrouja.model.Formulario;
 import daw.agrouja.model.Producto;
 import daw.agrouja.model.Usuario;
@@ -113,20 +114,11 @@ public class UsuarioDAOJpa implements UsuarioDAO, Serializable {
     public List<Producto> buscaProductosFavs(Usuario u) {
         List<Producto> lp = null;
         try {
-            Query q = em.createQuery("Select p from Producto p, Usuario us where p.idUsuario=:u AND p.idUsuario=us.id", Producto.class).setParameter("u", u.getId());
+            Query q = em.createQuery("Select us.prodsFavs from Producto p, Usuario us where p.idUsuario=:u AND p.idUsuario=us.id", Producto.class).setParameter("u", u.getId());
             lp = q.getResultList();
-        } catch (Exception ex) {
-            logger.log(Level.SEVERE, ex.getMessage(), ex);
-        }
-        return lp;
-    }
-
-    @Override
-    public List<Producto> buscaProductosAdq(Usuario u) {
-        List<Producto> lp = null;
-        try {
-            Query q = em.createQuery("Select us.prodsAdquiridos from Producto p, Usuario us where p.idUsuario=:u AND p.idUsuario=us.id", Producto.class).setParameter("u", u.getId());
-            lp = q.getResultList();
+//            for (int i = 0; i < lp.size(); i++) {
+//                System.out.println(lp.get(i).getNombre());
+//            }
         } catch (Exception ex) {
             logger.log(Level.SEVERE, ex.getMessage(), ex);
         }
@@ -136,6 +128,29 @@ public class UsuarioDAOJpa implements UsuarioDAO, Serializable {
     @Override
     public List<Formulario> buscaFormularios(Usuario u) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void addFav(Usuario u) {
+        try {
+            em.merge(u);
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
+        }
+    }
+
+    @Override
+    public List<Comentario> buscaComentarios(Usuario u) {
+        List<Comentario> lc = null;
+        try {
+            Query q = em.createQuery("Select c from Comentario c, Usuario us where c.id_usuario=:u AND c.id_usuario=us.id", Comentario.class).setParameter("u", u.getId());
+            if (q.getResultList() != null) {
+                lc = q.getResultList();
+            }
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
+        }
+        return lc;
     }
 
 }

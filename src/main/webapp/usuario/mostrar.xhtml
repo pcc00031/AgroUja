@@ -22,7 +22,7 @@ and open the template in the editor.
     <ui:define name="content">
         <div class="panel panel-default" style="float: left; margin-left: 15%; width: 30%" >
 
-            <p:card style="width: available; text-align: center;height: 1522px">
+            <p:card style="width: available; text-align: center;height: 100%">
                 <f:facet name="title">
                     <h1>Perfil de #{usuarioCtrl.usuario.nickname}</h1>
                     <br><p:avatar styleClass="p-mr-2" size="xlarge" shape="circle" style="width: 200px; height: 200px">
@@ -45,6 +45,21 @@ and open the template in the editor.
                         </br>
                     </h:form>
                 </f:facet>
+                <br><h1>COMENTARIOS</h1></br>
+                <p:carousel autoPlayInterval="4000" numVisible="1" value="#{usuarioCtrl.buscaComentarios()}" var="p" responsive="true" style="width: available; height: 100%; overflow: auto">
+                    <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: white; max-height: 200px">
+                        <f:facet name="title">
+                            <h:link style="color: #669900" onclick="#{prodCtrl.visualiza(p.id_producto)}" outcome="#{prodCtrl.visualiza(p.id_producto)}">
+                                Producto: #{p.nombreProd}
+                            </h:link>
+                        </f:facet>
+                        <f:facet name="subtitle">
+                            <p><i>"#{p.descripcion}"</i></p>
+                        </f:facet>
+                    </p:card>
+
+                </p:carousel>
+                <br></br>
             </p:card>
 
         </div>
@@ -53,43 +68,33 @@ and open the template in the editor.
                 <center>
 
                     <br><h1>PRODUCTOS EN VENTA/ALQUILER</h1></br>
-                    <p:carousel autoPlayInterval="4000" numVisible="3" value="#{usuarioCtrl.buscaProductos()}" var="p" responsive="true" style="width: available; height: 100%; overflow: auto">
+                    <p:carousel autoPlayInterval="4000" numVisible="3" value="#{usuarioCtrl.buscaProductos()}" var="p" responsive="true" style="width: available; height: 100%; overflow: auto;">
 
-                        <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: white; max-height: 250px">
+                        <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: white; max-height: 200px">
                             <f:facet name="title">
-                                <h:graphicImage height="100" width="100" name="#{p.imagen}" library="images" /> 
+                                <h:link onclick="#{prodCtrl.visualiza(p.id)}" outcome="#{prodCtrl.visualiza(p.id)}">
+                                    <h:graphicImage height="100" width="100" name="#{p.imagen}" library="images" /> 
+                                </h:link>
                             </f:facet>
                             <f:facet name="subtitle">
-                                #{p.nombre}
+                                <h:link style="color: #669900" onclick="#{prodCtrl.visualiza(p.id)}" outcome="#{prodCtrl.visualiza(p.id)}">#{p.nombre}</h:link>
                             </f:facet>
                         </p:card>
 
-                    </p:carousel>
-                    <br></br>
-
-                    <br><h1>PRODUCTOS ADQUIRIDOS</h1></br>
-                    <p:carousel autoPlayInterval="4000" numVisible="3" var="p" responsive="true" style="width: available">
-
-                        <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: white; max-height: 250px">
-                            <f:facet name="title">
-                                <h:graphicImage height="100" width="100" name="#{p.imagen}" library="images" /> 
-                            </f:facet>
-                            <f:facet name="subtitle">
-                                #{p.nombre}
-                            </f:facet>
-                        </p:card>
                     </p:carousel>
                     <br></br>
 
                     <br><h1>PRODUCTOS FAVORITOS</h1></br>
                     <p:carousel autoPlayInterval="4000" numVisible="3" value="#{usuarioCtrl.buscaProdsFavs()}" var="p" responsive="true" style="width: available">
 
-                        <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: white; max-height: 250px">
-                            <f:facet name="title">
-                                <h:graphicImage height="100" width="100" name="#{p.imagen}" library="images" /> 
+                        <p:card style="text-align: center; padding-top: 1%; padding-bottom: 1%; background-color: white; max-height: 200px">
+                            <f:facet name="title">                               
+                                <h:link onclick="#{prodCtrl.visualiza(p.id)}" outcome="#{prodCtrl.visualiza(p.id)}">
+                                    <h:graphicImage height="100" width="100" name="#{p.imagen}" library="images" /> 
+                                </h:link>
                             </f:facet>
                             <f:facet name="subtitle">
-                                #{p.nombre}
+                                <h:link style="color: #669900" onclick="#{prodCtrl.visualiza(p.id)}" outcome="#{prodCtrl.visualiza(p.id)}">#{p.nombre}</h:link>
                             </f:facet>
                         </p:card>
                     </p:carousel>
@@ -98,7 +103,7 @@ and open the template in the editor.
                     <br><h1>FORMULARIOS REALIZADOS</h1></br>
                     <p:carousel autoPlayInterval="4000" numVisible="3" var="p" responsive="true" style="width: available">
 
-                        <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: white; max-height: 250px">
+                        <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: white; max-height: 200px">
                             <f:facet name="title">
     <!--                                    <h:graphicImage height="100" width="100" name="#{p.imagen}" library="images" /> -->
                             </f:facet>
@@ -107,7 +112,7 @@ and open the template in the editor.
                             </f:facet>
                         </p:card>
 
-                    </p:carousel>
+                    </p:carousel>                  
                 </center>
             </p:card>
         </div>

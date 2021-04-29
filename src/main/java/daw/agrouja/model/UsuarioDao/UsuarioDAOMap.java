@@ -5,6 +5,7 @@
  */
 package daw.agrouja.model.UsuarioDao;
 
+import daw.agrouja.model.Comentario;
 import daw.agrouja.model.Formulario;
 import daw.agrouja.model.Producto;
 import daw.agrouja.qualifiers.DAOMap;
@@ -13,7 +14,6 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import javax.enterprise.context.ApplicationScoped;
 
@@ -87,17 +87,22 @@ public class UsuarioDAOMap implements UsuarioDAO, Serializable {
     }
 
     @Override
-    public List<Producto> buscaProductosAdq(Usuario u) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public List<Producto> buscaProductosFavs(Usuario u) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public List<Formulario> buscaFormularios(Usuario u) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void addFav(Usuario u) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Comentario> buscaComentarios(Usuario u) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

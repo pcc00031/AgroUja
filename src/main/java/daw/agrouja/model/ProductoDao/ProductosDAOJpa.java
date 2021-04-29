@@ -3,6 +3,7 @@ package daw.agrouja.model.ProductoDao;
 import daw.agrouja.model.Producto;
 import daw.agrouja.qualifiers.DAOJpa;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,7 +26,7 @@ public class ProductosDAOJpa
 
     @PersistenceContext(unitName = "agroPU")
     private EntityManager em;
-    private final Map<Integer, Producto> subProductos = new HashMap<>();
+    private List<Producto> subProductos = new ArrayList<>();
 
     public ProductosDAOJpa() {
 
@@ -57,7 +58,7 @@ public class ProductosDAOJpa
 
     @Override
     public List<Producto> buscaTodosSub() {
-        return subProductos.values().stream().collect(Collectors.toList());
+        return subProductos;
     }
 
     @Override
@@ -84,10 +85,10 @@ public class ProductosDAOJpa
     }
 
     @Override
-    public boolean agregarComent(Producto p, String coment) {
+    public boolean agregarComent(Producto p) {
         boolean add = false;
         try {
-            em.find(Producto.class, p.getId()).addComent(coment);
+            em.merge(p);
             add = true;
         } catch (Exception ex) {
             logger.log(Level.SEVERE, ex.getMessage(), ex);
@@ -108,18 +109,61 @@ public class ProductosDAOJpa
     }
 
     @Override
-    public void buscarNombre(String nombre) {//FIXME buscar por nombre
-  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void buscarNombre(String nombre) {
+        try {
+            Query q = em.createQuery("Select p from Producto p where p.nombre=:nombre", Producto.class).setParameter("nombre", nombre);
+            subProductos = q.getResultList();
+            for (int i = 0; i < subProductos.size(); i++) {
+                System.out.println(subProductos.get(i).getNombre());
+            }
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
+        }
     }
 
     @Override
-    public void buscarMarca(String marca) {//FIXME buscar por marca
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Producto> buscarMarca(String marca) {
+        List<Producto> lp = null;
+        try {
+            Query q = em.createQuery("Select p from Producto p where p.marca=:marca", Producto.class).setParameter("marca", marca);
+            lp = q.getResultList();
+            for (int i = 0; i < lp.size(); i++) {
+                System.out.println(lp.get(i).getNombre());
+            }
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
+        }
+        return lp;
     }
 
     @Override
-    public void buscarCategoria(String categoria) {//FIXME buscar por categoria
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Producto> buscarCategoria(String categoria) {
+        List<Producto> lp = null;
+        try {
+            Query q = em.createQuery("Select p from Producto p where p.categoria=:categoria", Producto.class).setParameter("categoria", categoria);
+            lp = q.getResultList();
+            for (int i = 0; i < lp.size(); i++) {
+                System.out.println(lp.get(i).getNombre());
+            }
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
+        }
+        return lp;
+    }
+
+    @Override
+    public List<Producto> buscarEstado(String estado) {
+        List<Producto> lp = null;
+        try {
+            Query q = em.createQuery("Select p from Producto p where p.estado=:estado", Producto.class).setParameter("estado", estado);
+            lp = q.getResultList();
+            for (int i = 0; i < lp.size(); i++) {
+                System.out.println(lp.get(i).getNombre());
+            }
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
+        }
+        return lp;
     }
 
 }

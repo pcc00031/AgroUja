@@ -1,5 +1,6 @@
 package daw.agrouja.model.ProductoDao;
 
+import daw.agrouja.model.Comentario;
 import daw.agrouja.model.Producto;
 import java.util.List;
 
@@ -19,13 +20,15 @@ public interface ProductosDAO {
 
     public boolean edita(Producto p);
 
-    public boolean agregarComent(Producto p, String coment);
+    public boolean agregarComent(Producto p);
 
     // Metodos de busqueda especifica
     public void buscarNombre(String nombre);
 
-    public void buscarMarca(String marca);
+    public List<Producto> buscarMarca(String marca);
 
-    public void buscarCategoria(String categoria);
+    public List<Producto> buscarCategoria(String categoria);
+
+    public List<Producto> buscarEstado(String estado);
 
 }
