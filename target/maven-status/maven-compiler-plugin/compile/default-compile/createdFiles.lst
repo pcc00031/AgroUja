@@ -1,7 +1,9 @@
 daw\agrouja\controller\UsuarioController.class
 daw\agrouja\model\UsuarioDao\UsuarioDAOMap.class
+daw\agrouja\model\ComentarioDao\ComentarioDAOMap.class
 daw\agrouja\controller\ProductosController.class
 daw\agrouja\qualifiers\DAOJpa.class
+daw\agrouja\model\ComentarioDao\ComentarioDAO.class
 daw\agrouja\resources\JavaEE8Resource.class
 daw\agrouja\model\ProductoDao\ProductosDAOMap.class
 daw\agrouja\UsuarioIdentityStore.class
@@ -14,6 +16,7 @@ daw\agrouja\model\Producto.class
 daw\agrouja\AppConfig.class
 daw\agrouja\MessagesView.class
 daw\agrouja\qualifiers\DAOMap.class
+daw\agrouja\controller\ComentarioController.class
 daw\agrouja\model\UsuarioDao\UsuarioDAO.class
 daw\agrouja\model\Comentario.class
 daw\agrouja\model\ContactoDao\FormulariosDAOMap.class
@@ -21,6 +24,7 @@ daw\agrouja\UsuarioLoginController.class
 daw\agrouja\model\UsuarioDao\UsuarioDAOJpa.class
 daw\agrouja\controller\ContactoController.class
 daw\agrouja\JAXRSConfiguration.class
+daw\agrouja\model\ComentarioDao\ComentarioDAOJpa.class
 daw\agrouja\model\ContactoDao\FormulariosDAOJpa.class
 daw\agrouja\model\Formulario.class
 daw\agrouja\model\Usuario.class

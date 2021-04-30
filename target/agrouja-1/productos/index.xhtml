@@ -12,19 +12,18 @@
 
                 <p:card style="margin-top: 5%; padding-top: 1%; background-color: white; width: available; max-height: 310px">
                     <f:facet name="title">
-                        <h3 style="font-size: 20px">Seleccione categoría: </h3> 
+                        <h3 style="font-size: 20px">Seleccione estado: </h3> 
                     </f:facet> 
                     <hr></hr>
                     <f:facet name="subtitle">
                         <hr></hr>
 
-                        <p:selectOneRadio value="#{prodCtrl.producto.buscaCat}" layout="responsive" columns="1" unselectable="true">
-                            <f:selectItem itemLabel="Comestible" itemValue="Comestible"/>
-                            <f:selectItem itemLabel="Maquinaria" itemValue="Maquinaria"/>
-                            <f:selectItem itemLabel="Otra" itemValue="Otra"/>
+                        <p:selectOneRadio value="#{prodCtrl.producto.buscaEst}" layout="responsive" columns="1" unselectable="true">
+                            <f:selectItem itemLabel="Nuevo" itemValue="Nuevo"/>
+                            <f:selectItem itemLabel="Usado" itemValue="Usado"/>
                         </p:selectOneRadio>
                     </f:facet> 
-                    <center>  <p:commandButton styleClass="ui-button-success" value="Buscar" icon="pi pi-search" action="#{prodCtrl.buscarCategoria()}"/></center>
+                    <center>  <p:commandButton styleClass="ui-button-success" value="Buscar" icon="pi pi-search" action="#{prodCtrl.buscarEstado()}"/></center>
                 </p:card>
                 <br></br>
                 <p:card style="margin-top: 5%; padding-top: 1%; background-color: white; width: available; max-height: 310px">
@@ -41,6 +40,23 @@
                         </p:selectOneRadio>
                     </f:facet> 
                     <center>  <p:commandButton styleClass="ui-button-success" value="Buscar" icon="pi pi-search" action="#{prodCtrl.buscarMarca()}"/></center>
+                </p:card>
+
+                <p:card style="margin-top: 5%; padding-top: 1%; background-color: white; width: available; max-height: 310px">
+                    <f:facet name="title">
+                        <h3 style="font-size: 20px">Seleccione categoría: </h3> 
+                    </f:facet> 
+                    <hr></hr>
+                    <f:facet name="subtitle">
+                        <hr></hr>
+
+                        <p:selectOneRadio value="#{prodCtrl.producto.buscaCat}" layout="responsive" columns="1" unselectable="true">
+                            <f:selectItem itemLabel="Comestible" itemValue="Comestible"/>
+                            <f:selectItem itemLabel="Maquinaria" itemValue="Maquinaria"/>
+                            <f:selectItem itemLabel="Otra" itemValue="Otra"/>
+                        </p:selectOneRadio>
+                    </f:facet> 
+                    <center>  <p:commandButton styleClass="ui-button-success" value="Buscar" icon="pi pi-search" action="#{prodCtrl.buscarCategoria()}"/></center>
                 </p:card>
             </aside>
         </h:form>
@@ -67,9 +83,9 @@
 
             <h:form>   <!-- Cambiar -->
                 <ul>
-                    <h6 style="font-style: italic">Productos encontrados: #{prodCtrl.subProductos.size()}</h6>
+                    <h6 style="font-style: italic">Productos encontrados: #{prodCtrl.prodsEnc.size()}</h6>
                     <div style="margin-left: 5.5%; margin-right: 2%">
-                        <ui:repeat var="p" value="#{prodCtrl.subProductos}">
+                        <ui:repeat var="p" value="#{prodCtrl.prodsEnc}">
                             <li> 
                                 <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: white; width: 210px; max-height: 250px">
                                     <h:link onclick="#{prodCtrl.visualiza(p.id)}" outcome="#{prodCtrl.visualiza(p.id)}"><h:graphicImage height="100" width="150" name="#{p.imagen}" library="images"/></h:link><br></br> <hr></hr>                                                       
@@ -82,8 +98,7 @@
             </h:form>
             <h:form>
                 <ul>
-                    <h6 style="font-style: italic">Productos totales: #{prodCtrl.productos.size()}</h6>
-                    <h6 style="font-style: italic">Productos totales: #{usuarioCtrl.usuarios.size()}</h6>
+                    <h6 style="font-style: italic">Productos totales: #{prodCtrl.productos.size()}</h6>                  
                     <div style="margin-left: 5.5%; margin-right: 2%">
 
                         <ui:repeat var="p" value="#{prodCtrl.productos}">

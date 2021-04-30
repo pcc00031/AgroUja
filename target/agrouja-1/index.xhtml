@@ -4,28 +4,27 @@
                 template="/WEB-INF/plantilla/layout.xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui">
+
     <ui:define name="content">
-        <h:body>
-
-            
-
-
-
-            <p:carousel autoPlayInterval="4000" numVisible="3" value="#{prodCtrl.productos}" var="p" responsive="true" style="width:500px">
-                    
-                    
-                           <h:graphicImage height="100" width="150" name="#{p.imagen}" library="images" />                                                       
-                        
-                  
-                    <!--                <h:graphicImage library="images" name="tractorcar.jpg"/>
-                                    <h:graphicImage library="images" name="Motosierracar.jpg" />
-                                    <h:graphicImage library="images" name="fungicarr.jpg" />-->
-                    
+        <script>
+            function aver() {
+                document.getElementsByClassName('ui-widget-header')[0].style.display = 'none';
+            }
+        </script>
+        <h:body onload="aver()">
+            <p:card style="background-color: #ccffcc; height: 100%; min-height: 700px">
+                <center>
+                    <h1 style="font-size: 35px"> AgroUja </h1>
+                    <br> <h2> Comprometidos con el mundo agrícula</h2></br>
+                </center>
+                <p:carousel pageLinks="0" effect="fade" autoPlayInterval="4000" numVisible="1" responsive="true" style="width:100%">                                                     
+                    <h:graphicImage style="width: 100%" library="images" name="tractorcar.jpg"/>
+                    <h:graphicImage style="width: 100%" library="images" name="Motosierracar.jpg" />
+                    <h:graphicImage style="width: 100%" library="images" name="fungicarr.jpg" />
                 </p:carousel>
-
-            
+            </p:card>
 
         </h:body>
     </ui:define>
-
 </ui:composition>
+

@@ -24,7 +24,7 @@ public class ProductosController implements Serializable {
     private ProductosDAO productosDAO;
     @Inject
     private Principal principal;
-    private List<Producto> subProductos;
+    private List<Producto> prodsEnc;
     private Producto producto;
     private List<Producto> productos;
     @Inject
@@ -39,11 +39,11 @@ public class ProductosController implements Serializable {
     public void init() {
         producto = new Producto();
         productos = productosDAO.buscaTodos();
-        subProductos = productosDAO.buscaTodosSub();
+        prodsEnc = productosDAO.buscaTodosSub();
     }
 
-    public List<Producto> getSubProductos() {
-        return subProductos;
+    public List<Producto> getProdsEnc() {
+        return prodsEnc;
     }
 
     public Producto getProducto() {
@@ -66,7 +66,7 @@ public class ProductosController implements Serializable {
 
     public String visualiza(Integer id) {
         recupera(id);
-        return "visualizar?faces-redirect=true&id=" + producto.getId();
+        return "/productos/visualizar?faces-redirect=true&id=" + producto.getId();
     }
 
     public String edita() {
@@ -76,7 +76,6 @@ public class ProductosController implements Serializable {
     }
 
     public String crea() {
-        System.out.println("golaaaa:");
         producto.setIdUsuario(usu.buscaPorNombre(principal.getName()).getId());
         if (productosDAO.crea(producto)) {
             return "visualizar?faces-redirect=true&id=" + producto.getId();
@@ -102,44 +101,46 @@ public class ProductosController implements Serializable {
         return "visualizar?faces-redirect=true&id=" + producto.getId();
     }
 
-    public String addComent() {
-        log.log(Level.INFO, "Agregando comentario: {0} al producto-{1}", new Object[]{producto.getComentario(), producto.getId()});
-        productosDAO.agregarComent(producto, producto.getComentario());
-        return "visualizar?faces-redirect=true&id=" + producto.getId();
-    }
-
     public String buscarNombre() {
         if (producto.getBuscaNomb().contentEquals("")) {
             producto.setBuscaNomb("xxx");
         }
         log.log(Level.INFO, "Buscando producto que contiene: {0}", producto.getBuscaNomb());
         productosDAO.buscarNombre(producto.getBuscaNomb());
-        subProductos = productosDAO.buscaTodosSub();
-        System.out.println(subProductos.size());
-        return "index?faces-redirect=true";
+        return "index?faces-redirect";
     }
 
-    public String buscarCategoria() {
+    public List<Producto> buscarCategoria() {
         if (producto.getBuscaCat().contentEquals("")) {
             producto.setBuscaCat("xxx");
         }
         log.log(Level.INFO, "Buscando producto con categoria: {0}", producto.getBuscaCat());
-        productosDAO.buscarCategoria(producto.getBuscaCat());
-        System.out.println(subProductos.size());
-        return "index?faces-redirect=true";
+        return productosDAO.buscarCategoria(producto.getBuscaCat());
     }
 
-    public String buscarMarca() {
+    public List<Producto> buscarMarca() {
         if (producto.getBuscaMarca().contentEquals("") || producto.getBuscaMarca().contentEquals("Otra")) {
             producto.setBuscaMarca("xxx");
         }
         log.log(Level.INFO, "Buscando producto con marca: {0}", producto.getBuscaMarca());
-        productosDAO.buscarMarca(producto.getBuscaMarca());
-        System.out.println(subProductos.size());
-        return "index?faces-redirect=true";
+        return productosDAO.buscarMarca(producto.getBuscaMarca());
+    }
+
+    public List<Producto> buscarEstado() {
+        if (producto.getBuscaEst().contentEquals("")) {
+            producto.setBuscaEst("xxx");
+        } else {
+        }
+        log.log(Level.INFO, "Buscando producto en: {0}", producto.getBuscaEst());
+        return productosDAO.buscarEstado(producto.getBuscaEst());
     }
 
     public String getUsu() {
         return usu.buscaId(producto.getIdUsuario()).getNickname();
     }
+    //TODO Buscar por marca, estado, categoria
+    //TODO Comprobar usuario para editar/borrar producto
+//    public Boolean comprobarUsu{
+//        return true;
+//    }
 }

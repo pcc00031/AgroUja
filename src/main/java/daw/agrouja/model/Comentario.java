@@ -1,14 +1,14 @@
 package daw.agrouja.model;
 
 import java.io.Serializable;
-import javax.inject.Named;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Size;
 
-@Named("coment")
-public class Comentario implements Serializable{
+@Entity
+public class Comentario implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,9 +17,11 @@ public class Comentario implements Serializable{
     @Size(max = 250,
             message = "La descripción no debe ser superior a (max)")
     private String descripcion = "";
-
+    private String usu = "";
+    private String nombreProd = "";
     // Claves foraneas
     private Integer id_usuario = 0;
+    private Integer id_producto = 0;
 
     /* CONSTRUCTORES */
     public Comentario() {
@@ -33,7 +35,7 @@ public class Comentario implements Serializable{
     public Comentario(Comentario com) {
         this.id_comentario = com.id_comentario;
         this.id_usuario = com.id_usuario;
-  
+
         this.descripcion = com.descripcion;
     }
 
@@ -60,6 +62,30 @@ public class Comentario implements Serializable{
 
     public void setId_usuario(Integer id_usuario) {
         this.id_usuario = id_usuario;
+    }
+
+    public String getUsu() {
+        return usu;
+    }
+
+    public void setUsu(String usu) {
+        this.usu = usu;
+    }
+
+    public Integer getId_producto() {
+        return id_producto;
+    }
+
+    public void setId_producto(Integer id_producto) {
+        this.id_producto = id_producto;
+    }
+
+    public String getNombreProd() {
+        return nombreProd;
+    }
+
+    public void setNombreProd(String nombreProd) {
+        this.nombreProd = nombreProd;
     }
 
 }

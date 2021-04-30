@@ -28,11 +28,8 @@ public class ProductosDAOMap implements ProductosDAO, Serializable {
     }
 
     @Override
-    public boolean agregarComent(Producto p, String coment) {
-        System.out.println(p.getId());
-        productos.get(p.getId()).addComent(coment);
-
-        return true;
+    public boolean agregarComent(Producto p) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -77,40 +74,22 @@ public class ProductosDAOMap implements ProductosDAO, Serializable {
 
     @Override
     public void buscarNombre(String nombre) {
-        subProductos.clear();
-        productos.entrySet().stream().filter(entry -> (entry.getValue().getNombre().toLowerCase().contains(nombre))).forEachOrdered(entry -> {
-            subProductos.put(entry.getKey(), entry.getValue());
-        });
-       
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void buscarMarca(String marca) {
-        subProductos.clear();
-        if (marca.contentEquals("Otra")) {
-            productos.entrySet().stream().filter(entry -> (!entry.getValue().getMarca().contentEquals("AgroUja"))).forEachOrdered(entry -> {
-                subProductos.put(entry.getKey(), entry.getValue());
-            });
-        } else {
-            productos.entrySet().stream().filter(entry -> (entry.getValue().getMarca().contentEquals(marca))).forEachOrdered(entry -> {
-                subProductos.put(entry.getKey(), entry.getValue());
-            });
-        }
+    public List<Producto> buscarMarca(String marca) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void buscarCategoria(String categoria) {
-        subProductos.clear();
-        if (categoria.contentEquals("Otra")) {
-            productos.entrySet().stream().filter(entry -> (!entry.getValue().getCategoria().contentEquals("Comestible") && !entry.getValue().getCategoria().contentEquals("Maquinaria"))).forEachOrdered(entry -> {
-                subProductos.put(entry.getKey(), entry.getValue());
-            });
-        } else {
-            productos.entrySet().stream().filter(entry -> (entry.getValue().getCategoria().contentEquals(categoria))).forEachOrdered(entry -> {
-                subProductos.put(entry.getKey(), entry.getValue());
-            });
-        }
-        
+    public List<Producto> buscarCategoria(String categoria) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Producto> buscarEstado(String estado) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

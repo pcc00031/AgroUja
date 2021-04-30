@@ -14,13 +14,13 @@ import javax.validation.constraints.Size;
  */
 @Entity()
 public class Producto implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
 //FIXME imagen
-//TODO crear clase Comentario
-        @Size(min = 2, max = 25,
+    @Size(min = 2, max = 25,
             message = "La longitud del nombre debe estar entre {min} y {max} caracteres")
     private String nombre = "";
 
@@ -55,9 +55,9 @@ public class Producto implements Serializable {
 
     //Atributos específicos
     private String buscaNomb = "";
-    private String comentario= "";
-    private String buscaCat= "";
-    private String buscaMarca= "";
+    private String buscaCat = "";
+    private String buscaMarca = "";
+    private String buscaEst = "";
 
     /* CONSTRUCTORES */
     /**
@@ -211,24 +211,12 @@ public class Producto implements Serializable {
         this.comentarios = comentarios;
     }
 
-    public void addComent(String comentario) {
-//FIXME
-    }
-
     public String getBuscaNomb() {
         return buscaNomb;
     }
 
     public void setBuscaNomb(String buscaNomb) {
         this.buscaNomb = buscaNomb;
-    }
-
-    public String getComentario() {
-        return comentario;
-    }
-
-    public void setComentario(String comentario) {
-        this.comentario = comentario;
     }
 
     public String getBuscaCat() {
@@ -261,6 +249,14 @@ public class Producto implements Serializable {
 
     public void setFavorito(Boolean favorito) {
         this.favorito = favorito;
+    }
+
+    public String getBuscaEst() {
+        return buscaEst;
+    }
+
+    public void setBuscaEst(String buscaEst) {
+        this.buscaEst = buscaEst;
     }
 
 }
