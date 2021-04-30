@@ -17,16 +17,16 @@ import java.util.List;
 
 public interface UsuarioDAO {
 
-    public Usuario buscaId(int id);
+    public Usuario buscaId(Integer id);
 
     public List<Usuario> buscaTodos();
 
     public boolean crea(Usuario u);
 
-    public void borra(Usuario u);
+    public boolean borra(Integer id);
 
     public boolean guarda(Usuario u);
-
+    
     public Usuario buscaPorNombre(String nombre);
 
     public List<Producto> buscaProductos(Usuario u);

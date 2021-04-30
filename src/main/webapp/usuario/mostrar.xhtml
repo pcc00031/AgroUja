@@ -39,9 +39,9 @@ and open the template in the editor.
                     </section>
                     <h:form>
                         <br>
-                            <h:commandButton  styleClass="btn btn-default" value="Editar" action="#{usuarioCtrl.edita()}"/>
+                            <h:commandButton  styleClass="btn btn-default" value="Editar" action="#{usuarioCtrl.editar()}"/>
                             <f:param name="id" value="#{usuarioCtrl.usuario}"/>
-                            <h:commandButton styleClass="btn btn-danger" value="Borrar" action="#{usuarioCtrl.borrar()}"/> 
+                            <h:commandButton styleClass="btn btn-danger" value="Borrar" action="#{usuarioCtrl.borra()}"/> 
                         </br>
                     </h:form>
                 </f:facet>
@@ -101,14 +101,18 @@ and open the template in the editor.
                     <br></br>
 
                     <br><h1>FORMULARIOS REALIZADOS</h1></br>
-                    
-                    <h:form>
-                        <p:dataTable var="f" value="#{usuarioCtrl.buscaFormularios()}">
-                            <p:column headerText="Formularios">
-                                #{f.asunto}
-                            </p:column>
-                        </p:dataTable>
-                    </h:form>                 
+                    <p:carousel autoPlayInterval="4000" numVisible="3" var="p" responsive="true" style="width: available">
+
+                        <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: white; max-height: 200px">
+                            <f:facet name="title">
+    <!--                                    <h:graphicImage height="100" width="100" name="#{p.imagen}" library="images" /> -->
+                            </f:facet>
+                            <f:facet name="subtitle">
+
+                            </f:facet>
+                        </p:card>
+
+                    </p:carousel>                  
                 </center>
             </p:card>
         </div>

@@ -36,7 +36,7 @@ public class UsuarioDAOMap implements UsuarioDAO, Serializable {
     }
 
     @Override
-    public Usuario buscaId(int id) {
+    public Usuario buscaId(Integer id) {
         return new Usuario(Usuario.get(id));
     }
 
@@ -70,11 +70,18 @@ public class UsuarioDAOMap implements UsuarioDAO, Serializable {
         }
         return result;
     }
-
-    @Override
-    public void borra(Usuario u) {
-        Usuario.remove(u.getId());
+    
+   
+@Override
+    public boolean borra(Integer id) {
+        boolean result=false;
+        if (Usuario.containsKey(id)) {
+            Usuario.remove(id);
+            result = true;
+        }
+        return result;
     }
+    
 
     @Override
     public Usuario buscaPorNombre(String nombre) {
