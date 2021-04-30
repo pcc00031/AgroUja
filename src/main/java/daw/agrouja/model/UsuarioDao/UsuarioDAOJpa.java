@@ -132,10 +132,18 @@ public class UsuarioDAOJpa implements UsuarioDAO, Serializable {
         }
         return lp;
     }
-
+    
     @Override
     public List<Formulario> buscaFormularios(Usuario u) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Formulario> lf = null;
+        try {
+            Query q = em.createQuery("Select f from Formulario f, Usuario usu where f.idUsuario=:u AND f.idUsuario=usu.id", Producto.class).setParameter("u", u.getId());
+            if (q.getResultList() != null) {
+                lf = q.getResultList();
+            }
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
+        }
+        return lf;
     }
-
 }

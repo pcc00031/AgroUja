@@ -55,7 +55,7 @@
                     <p:outputLabel for="usu" value="Usuario"  />
                     <p:inputText required="true" id="usu" value="#{usuarioCtrl.usuario.nickname}" />
                     <p:outputLabel for="cont" value="Contraseña"  />
-                    <p:inputText required="true" id="cont" value="#{usuarioCtrl.usuario.password}" />
+                    <p:password required="true" toggleMask="true" id="cont" value="#{usuarioCtrl.usuario.password}" />
                     <p:commandButton value="Registrar" styleClass="ui-button-success" action="#{usuarioCtrl.crea()}"/>
                 </h:panelGrid>
             </p:fieldset>

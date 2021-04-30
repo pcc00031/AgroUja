@@ -5,6 +5,7 @@
  */
 package daw.agrouja.controller;
 
+import daw.agrouja.model.Formulario;
 import daw.agrouja.model.Producto;
 import daw.agrouja.qualifiers.DAOJpa;
 import daw.agrouja.model.Usuario;
@@ -130,6 +131,11 @@ public class UsuarioController implements Serializable {
         return usuarioDao.buscaProductosFavs(Usuario);
     }
 
+    public List<Formulario> buscaFormularios() {
+        Usuario = usuarioDao.buscaPorNombre(principal.getName());
+        return usuarioDao.buscaFormularios(Usuario);
+    }
+    
     public String usuAvatar(String u) {
         Usuario = usuarioDao.buscaPorNombre(u);
         return Usuario.getAvatar();

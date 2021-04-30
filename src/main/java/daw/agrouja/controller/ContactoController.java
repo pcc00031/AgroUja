@@ -7,8 +7,10 @@ package daw.agrouja.controller;
 
 import daw.agrouja.model.Formulario;
 import daw.agrouja.model.ContactoDao.FormulariosDAO;
+import daw.agrouja.model.UsuarioDao.UsuarioDAO;
 import daw.agrouja.qualifiers.DAOJpa;
 import java.io.Serializable;
+import java.security.Principal;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,6 +41,12 @@ public class ContactoController implements Serializable {
     
     List<Formulario> formularios;
     
+    @Inject @DAOJpa
+    private UsuarioDAO usu;
+    
+    @Inject
+    private Principal principal;
+    
     public ContactoController(){   
     }
     
@@ -67,12 +75,15 @@ public class ContactoController implements Serializable {
     
     public String crea(){
         logger.info("Guardando formulario");
+        formulario.setIdUsuario(usu.buscaPorNombre(principal.getName()).getId());
         formulariosDAO.crea(formulario);
+        
         //formularios=formulariosDAO.buscaTodos();
+        
         this.formulario=new Formulario();
         return "";
     }
-    
+
     public void recupera(){
         logger.log(Level.INFO, "Recuperando formulario {0}", formulario.getEmail());
         formulario=formulariosDAO.buscaEmail(formulario.getEmail());
@@ -100,7 +111,7 @@ public class ContactoController implements Serializable {
         this.bar=bar;
     }       
     
-    public void UsuarioCont(String usu){
+    public void UsuarioCont(Integer usu){
        formulario.setIdUsuario(usu);
     }
 }

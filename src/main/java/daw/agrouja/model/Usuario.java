@@ -51,7 +51,7 @@ public class Usuario implements Serializable {
     private List<Producto> productos = new ArrayList<>();
     private List<Producto> prodsAdquiridos = new ArrayList<>();
     private List<Producto> prodsFavs = new ArrayList<>();
-//    private List<Formulario> formularios;
+    private List<Formulario> formularios = new ArrayList<>();
 //    private List<Comentario> comentarios;
 
     public Usuario() {
@@ -273,6 +273,20 @@ public class Usuario implements Serializable {
 
     public void setProdsFavs(List<Producto> prodsFavs) {
         this.prodsFavs = prodsFavs;
+    }
+
+    /**
+     * @return the formularios
+     */
+    public List<Formulario> getFormularios() {
+        return formularios;
+    }
+
+    /**
+     * @param formularios the formularios to set
+     */
+    public void setFormularios(List<Formulario> formularios) {
+        this.formularios = formularios;
     }
 
 }

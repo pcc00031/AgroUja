@@ -25,7 +25,7 @@ public class Formulario implements Serializable{
     private String mensaje = "";
     
     // Claves foraneas
-    private String idUsuario; 
+    private Integer idUsuario = 0; 
 
     public Formulario(String email, String nombre, String telefono, String pais,
             String asunto, String mensaje) {
@@ -137,11 +137,11 @@ public class Formulario implements Serializable{
         this.mensaje = mensaje;
     }
 
-    public String getIdUsuario() {
+    public Integer getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(String idUsuario) {
+    public void setIdUsuario(Integer idUsuario) {
         this.idUsuario = idUsuario;
     }
 
