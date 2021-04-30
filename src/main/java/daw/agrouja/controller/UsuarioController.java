@@ -5,11 +5,11 @@
  */
 package daw.agrouja.controller;
 
-<<<<<<< HEAD
+
 import daw.agrouja.model.Formulario;
-=======
+
 import daw.agrouja.model.Comentario;
->>>>>>> origin/develop
+
 import daw.agrouja.model.Producto;
 import daw.agrouja.qualifiers.DAOJpa;
 import daw.agrouja.model.Usuario;

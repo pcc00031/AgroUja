@@ -47,20 +47,13 @@ public class Usuario implements Serializable {
     private String avatar = "user.png";
 
     // Claves foraneas
-<<<<<<< HEAD
  
     private List<Producto> productos = new ArrayList<>();
     private List<Producto> prodsAdquiridos = new ArrayList<>();
     private List<Producto> prodsFavs = new ArrayList<>();
     private List<Formulario> formularios = new ArrayList<>();
-//    private List<Comentario> comentarios;
-=======
-    //private List<Producto> productos;
-    //private List<Producto> prodsAdquiridos;
-    private List<Producto> prodsFavs;
-//    private List<Formulario> formularios;
     private List<Comentario> comentarios;
->>>>>>> origin/develop
+
 
     public Usuario() {
         this.id = 0;
