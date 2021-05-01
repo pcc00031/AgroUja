@@ -1,36 +1,45 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="/WEB-INF/plantilla/layout-usu.xhtml"
-                xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:p="http://primefaces.org/ui"
-                xmlns:f="http://java.sun.com/jsf/core">
-    
-    <ui:define name="metadata">
-        <f:metadata>
-            <f:viewParam name="id" value="#{usuarioCtrl.usuario.id}"/>
-            <f:viewAction action="#{usuarioCtrl.recupera()}" />
-        </f:metadata> 
-        
-    </ui:define>
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml"
+                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                 template="/WEB-INF/plantilla/layout-usu.xhtml"
+                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                 xmlns:p="http://primefaces.org/ui"
+                 xmlns:f="http://java.sun.com/jsf/core">
     <ui:define name="content">
-        <h:head><label><h4>Editar usuario</h4></label></h:head>
-        <h:form><label></label><p:inputText placeholder="Nombre" value="#{usuarioCtrl.usuario.nombre}"></p:inputText><br></br>
+        <ui:define name="metadata">
+            <f:metadata>
+                <f:viewParam name="id" value="#{usuarioCtrl.usuario.id}"/>
+                <f:viewAction action="#{usuarioCtrl.recupera()}" />
+            </f:metadata> 
+        </ui:define>
+        <h:form>
+            <p:messages id="messages" closable="true" >
+                <p:autoUpdate/>
+            </p:messages>
+        </h:form>
+
+
+
+        <h4>Editar usuario</h4>
+
+        <h:form>
+            <label></label><p:inputText placeholder="Nombre" value="#{usuarioCtrl.usuario.nombre}"></p:inputText><br></br>
             <label></label><p:inputText placeholder="Apellidos" value="#{usuarioCtrl.usuario.apellidos}"></p:inputText><br></br>
             <label></label><p:password placeholder="Contraseña" value="#{usuarioCtrl.usuario.password}"></p:password><br></br>
             <label></label><p:inputText placeholder="Nombre de usuario" value="#{usuarioCtrl.usuario.nickname}"></p:inputText><br></br>
             <!--<label> FOTO DE PERFIL <input type="file" name="Seleccionar archivo"></input></label><br></br>-->
             <label></label> <p:selectOneRadio value="#{usuarioCtrl.usuario.sexo}">
-                                <f:selectItem itemValue="M"  itemLabel="Masculino"/>
-                                <f:selectItem itemValue="F"  itemLabel="Femenino"/>
-                            </p:selectOneRadio>
+                <f:selectItem itemValue="Masculino"  itemLabel="M"/>
+                <f:selectItem itemValue="Femenino"  itemLabel="F"/>
+            </p:selectOneRadio>
             <label></label><p:inputText placeholder="Correo electrónico" value="#{usuarioCtrl.usuario.correo}"></p:inputText><br></br>
             <label> <p:inputText type="date" placeholder="Fecha de nacimiento" value="#{usuarioCtrl.usuario.fnac}"/></label><br></br>
-            <label></label><p:inputText placeholder="Teléfono" value="#{usuarioCtrl.usuario.telef}"></p:inputText><br></br>
-            <label></label><p:inputText placeholder="Número tarjeta" value="#{usuarioCtrl.usuario.tarjeta}"></p:inputText><!--<p:inputText placeholder="Fecha caducidad"></p:inputText><p:inputText placeholder="Clave seguridad"></p:inputText>--><br></br>
+            <label></label><p:inputNumber placeholder="Teléfono" value="#{usuarioCtrl.usuario.telef}"></p:inputNumber><br></br>
+            <label></label><p:inputNumber placeholder="Número tarjeta" value="#{usuarioCtrl.usuario.tarjeta}"></p:inputNumber><!--<p:inputText placeholder="Fecha caducidad"></p:inputText><p:inputText placeholder="Clave seguridad"></p:inputText>--><br></br>
             <label></label><p:inputText placeholder="Dirección de envío" value="#{usuarioCtrl.usuario.direccion}"></p:inputText><br></br>
             <br><h:commandButton action="#{usuarioCtrl.guarda()}" styleClass="ui-button-success" value="Guardar cambios" /></br>
-            <br><h:commandButton action="#{usuarioCtrl.borrar()}" styleClass="ui-button-success" value="Eliminar usuario" /></br>
+            <br><h:commandButton action="#{usuarioCtrl.borra()}" styleClass="ui-button-success" value="Eliminar usuario" /></br>
         </h:form>
     </ui:define>
 

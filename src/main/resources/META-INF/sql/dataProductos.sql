@@ -15,7 +15,7 @@ UPDATE producto SET idUsuario = '2' WHERE categoria = 'Maquinaria';
 insert into Formulario (email, nombre, telefono, pais, asunto, mensaje) values ('Trolololo@yopmail.com', 'Trol', '123456789', 'Alemania', 'Tractor roto', 'Tractor no furula');
 
 --> Usuarios
-insert into Usuario (nombre, apellidos, nickname, password, sexo, correo, fnac, avatar) values ('Pedro', 'Corpas Cuesta', 'pcc00031', 'pedromejor', 'Masculino', 'pcc00031@red.ujaen.es', '04/04/1997', 'pedro.png' );
-insert into Usuario (nombre, apellidos, nickname, password, sexo, correo, fnac, avatar) values ('Cristian', 'Muñoz Partido', 'cmp00070', 'cristian', 'Masculino', 'cmp00070@red.ujaen.es', '12/10/1995', 'Cristian.jpg' );
-insert into Usuario (nombre, apellidos, nickname, password, sexo, correo, fnac, avatar) values ('Carlos', 'Garrido Alcántara', 'cga00037', 'carlos', 'Masculino', 'cga00037@red.ujaen.es', '0', 'Carlo.png' );
-insert into Usuario (nombre, apellidos, nickname, password, sexo, correo, fnac, avatar) values ('Jesús', 'García Rodríguez', 'jgr00059', 'jesusg', 'Masculino', 'jgr00059@red.ujaen.es', '0', 'user.png' );
+insert into Usuario (nombre, apellidos, nickname, password, sexo, correo, fnac, avatar) values ('Pedro', 'Corpas Cuesta', 'pcc00031', 'pedromejor', 'Masculino', 'pcc00031@red.ujaen.es', '1997-04-04', 'pedro.png' );
+insert into Usuario (nombre, apellidos, nickname, password, sexo, correo, fnac, avatar) values ('Cristian', 'Muñoz Partido', 'cmp00070', 'cristian', 'Masculino', 'cmp00070@red.ujaen.es', '1995-12-10', 'Cristian.jpg' );
+insert into Usuario (nombre, apellidos, nickname, password, sexo, correo, fnac, avatar) values ('Carlos', 'Garrido Alcántara', 'cga00037', 'carlos', 'Masculino', 'cga00037@red.ujaen.es', '0000-00-00', 'user.png' );
+insert into Usuario (nombre, apellidos, nickname, password, sexo, correo, fnac, avatar) values ('Jesús', 'García Rodríguez', 'jgr00059', 'jesusg', 'Masculino', 'jgr00059@red.ujaen.es', '0000-00-00', 'user.png' );
