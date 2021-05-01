@@ -75,11 +75,17 @@ public class ComentarioController implements Serializable {
         comentario = comentariosDAO.buscaId(comentario.getId_comentario());
     }
 
-//    public String edita() {
-//        recupera();
-//        log.log(Level.INFO, "Editando comentario: {0}", comentario.getId_comentario());
-//        return "editar?faces-redirect=true&id=" + comentario.getId_comentario();
-//    }
+    public void recupera(Integer id) {
+        log.log(Level.INFO, "Recuperando comentario ... ");
+        comentario = comentariosDAO.buscaId(id);
+    }
+
+    public String edita(Integer id) {
+        recupera(id);
+        log.log(Level.INFO, "Editando comentario: {0}", comentario.getId_comentario());
+        return "/productos/editarComent?faces-redirect=true&id=" + comentario.getId_comentario();
+    }
+
     public String crea(Producto p) {
         comentario.setId_usuario(usu.buscaPorNombre(principal.getName()).getId());
         comentario.setUsu(usu.buscaPorNombre(principal.getName()).getNickname());
@@ -89,6 +95,26 @@ public class ComentarioController implements Serializable {
         comentariosDAO.crea(comentario);
         prod.agregarComent(p);
         return "visualizar?faces-redirect=true&id=" + comentario.getId_producto();
+    }
+
+    public String borrar(Integer id) {
+        recupera(id);
+        log.log(Level.INFO, "Borrando comentario: {0}", comentario.getId_comentario());
+        comentariosDAO.borra(comentario);
+        return "index?faces-redirect=true";
+    }
+
+    public String editar() {
+        comentariosDAO.edita(comentario);
+        return "/productos/visualizar?faces-redirect=true&id=" + comentario.getId_comentario();
+    }
+
+    public Boolean comprobarUsu(Integer id) {
+        System.out.println(id);
+        //recupera(id);
+        System.out.println(comentario.getId_comentario());
+        return true;
+          //      (comentariosDAO.comprobarUsu(comentario, usu.buscaPorNombre(principal.getName())));
     }
 
 }

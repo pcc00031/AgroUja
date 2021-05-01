@@ -7,8 +7,10 @@ package daw.agrouja.controller;
 
 import daw.agrouja.model.Formulario;
 import daw.agrouja.model.ContactoDao.FormulariosDAO;
+import daw.agrouja.model.UsuarioDao.UsuarioDAO;
 import daw.agrouja.qualifiers.DAOJpa;
 import java.io.Serializable;
+import java.security.Principal;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,6 +41,12 @@ public class ContactoController implements Serializable {
     
     List<Formulario> formularios;
     
+    @Inject @DAOJpa
+    private UsuarioDAO usu;
+    
+    @Inject
+    private Principal principal;
+    
     public ContactoController(){   
     }
     
@@ -67,21 +75,22 @@ public class ContactoController implements Serializable {
     
     public String crea(){
         logger.info("Guardando formulario");
+        formulario.setIdUsuario(usu.buscaPorNombre(principal.getName()).getId());
         formulariosDAO.crea(formulario);
+        
         //formularios=formulariosDAO.buscaTodos();
-        this.formulario=new Formulario();
-        return "";
+        return "/contacto/detalle?faces-redirect=true&id=" + formulario.getId();
     }
-    
+
     public void recupera(){
-        logger.log(Level.INFO, "Recuperando formulario {0}", formulario.getEmail());
-        formulario=formulariosDAO.buscaEmail(formulario.getEmail());
+        logger.log(Level.INFO, "Recuperando formulario {0}", formulario.getId());
+        formulario=formulariosDAO.buscaId(formulario.getId());
 
     }
     
-    public void recupera(String email){
-        logger.log(Level.INFO, "Recuperando formulario {0}", email);
-        formulario = formulariosDAO.buscaEmail(email);
+    public void recupera(Integer id){
+        logger.log(Level.INFO, "Recuperando formulario {0}", id);
+        formulario = formulariosDAO.buscaId(id);
     }
     
     public int isContador(){
@@ -100,7 +109,12 @@ public class ContactoController implements Serializable {
         this.bar=bar;
     }       
     
-    public void UsuarioCont(String usu){
+    public void UsuarioCont(Integer usu){
        formulario.setIdUsuario(usu);
+    }
+    
+    public String visualiza(Integer Id) {
+        formulario = formulariosDAO.buscaId(Id);
+        return "/contacto/detalle?faces-redirect=true&id=" + formulario.getId();
     }
 }

@@ -7,16 +7,20 @@ package daw.agrouja.model;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
  *
  * @author Carlos
  */
-@Entity
+@Entity()
 public class Formulario implements Serializable{
-
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    
     private String email = "";
     private String nombre = "";
     private String telefono = "";
@@ -25,10 +29,11 @@ public class Formulario implements Serializable{
     private String mensaje = "";
     
     // Claves foraneas
-    private String idUsuario; 
+    private Integer idUsuario = 0; 
 
-    public Formulario(String email, String nombre, String telefono, String pais,
+    public Formulario(Integer id, String email, String nombre, String telefono, String pais,
             String asunto, String mensaje) {
+        this.id=id;
         this.email = email;
         this.nombre = nombre;
         this.telefono = telefono;
@@ -37,11 +42,12 @@ public class Formulario implements Serializable{
         this.mensaje = mensaje;
     }
 
-    public Formulario(String email) {
-        this.email = email;
+    public Formulario(Integer id) {
+        this.id = id;
     }
 
     public Formulario(Formulario f) {
+        this.id=f.id;
         this.email = f.email;
         this.nombre = f.nombre;
         this.telefono = f.telefono;
@@ -51,6 +57,7 @@ public class Formulario implements Serializable{
     }
 
     public Formulario() {
+        this.id=0;
     }
 
     /**
@@ -137,12 +144,26 @@ public class Formulario implements Serializable{
         this.mensaje = mensaje;
     }
 
-    public String getIdUsuario() {
+    public Integer getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(String idUsuario) {
+    public void setIdUsuario(Integer idUsuario) {
         this.idUsuario = idUsuario;
+    }
+
+    /**
+     * @return the id
+     */
+    public Integer getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Integer id) {
+        this.id = id;
     }
 
 }

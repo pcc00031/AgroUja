@@ -6,6 +6,7 @@
 package daw.agrouja.controller;
 
 import daw.agrouja.model.Comentario;
+import daw.agrouja.model.Formulario;
 import daw.agrouja.model.Producto;
 import daw.agrouja.qualifiers.DAOJpa;
 import daw.agrouja.model.Usuario;
@@ -45,8 +46,6 @@ public class UsuarioController implements Serializable {
     public void init() {
         Usuario = new Usuario();
         usuarios = usuarioDao.buscaTodos();
-        //recupera2(1);
-        //Usuario.setProductos(usuarioDao.buscaProductos(Usuario));
     }
 
     public List<Usuario> getUsuarios() {
@@ -62,18 +61,23 @@ public class UsuarioController implements Serializable {
         Usuario = usuarioDao.buscaId(id);
     }
 
-    public String muestra(int id) {
+    public String muestra(Integer id) {
         recupera2(id);
         return "usuario/mostrar?faces-redirect=true&id=" + Usuario.getId();
     }
 
     public String guarda() {
-        usuarioDao.guarda(Usuario);
-        return "mostrar?faces-redirect=true&id=" + Usuario.getId();
+        System.out.println(Usuario.getNombre());
+        if (usuarioDao.guarda(Usuario)) {
+            return "/index?faces-redirect";
+        } else {
+            return "/index?faces-redirect";
+        }
     }
 
-    public String edita() {
+    public String editar() {
         recupera();
+        logger.log(Level.INFO, "Editando : {0}", Usuario.getId());
         return "editar?faces-redirect=true&id=" + Usuario.getId();
     }
 
@@ -84,10 +88,10 @@ public class UsuarioController implements Serializable {
         return "usuario/mostrar?faces-redirect=true&id=" + Usuario.getId();
     }
 
-    public String borrar() {
-        recupera();
-        logger.log(Level.INFO, "Borrando Usuario: {0}", Usuario.getId());
-        usuarioDao.borra(Usuario);
+    public String borra() throws ServletException {
+        usuarioDao.borra(Usuario.getId());
+        request.logout();
+        request.getSession().invalidate();
         return "/index?faces-redirect=true";
     }
 
@@ -120,6 +124,11 @@ public class UsuarioController implements Serializable {
         Usuario = usuarioDao.buscaId(usu);
         return Usuario.getNickname();
     }
+    
+    public List<Formulario> buscaFormularios() {
+        Usuario = usuarioDao.buscaPorNombre(principal.getName());
+        return usuarioDao.buscaFormularios(Usuario);
+    }
 
     public List<Producto> buscaProductos() {
         Usuario = usuarioDao.buscaPorNombre(principal.getName());
@@ -127,9 +136,7 @@ public class UsuarioController implements Serializable {
     }
 
     public List<Producto> buscaProdsFavs() {
-        System.out.println(Usuario.getProdsFavs().size());
         Usuario = usuarioDao.buscaPorNombre(principal.getName());
-        System.out.println(Usuario.getProdsFavs().size());
         return Usuario.getProdsFavs();
     }
 
@@ -138,18 +145,18 @@ public class UsuarioController implements Serializable {
         return Usuario.getAvatar();
     }
 
-    public void addFav(Producto p) {
+    public String addFav(Producto p) {
         Usuario = usuarioDao.buscaPorNombre(principal.getName());
         logger.log(Level.INFO, "A\u00f1adiendo a favoritos producto-{0} a: {1}", new Object[]{p.getId(), Usuario.getNickname()});
         p.setFavorito(Boolean.TRUE);
         Usuario.addFav(p);
-        System.out.println(Usuario.getProdsFavs().size());
         usuarioDao.addFav(Usuario);
+        return "/usuario/mostrar?faces-redirect";
     }
 
     public List<Comentario> buscaComentarios() {
         Usuario = usuarioDao.buscaPorNombre(principal.getName());
         return usuarioDao.buscaComentarios(Usuario);
     }
-    
+
 }

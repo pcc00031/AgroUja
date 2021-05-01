@@ -1,10 +1,12 @@
 package daw.agrouja.model;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -25,11 +27,12 @@ public class Comentario implements Serializable {
 
     /* CONSTRUCTORES */
     public Comentario() {
-        id_comentario = 0;
+        this.id_comentario = 0;
     }
 
     public Comentario(String desc) {
         this.descripcion = desc;
+        this.id_comentario = 0;
     }
 
     public Comentario(Comentario com) {

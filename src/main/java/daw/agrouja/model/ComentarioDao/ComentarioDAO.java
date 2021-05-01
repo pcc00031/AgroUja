@@ -6,6 +6,8 @@
 package daw.agrouja.model.ComentarioDao;
 
 import daw.agrouja.model.Comentario;
+import daw.agrouja.model.Producto;
+import daw.agrouja.model.Usuario;
 import java.util.List;
 
 /**
@@ -21,4 +23,11 @@ public interface ComentarioDAO {
 
     // Metodos de edicion general
     public boolean crea(Comentario c);
+
+    public boolean edita(Comentario c);
+
+    public void borra(Comentario c);
+
+    public Boolean comprobarUsu(Comentario c, Usuario u);
+
 }

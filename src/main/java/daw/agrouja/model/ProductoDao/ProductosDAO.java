@@ -2,6 +2,7 @@ package daw.agrouja.model.ProductoDao;
 
 import daw.agrouja.model.Comentario;
 import daw.agrouja.model.Producto;
+import daw.agrouja.model.Usuario;
 import java.util.List;
 
 public interface ProductosDAO {
@@ -30,5 +31,11 @@ public interface ProductosDAO {
     public List<Producto> buscarCategoria(String categoria);
 
     public List<Producto> buscarEstado(String estado);
+
+    public Boolean comprobarUsu(Producto p, Usuario u);
+
+    public Boolean comprobarFav(Producto p, Usuario u);
+    
+    public List<Comentario> buscaComents(Producto p);
 
 }

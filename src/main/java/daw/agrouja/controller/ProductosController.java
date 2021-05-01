@@ -1,5 +1,6 @@
 package daw.agrouja.controller;
 
+import daw.agrouja.model.Comentario;
 import daw.agrouja.model.Producto;
 import daw.agrouja.model.ProductoDao.ProductosDAO;
 import daw.agrouja.model.UsuarioDao.UsuarioDAO;
@@ -72,13 +73,13 @@ public class ProductosController implements Serializable {
     public String edita() {
         recupera();
         log.log(Level.INFO, "Editando producto: {0}", producto.getId());
-        return "editar?faces-redirect=true&id=" + producto.getId();
+        return "/productos/editar?faces-redirect=true&id=" + producto.getId();
     }
 
     public String crea() {
         producto.setIdUsuario(usu.buscaPorNombre(principal.getName()).getId());
         if (productosDAO.crea(producto)) {
-            return "visualizar?faces-redirect=true&id=" + producto.getId();
+            return "/productos/visualizar?faces-redirect=true&id=" + producto.getId();
         } else {
             return "/index";
         }
@@ -88,7 +89,7 @@ public class ProductosController implements Serializable {
         recupera();
         log.log(Level.INFO, "Borrando producto: {0}", producto.getId());
         productosDAO.borra(producto);
-        return "index?faces-redirect=true";
+        return "mostrar?faces-redirect=true";
     }
 
     public void recupera(Integer id) {
@@ -98,7 +99,7 @@ public class ProductosController implements Serializable {
 
     public String editar() {
         productosDAO.edita(producto);
-        return "visualizar?faces-redirect=true&id=" + producto.getId();
+        return "/productos/visualizar?faces-redirect=true&id=" + producto.getId();
     }
 
     public String buscarNombre() {
@@ -138,9 +139,21 @@ public class ProductosController implements Serializable {
     public String getUsu() {
         return usu.buscaId(producto.getIdUsuario()).getNickname();
     }
+
     //TODO Buscar por marca, estado, categoria
-    //TODO Comprobar usuario para editar/borrar producto
-//    public Boolean comprobarUsu{
-//        return true;
-//    }
+    //TODO Comprobar comentario y usuario para editar/borrar comentario
+    public Boolean comprobarUsu() {
+        return (productosDAO.comprobarUsu(producto, usu.buscaPorNombre(principal.getName())));
+    }
+
+    public Boolean comprobarFav() {
+        if (productosDAO.comprobarFav(producto, usu.buscaPorNombre(principal.getName()))) {
+        } else {
+        }
+        return productosDAO.comprobarFav(producto, usu.buscaPorNombre(principal.getName()));
+    }
+    
+    public List<Comentario> buscaComents(){
+        return productosDAO.buscaComents(producto);
+    }
 }

@@ -35,7 +35,7 @@ public class UsuarioDAOJpa implements UsuarioDAO, Serializable {
     }
 
     @Override
-    public Usuario buscaId(int id) {
+    public Usuario buscaId(Integer id) {
         Usuario u = null;
         try {
             u = em.find(Usuario.class, id);
@@ -70,20 +70,34 @@ public class UsuarioDAOJpa implements UsuarioDAO, Serializable {
     }
 
     @Override
-    public void borra(Usuario u) {
+    public boolean borra(Integer id) {
+        boolean borrado = false;
         try {
-            u = em.find(Usuario.class, u.getId());
+            Usuario u = null;
+            u = em.find(Usuario.class, id);
             em.remove(u);
+            borrado = true;
         } catch (Exception ex) {
             logger.log(Level.SEVERE, ex.getMessage(), ex);
         }
+        return borrado;
     }
+    
+    
 
     @Override
     public boolean guarda(Usuario u) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean guardado = false;
+        try {
+            System.out.println(u.getNombre());
+            em.merge(u);
+            guardado = true;
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
+        }
+        return guardado;
     }
-
+        
     @Override
     public Usuario buscaPorNombre(String nombre) {
         Usuario u = null;
@@ -116,9 +130,6 @@ public class UsuarioDAOJpa implements UsuarioDAO, Serializable {
         try {
             Query q = em.createQuery("Select us.prodsFavs from Producto p, Usuario us where p.idUsuario=:u AND p.idUsuario=us.id", Producto.class).setParameter("u", u.getId());
             lp = q.getResultList();
-//            for (int i = 0; i < lp.size(); i++) {
-//                System.out.println(lp.get(i).getNombre());
-//            }
         } catch (Exception ex) {
             logger.log(Level.SEVERE, ex.getMessage(), ex);
         }
@@ -127,8 +138,18 @@ public class UsuarioDAOJpa implements UsuarioDAO, Serializable {
 
     @Override
     public List<Formulario> buscaFormularios(Usuario u) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Formulario> lf = null;
+        try {
+            Query q = em.createQuery("Select f from Formulario f, Usuario usu where f.idUsuario=:u AND f.idUsuario=usu.id", Producto.class).setParameter("u", u.getId());
+            if (q.getResultList() != null) {
+                lf = q.getResultList();
+            }
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
+        }
+        return lf;
     }
+
 
     @Override
     public void addFav(Usuario u) {

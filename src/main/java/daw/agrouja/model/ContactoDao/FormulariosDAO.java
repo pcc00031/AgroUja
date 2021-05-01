@@ -15,6 +15,6 @@ import java.util.List;
 
 public interface FormulariosDAO { 
     public List<Formulario> buscaTodos();
-    public Formulario buscaEmail(String email);
+    public Formulario buscaId(Integer Id);
     public boolean crea(Formulario f);
 }
