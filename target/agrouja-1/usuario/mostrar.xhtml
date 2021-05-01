@@ -101,18 +101,17 @@ and open the template in the editor.
                     <br></br>
 
                     <br><h1>FORMULARIOS REALIZADOS</h1></br>
-                    <p:carousel autoPlayInterval="4000" numVisible="3" var="p" responsive="true" style="width: available">
-
-                        <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: white; max-height: 200px">
-                            <f:facet name="title">
-    <!--                                    <h:graphicImage height="100" width="100" name="#{p.imagen}" library="images" /> -->
-                            </f:facet>
-                            <f:facet name="subtitle">
-
-                            </f:facet>
-                        </p:card>
-
-                    </p:carousel>                  
+                    <h:form>
+                        <p:dataTable var="f" value="#{usuarioCtrl.buscaFormularios()}">
+                            <p:column headerText="Formularios" width="300px">
+                                #{f.asunto}
+                            </p:column>
+                            <p:column >
+                                <p:commandButton icon="pi pi-search" action="#{ctrlFormulario.visualiza(f.id)}"
+                                                 title="Detalle"/>
+                            </p:column>
+                        </p:dataTable>
+                    </h:form>                 
                 </center>
             </p:card>
         </div>
