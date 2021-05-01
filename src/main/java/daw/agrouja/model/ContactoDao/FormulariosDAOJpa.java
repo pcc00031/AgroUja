@@ -7,6 +7,7 @@ package daw.agrouja.model.ContactoDao;
 
 import daw.agrouja.model.Formulario;
 import daw.agrouja.qualifiers.DAOJpa;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -25,22 +26,23 @@ import javax.transaction.Transactional;
 @RequestScoped
 @DAOJpa
 @Transactional
-public class FormulariosDAOJpa implements FormulariosDAO{
+public class FormulariosDAOJpa implements FormulariosDAO, Serializable{
     private static final Logger logger = Logger.getLogger(FormulariosDAOJpa.class.getName());
     
     @PersistenceContext
     private EntityManager em;
     
     @Override
-    public Formulario buscaEmail (String email){
+    public Formulario buscaId (Integer id){
         Formulario f=null;
         try{
-            f=em.find(Formulario.class, email);
+            f=em.find(Formulario.class, id);
         } catch (Exception e) {
-            logger.log(Level.SEVERE, "No existe el email", e);
+            logger.log(Level.SEVERE, "No existe el IdForm", e);
         }
         return f;
     }
+    
     
     @Override
     public List<Formulario> buscaTodos(){

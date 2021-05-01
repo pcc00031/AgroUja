@@ -104,8 +104,12 @@ and open the template in the editor.
                     
                     <h:form>
                         <p:dataTable var="f" value="#{usuarioCtrl.buscaFormularios()}">
-                            <p:column headerText="Formularios">
+                            <p:column headerText="Formularios" width="300px">
                                 #{f.asunto}
+                            </p:column>
+                            <p:column >
+                                <p:commandButton icon="pi pi-search" action="#{ctrlFormulario.visualiza(f.id)}"
+                                                 title="Detalle"/>
                             </p:column>
                         </p:dataTable>
                     </h:form>                 

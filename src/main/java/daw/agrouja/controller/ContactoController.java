@@ -79,20 +79,18 @@ public class ContactoController implements Serializable {
         formulariosDAO.crea(formulario);
         
         //formularios=formulariosDAO.buscaTodos();
-        
-        this.formulario=new Formulario();
-        return "";
+        return "/contacto/detalle?faces-redirect=true&id=" + formulario.getId();
     }
 
     public void recupera(){
-        logger.log(Level.INFO, "Recuperando formulario {0}", formulario.getEmail());
-        formulario=formulariosDAO.buscaEmail(formulario.getEmail());
+        logger.log(Level.INFO, "Recuperando formulario {0}", formulario.getId());
+        formulario=formulariosDAO.buscaId(formulario.getId());
 
     }
     
-    public void recupera(String email){
-        logger.log(Level.INFO, "Recuperando formulario {0}", email);
-        formulario = formulariosDAO.buscaEmail(email);
+    public void recupera(Integer id){
+        logger.log(Level.INFO, "Recuperando formulario {0}", id);
+        formulario = formulariosDAO.buscaId(id);
     }
     
     public int isContador(){
@@ -113,5 +111,10 @@ public class ContactoController implements Serializable {
     
     public void UsuarioCont(Integer usu){
        formulario.setIdUsuario(usu);
+    }
+    
+    public String visualiza(Integer Id) {
+        formulario = formulariosDAO.buscaId(Id);
+        return "/contacto/detalle?faces-redirect=true&id=" + formulario.getId();
     }
 }
