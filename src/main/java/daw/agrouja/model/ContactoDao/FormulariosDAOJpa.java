@@ -68,4 +68,18 @@ public class FormulariosDAOJpa implements FormulariosDAO, Serializable{
         }
         return creado;
     }
+    
+    @Override
+    public boolean borra(Integer id) {
+        boolean borrado = false;
+        try {
+            Formulario f = null;
+            f = em.find(Formulario.class, id);
+            em.remove(f);
+            borrado = true;
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
+        }
+        return borrado;
+    }
 }

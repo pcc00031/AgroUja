@@ -54,4 +54,14 @@ public class FormulariosDAOMap implements FormulariosDAO, Serializable{
         idForm++;
         return true;
     }
+    
+    @Override
+    public boolean borra(Integer id) {
+        boolean result=false;
+        if(formularios.containsKey(id)){
+            formularios.remove(id);
+            result = true;
+        }
+        return result;
+    }
 }

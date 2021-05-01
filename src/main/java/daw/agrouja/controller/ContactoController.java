@@ -81,6 +81,12 @@ public class ContactoController implements Serializable {
         //formularios=formulariosDAO.buscaTodos();
         return "/contacto/detalle?faces-redirect=true&id=" + formulario.getId();
     }
+    
+    public String borrar(Integer id) {
+        logger.info("Borrando formulario");
+        formulariosDAO.borra(id);
+        return "/usuario/mostrar?faces-redirect=true";
+    }
 
     public void recupera(){
         logger.log(Level.INFO, "Recuperando formulario {0}", formulario.getId());

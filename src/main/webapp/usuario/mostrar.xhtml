@@ -103,12 +103,20 @@ and open the template in the editor.
                     <br><h1>FORMULARIOS REALIZADOS</h1></br>
                     <h:form>
                         <p:dataTable var="f" value="#{usuarioCtrl.buscaFormularios()}">
-                            <p:column headerText="Formularios" width="300px">
+                            <p:column headerText="Formularios" width="215px">
                                 #{f.asunto}
                             </p:column>
                             <p:column >
                                 <p:commandButton icon="pi pi-search" action="#{ctrlFormulario.visualiza(f.id)}"
                                                  title="Detalle"/>
+                            </p:column>
+                            <p:column >
+                                <p:commandButton icon="pi pi-pencil" 
+                                                 title="Editar"/>
+                            </p:column>
+                            <p:column >
+                                <p:commandButton icon="pi pi-ban" action="#{ctrlFormulario.borrar(f.id)}"
+                                                 title="Borrar"/>
                             </p:column>
                         </p:dataTable>
                     </h:form>                 

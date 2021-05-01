@@ -17,4 +17,5 @@ public interface FormulariosDAO {
     public List<Formulario> buscaTodos();
     public Formulario buscaId(Integer Id);
     public boolean crea(Formulario f);
+    public boolean borra(Integer id);
 }
