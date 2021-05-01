@@ -1,6 +1,9 @@
+
 package daw.agrouja.model.ProductoDao;
 
+import daw.agrouja.model.Comentario;
 import daw.agrouja.model.Producto;
+import daw.agrouja.model.Usuario;
 import daw.agrouja.qualifiers.DAOMap;
 import java.io.Serializable;
 import java.util.HashMap;
@@ -89,6 +92,21 @@ public class ProductosDAOMap implements ProductosDAO, Serializable {
 
     @Override
     public List<Producto> buscarEstado(String estado) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Boolean comprobarUsu(Producto p, Usuario u) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Boolean comprobarFav(Producto p, Usuario u) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Comentario> buscaComents(Producto p) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package daw.agrouja.model;
 
 import java.io.Serializable;
@@ -49,7 +45,6 @@ public class Usuario implements Serializable {
     // Claves foraneas
  
     private List<Producto> productos = new ArrayList<>();
-    private List<Producto> prodsAdquiridos = new ArrayList<>();
     private List<Producto> prodsFavs = new ArrayList<>();
     private List<Formulario> formularios = new ArrayList<>();
     private List<Comentario> comentarios;
@@ -57,7 +52,6 @@ public class Usuario implements Serializable {
 
     public Usuario() {
         this.id = 0;
-        //this.prodsAdquiridos = new ArrayList<>();
         this.prodsFavs = new ArrayList<>();
         this.comentarios = new ArrayList<>();
     }
@@ -75,9 +69,7 @@ public class Usuario implements Serializable {
         direccion = _direccion;
         telef = _telef;
 
-        //prodsAdquiridos = new ArrayList<>();
         prodsFavs = new ArrayList<>();
-        //productos = new ArrayList<>();
     }
 
     public Usuario(Usuario u) {
@@ -257,13 +249,6 @@ public class Usuario implements Serializable {
         this.avatar = avatar;
     }
 
-//    public List<Producto> getProdsAdquiridos() {
-//        return prodsAdquiridos;
-//    }
-//
-//    public void setProdsAdquiridos(List<Producto> prodsAdquiridos) {
-//        this.prodsAdquiridos = prodsAdquiridos;
-//    }
     public List<Producto> getProdsFavs() {
         return prodsFavs;
     }
@@ -297,5 +282,4 @@ public class Usuario implements Serializable {
     public void setFormularios(List<Formulario> formularios) {
         this.formularios = formularios;
     }
-
 }

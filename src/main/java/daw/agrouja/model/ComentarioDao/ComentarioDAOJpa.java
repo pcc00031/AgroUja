@@ -1,6 +1,8 @@
 package daw.agrouja.model.ComentarioDao;
 
 import daw.agrouja.model.Comentario;
+import daw.agrouja.model.Producto;
+import daw.agrouja.model.Usuario;
 import daw.agrouja.qualifiers.DAOJpa;
 import java.io.Serializable;
 import java.util.List;
@@ -58,6 +60,47 @@ public class ComentarioDAOJpa implements ComentarioDAO, Serializable {
             logger.log(Level.SEVERE, ex.getMessage(), ex);
         }
         return creado;
+    }
+
+    @Override
+    public boolean edita(Comentario c) {
+        boolean editado = false;
+        try {
+            em.merge(c);
+            editado = true;
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
+        }
+        return editado;
+    }
+
+    @Override
+    public void borra(Comentario c) {
+        try {
+            if (!em.contains(c)) {
+                c = em.merge(c);
+            }
+            em.remove(c);
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
+        }
+    }
+
+    @Override
+    public Boolean comprobarUsu(Comentario c, Usuario u) {
+        Boolean coincide = false;
+        try {
+            Query q = em.createQuery("Select c from Comentario c, Usuario u where c.id_usuario=u.id AND :cid=:usuid AND c.id_usuario=:usuid", Comentario.class);
+            q.setParameter("cid", c.getId_usuario());
+            q.setParameter("usuid", u.getId());
+            if (q.getSingleResult() != null) {
+                coincide = true;
+                return coincide;
+            }
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
+        }
+        return coincide;
     }
 
 }

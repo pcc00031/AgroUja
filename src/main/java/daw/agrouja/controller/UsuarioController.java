@@ -46,8 +46,6 @@ public class UsuarioController implements Serializable {
     public void init() {
         Usuario = new Usuario();
         usuarios = usuarioDao.buscaTodos();
-        //recupera2(1);
-        //Usuario.setProductos(usuarioDao.buscaProductos(Usuario));
     }
 
     public List<Usuario> getUsuarios() {
@@ -138,9 +136,7 @@ public class UsuarioController implements Serializable {
     }
 
     public List<Producto> buscaProdsFavs() {
-        System.out.println(Usuario.getProdsFavs().size());
         Usuario = usuarioDao.buscaPorNombre(principal.getName());
-        System.out.println(Usuario.getProdsFavs().size());
         return Usuario.getProdsFavs();
     }
 
@@ -149,13 +145,13 @@ public class UsuarioController implements Serializable {
         return Usuario.getAvatar();
     }
 
-    public void addFav(Producto p) {
+    public String addFav(Producto p) {
         Usuario = usuarioDao.buscaPorNombre(principal.getName());
         logger.log(Level.INFO, "A\u00f1adiendo a favoritos producto-{0} a: {1}", new Object[]{p.getId(), Usuario.getNickname()});
         p.setFavorito(Boolean.TRUE);
         Usuario.addFav(p);
-        System.out.println(Usuario.getProdsFavs().size());
         usuarioDao.addFav(Usuario);
+        return "/usuario/mostrar?faces-redirect";
     }
 
     public List<Comentario> buscaComentarios() {

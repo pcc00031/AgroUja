@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
@@ -58,6 +59,7 @@ public class Producto implements Serializable {
     private String buscaCat = "";
     private String buscaMarca = "";
     private String buscaEst = "";
+    private List<Usuario> usuarios;
 
     /* CONSTRUCTORES */
     /**

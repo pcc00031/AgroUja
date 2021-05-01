@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../WEB-INF/plantilla/layout.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:define  name="content">
+
+        <p:tooltip/>
+        <h:form>
+            <p:messages id="messages" showDetail="true" closable="true">
+                <p:autoUpdate/>
+            </p:messages>
+        </h:form>
+        <ui:define name="metadata">
+            <f:metadata>
+                <f:viewParam name="id" value="#{comentCtrl.comentario.id_comentario}"/>
+                <f:viewAction action="#{comentCtrl.recupera()}" />
+            </f:metadata>               
+        </ui:define>
+
+        <h:form>
+            <p:fieldset  style=" align-self:  center; margin-left: 30%; margin-right: 30%" legend="Datos del comentario">
+                <h:panelGrid style="margin-left: 10%;" columns="2" cellpadding="7">
+                    <p:outputLabel for="Nomb" value="Nombre" />
+                    <p:inputTextarea rows="6" cols="33" id="Nomb" required="true" value="#{comentCtrl.comentario.descripcion}" />
+
+                    <p:commandButton icon="pi pi-check" styleClass="ui-button-success" action="#{comentCtrl.editar()}" value="Editar"/>
+                    <p:commandButton icon="pi pi-times" styleClass="ui-button-danger" action="#{comentCtrl.borrar()}" value="Borrar"/>
+
+
+                </h:panelGrid>
+            </p:fieldset>
+
+
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>

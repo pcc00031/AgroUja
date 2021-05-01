@@ -1,3 +1,4 @@
+
 --> Productos
 insert into Producto (nombre, descripcion, marca, imagen, estado, categoria, ventAlq, destacado, precio) values ('Aceite', 'El mejor aceite', 'AgroUja', 'aceite.png', 'Nuevo', 'Comestible', 'Venta', true, 10.4);
 insert into Producto (nombre, descripcion, marca, imagen, estado, categoria, ventAlq, destacado, precio) values ('Pala', 'La mejor pala', 'AgroUja', 'pala.png', 'Nuevo', 'Maquinaria', 'Venta', true, 5.7);
@@ -19,3 +20,8 @@ insert into Usuario (nombre, apellidos, nickname, password, sexo, correo, fnac, 
 insert into Usuario (nombre, apellidos, nickname, password, sexo, correo, fnac, avatar) values ('Cristian', 'Muñoz Partido', 'cmp00070', 'cristian', 'Masculino', 'cmp00070@red.ujaen.es', '1995-12-10', 'Cristian.jpg' );
 insert into Usuario (nombre, apellidos, nickname, password, sexo, correo, fnac, avatar) values ('Carlos', 'Garrido Alcántara', 'cga00037', 'carlos', 'Masculino', 'cga00037@red.ujaen.es', '0000-00-00', 'Carlo.png' );
 insert into Usuario (nombre, apellidos, nickname, password, sexo, correo, fnac, avatar) values ('Jesús', 'García Rodríguez', 'jgr00059', 'jesusg', 'Masculino', 'jgr00059@red.ujaen.es', '0000-00-00', 'user.png' );
+
+--> Comentarios
+insert into Comentario (descripcion, id_usuario, id_producto) values ('Mi mejor aceite, cómpralo!', '1', '1');
+
+insert into Producto_Comentario values ('1', '1');

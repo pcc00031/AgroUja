@@ -130,9 +130,6 @@ public class UsuarioDAOJpa implements UsuarioDAO, Serializable {
         try {
             Query q = em.createQuery("Select us.prodsFavs from Producto p, Usuario us where p.idUsuario=:u AND p.idUsuario=us.id", Producto.class).setParameter("u", u.getId());
             lp = q.getResultList();
-//            for (int i = 0; i < lp.size(); i++) {
-//                System.out.println(lp.get(i).getNombre());
-//            }
         } catch (Exception ex) {
             logger.log(Level.SEVERE, ex.getMessage(), ex);
         }
