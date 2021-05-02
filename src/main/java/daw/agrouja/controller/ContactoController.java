@@ -87,6 +87,21 @@ public class ContactoController implements Serializable {
         formulariosDAO.borra(id);
         return "/usuario/mostrar?faces-redirect=true";
     }
+    
+    public String visualizaEdit(Integer id) {
+        formulario = formulariosDAO.buscaId(id);
+        logger.log(Level.INFO, "Editando : {0}", formulario.getId());
+        return "/contacto/edita?faces-redirect=true&id=" + formulario.getId();
+    }
+    
+    public String editar() {
+        logger.info("Editando formulario");
+        if (formulariosDAO.editar(formulario)) {
+            return "detalle?faces-redirect=true&id=" + formulario.getId();
+        } else {
+            return "/usuario/mostrar?faces-redirect=true&id=" + formulario.getId();
+        }
+    }
 
     public void recupera() {
         logger.log(Level.INFO, "Recuperando formulario {0}", formulario.getId());
