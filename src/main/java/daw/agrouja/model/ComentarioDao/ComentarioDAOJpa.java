@@ -90,10 +90,11 @@ public class ComentarioDAOJpa implements ComentarioDAO, Serializable {
     public Boolean comprobarUsu(Comentario c, Usuario u) {
         Boolean coincide = false;
         try {
-            Query q = em.createQuery("Select c from Comentario c, Usuario u where c.id_usuario=u.id AND :cid=:usuid AND c.id_usuario=:usuid", Comentario.class);
+            Query q = em.createQuery("Select c from Comentario c, Usuario u where c.id_usuario=u.id AND :cid=:usuid AND c.id_comentario=:cid", 
+                    Comentario.class);
             q.setParameter("cid", c.getId_usuario());
             q.setParameter("usuid", u.getId());
-            if (q.getSingleResult() != null) {
+            if (q.getResultList() != null) {
                 coincide = true;
                 return coincide;
             }

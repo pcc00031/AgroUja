@@ -281,4 +281,7 @@ public class Usuario implements Serializable {
     public void setFormularios(List<Formulario> formularios) {
         this.formularios = formularios;
     }
+
+
+    
 }

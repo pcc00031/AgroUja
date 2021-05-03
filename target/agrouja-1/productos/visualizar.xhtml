@@ -67,14 +67,20 @@
             <br> <center> <p:commandButton styleClass="ui-button-success" value="Confirmar" icon="pi pi-comment" action ="#{comentCtrl.crea(prodCtrl.producto)}"/> </center></br>
             <br></br>
             <center><h1>Lista de comentarios</h1></center>
+
+            <!-- No consigo que funcione de manera adecuada, estoy mezclando conceptos & los Select's de la base de datos seguramente estén mal-->
+            <!-- El método para borrar tampoco funciona, por las claves foraneas, pero es todo es demasiado lío y no soy capaz de solucionarlo -->
+            <!-- Al menos en la parte de usuario, sí hemos conseguido que al eliminar un usuario se borren sus productos asociados y no genera problemas-->
+            <!-- Me hubiera gustado implementar más cosas y que funcionaran correctamente, pero el hecho de no terminar de comprender del todo el contenido 
+            en general ha hecho que me sea imposible -->
+
             <ui:repeat var="p" value="#{prodCtrl.buscaComents()}">
                 <p:card style="margin-right: 10%; margin-left: 10%;margin-top: 5%; margin-bottom: 5%;">
                     <f:facet name="subtitle">
 
                         <p style="float: right"><i>@#{p.usu}</i></p>
                         <p style="float: left">#{p.descripcion}</p>
-                        #{p.id_comentario}
-                        <c:if test="#{comentCtrl.comprobarUsu(p.id_comentario)}">
+                        <h:panelGroup rendered="#{comentCtrl.comprobarUsu(p.id_comentario)}">                          
                             <br>
                                 <br>
                                     <p:commandButton style="float: right" styleClass="ui-button-danger"  icon="pi pi-times" action ="#{comentCtrl.borrar(p.id_comentario)}"/> 
@@ -83,7 +89,7 @@
                                     <p style="color: white; float: right"> he</p>
                                 </br>
                             </br>
-                        </c:if>
+                        </h:panelGroup>
                     </f:facet>
                 </p:card>
             </ui:repeat>

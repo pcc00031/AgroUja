@@ -4,6 +4,7 @@ import daw.agrouja.model.Comentario;
 import daw.agrouja.model.ComentarioDao.ComentarioDAO;
 import daw.agrouja.model.Producto;
 import daw.agrouja.model.ProductoDao.ProductosDAO;
+import daw.agrouja.model.Usuario;
 import daw.agrouja.model.UsuarioDao.UsuarioDAO;
 import daw.agrouja.qualifiers.DAOJpa;
 import java.io.Serializable;
@@ -87,13 +88,13 @@ public class ComentarioController implements Serializable {
     }
 
     public String crea(Producto p) {
-        System.out.println("Creando comentario: " + comentario.getId_comentario());
+        log.log(Level.INFO, "Creando comentario: {0}", comentario.getId_comentario());
         comentario.setId_usuario(usu.buscaPorNombre(principal.getName()).getId());
         comentario.setUsu(usu.buscaPorNombre(principal.getName()).getNickname());
         comentario.setNombreProd(p.getNombre());
         comentario.setId_producto(p.getId());
-        p.getComentarios().add(comentario);
         comentariosDAO.crea(comentario);
+        p.getComentarios().add(comentario);
         prod.agregarComent(p);
         return "visualizar?faces-redirect=true&id=" + comentario.getId_producto();
     }
@@ -111,11 +112,8 @@ public class ComentarioController implements Serializable {
     }
 
     public Boolean comprobarUsu(Integer id) {
-        System.out.println("id recibido: " + id);
-        //recupera(id);
-
-        return true;
-        //      (comentariosDAO.comprobarUsu(comentario, usu.buscaPorNombre(principal.getName())));
+        recupera(id);
+        return (comentariosDAO.comprobarUsu(comentario, usu.buscaPorNombre(principal.getName())));
     }
 
 }

@@ -19,4 +19,4 @@ insert into Formulario (email, nombre, telefono, pais, asunto, mensaje) values (
 insert into Usuario (nombre, apellidos, nickname, password, sexo, correo, fnac, avatar) values ('Pedro', 'Corpas Cuesta', 'pcc00031', 'pedromejor', 'Masculino', 'pcc00031@red.ujaen.es', '1997-04-04', 'pedro.png' );
 insert into Usuario (nombre, apellidos, nickname, password, sexo, correo, fnac, avatar) values ('Cristian', 'Muñoz Partido', 'cmp00070', 'cristian', 'Masculino', 'cmp00070@red.ujaen.es', '1995-12-10', 'Cristian.jpg' );
 insert into Usuario (nombre, apellidos, nickname, password, sexo, correo, fnac, avatar) values ('Carlos', 'Garrido Alcántara', 'cga00037', 'carlos', 'Masculino', 'cga00037@red.ujaen.es', '0000-00-00', 'Carlo.png' );
-insert into Usuario (nombre, apellidos, nickname, password, sexo, correo, fnac, avatar) values ('Jesús', 'García Rodríguez', 'jgr00059', 'jesusg', 'Masculino', 'jgr00059@red.ujaen.es', '0000-00-00', 'jesus.png' );
+insert into Usuario (nombre, apellidos, nickname, password, sexo, correo, fnac, avatar) values ('Jesús', 'García Rodríguez', 'jgr00059', 'jesusg', 'Masculino', 'jgr00059@red.ujaen.es', '0000-00-00', 'jesus.jpeg' );

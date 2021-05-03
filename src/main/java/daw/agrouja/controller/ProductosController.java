@@ -143,7 +143,6 @@ public class ProductosController implements Serializable {
     //FIXME Buscar por marca, estado, categoria
     //FIXME Comprobar comentario y usuario para editar/borrar comentario
     public Boolean comprobarUsu() {
-        System.out.println(producto.getNombre());
         return (productosDAO.comprobarUsu(producto, usu.buscaPorNombre(principal.getName())));
     }
 
