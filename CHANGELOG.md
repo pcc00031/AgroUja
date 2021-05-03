@@ -1,5 +1,37 @@
 # CHANGELOG - AGROUJA
 
+## [0.0.4] - 2021-05-03
+#### Added
+
+- Relaciones entre entidades (claves foráneas implementadas) - @pcc00031 , @cmp00070 , @jgr00059 , @cga00037
+- Añadidas listas ocultas con acceso solo para administradores - @cga00037
+- Entidad Comentario agregada + métodos JPA - @pcc00031
+- Relación de Comentario con las demás entidades - @pcc00031
+- Asignación de productos a Usuarios - @pcc00031
+- Ocultación de métodos para que sólo el usuario que posee ese producto pueda borrar/editar - @pcc00031
+- Asignación de formularios a Usuarios - @cga00037
+- Asignación de comentarios a Productos y Usuarios - @pcc00031 
+- Añadidos métodos de edición y borrado de fomularios - @cga00037
+- Añadidos métodos generales de Comentario - @pcc00031
+- Agregadas fotos de perfil a Administradores - @pcc00031 , @cmp00070 , @jgr00059 , @cga00037
+
+### Fixed
+
+- Botón para hacer logout - @pcc00031
+- Autenticación implementada en el back-end - @pcc00031 , @cmp00070 , @jgr00059 , @cga00037
+- Restricción de vistas para usuarios y administradores (comprobaciones previas) - @pcc00031 , @cmp00070 , @jgr00059 , @cga00037
+- Registro de usuario solucionado - @jgr00059
+- Validación en formularios de contacto agregada - @cga00037
+- Optimizado bean de usuario - @pcc00031
+- Editar y borrar de Usuario solucionados - @cmp00070
+- Vista de mostrar usuario mejorada visualmente - @pcc00031 , @cmp00070
+- Corrección general y optimizado de métodos - @pcc00031 , @cmp00070 , @jgr00059 , @cga00037
+- Vista principal de la aplicación mejorada visualmente (index) - @pcc00031
+
+### To Do
+
+- Métodos JPA en productos de filtrado - @pcc00031
+
 ## [0.0.3] - 2021-04-19
 #### Added
 
