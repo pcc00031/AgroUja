@@ -7,6 +7,7 @@ package daw.agrouja.model.ContactoDao;
 
 import daw.agrouja.model.Formulario;
 import daw.agrouja.qualifiers.DAOMap;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,13 +21,15 @@ import javax.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped      //Elegible for Dependency Injection
 @DAOMap
-public class FormulariosDAOMap implements FormulariosDAO{
-    private Map<String, Formulario> formularios=null;
+public class FormulariosDAOMap implements FormulariosDAO, Serializable{
+    private Map<Integer, Formulario> formularios=null;
+    
+     private Integer idForm = 1;
     
     public FormulariosDAOMap(){
         if (formularios==null){
             formularios=new HashMap<>();
-            formularios.put("aloha@yopmail.com", new Formulario("aloha@yopmail.com", "Oha", "123456789", "Albania", "Pala rota", "Mi pala está rota"));
+            formularios.put(idForm, new Formulario(idForm++, "aloha@yopmail.com", "Oha", "123456789", "Albania", "Pala rota", "Mi pala está rota"));
         }
     }
 
@@ -36,8 +39,8 @@ public class FormulariosDAOMap implements FormulariosDAO{
     }
     
     @Override
-    public Formulario buscaEmail(String email){
-        return new Formulario(formularios.get(email)); //Tenemos que crear el constructor de copia en la clase libro
+    public Formulario buscaId(Integer id){
+        return new Formulario(formularios.get(id)); //Tenemos que crear el constructor de copia en la clase libro
     }
     
     public int numFormularios(){
@@ -46,8 +49,29 @@ public class FormulariosDAOMap implements FormulariosDAO{
 
     @Override
     public boolean crea(Formulario f) {
-        
-        formularios.put(f.getEmail(), new Formulario(f));
+        formularios.put(idForm, new Formulario(f));
+        f.setId(idForm);
+        idForm++;
         return true;
+    }
+    
+    @Override
+    public boolean borra(Integer id) {
+        boolean result=false;
+        if(formularios.containsKey(id)){
+            formularios.remove(id);
+            result = true;
+        }
+        return result;
+    }
+    
+    @Override
+    public boolean editar(Formulario f) {
+        boolean result = false;
+        if (formularios.containsKey(f.getId())) {
+            formularios.replace(f.getId(), f);
+            result = true;
+        }
+        return result;
     }
 }

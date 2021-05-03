@@ -1,6 +1,9 @@
+
 package daw.agrouja.model.ProductoDao;
 
+import daw.agrouja.model.Comentario;
 import daw.agrouja.model.Producto;
+import daw.agrouja.model.Usuario;
 import daw.agrouja.qualifiers.DAOMap;
 import java.io.Serializable;
 import java.util.HashMap;
@@ -28,11 +31,8 @@ public class ProductosDAOMap implements ProductosDAO, Serializable {
     }
 
     @Override
-    public boolean agregarComent(Producto p, String coment) {
-        System.out.println(p.getId());
-        productos.get(p.getId()).addComent(coment);
-
-        return true;
+    public boolean agregarComent(Producto p) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -69,7 +69,6 @@ public class ProductosDAOMap implements ProductosDAO, Serializable {
     public boolean edita(Producto p) {
         boolean result = false;
         if (productos.containsKey(p.getId())) {
-            Producto nc = new Producto(p);
             productos.replace(p.getId(), p);
             result = true;
         }
@@ -78,50 +77,37 @@ public class ProductosDAOMap implements ProductosDAO, Serializable {
 
     @Override
     public void buscarNombre(String nombre) {
-        subProductos.clear();
-        for (Map.Entry<Integer, Producto> entry : productos.entrySet()) {
-            if (entry.getValue().getNombre().toLowerCase().contains(nombre)) {
-                subProductos.put(entry.getKey(), entry.getValue());
-            }
-        }
-       
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void buscarMarca(String marca) {
-        subProductos.clear();
-        if (marca.contentEquals("Otra")) {
-            for (Map.Entry<Integer, Producto> entry : productos.entrySet()) {
-                if (!entry.getValue().getMarca().contentEquals("AgroUja")) {
-                    subProductos.put(entry.getKey(), entry.getValue());
-                }
-            }
-        } else {
-            for (Map.Entry<Integer, Producto> entry : productos.entrySet()) {
-                if (entry.getValue().getMarca().contentEquals(marca)) {
-                    subProductos.put(entry.getKey(), entry.getValue());
-                }
-            }
-        }
+    public List<Producto> buscarMarca(String marca) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void buscarCategoria(String categoria) {
-        subProductos.clear();
-        if (categoria.contentEquals("Otra")) {
-            for (Map.Entry<Integer, Producto> entry : productos.entrySet()) {
-                if (!entry.getValue().getCategoria().contentEquals("Comestible") && !entry.getValue().getCategoria().contentEquals("Maquinaria")) {
-                    subProductos.put(entry.getKey(), entry.getValue());
-                }
-            }
-        } else {
-            for (Map.Entry<Integer, Producto> entry : productos.entrySet()) {
-                if (entry.getValue().getCategoria().contentEquals(categoria)) {
-                    subProductos.put(entry.getKey(), entry.getValue());
-                }
-            }
-        }
-        
+    public List<Producto> buscarCategoria(String categoria) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Producto> buscarEstado(String estado) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Boolean comprobarUsu(Producto p, Usuario u) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Boolean comprobarFav(Producto p, Usuario u) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Comentario> buscaComents(Producto p) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

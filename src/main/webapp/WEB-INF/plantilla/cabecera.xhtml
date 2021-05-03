@@ -1,23 +1,52 @@
 
 <html lang="es"
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://xmlns.jcp.org/jsf/html" 
-    xmlns:p="http://primefaces.org/ui">
-    
-    <div id="top" style="position: fixed; width: 100%; top: 0">
-    <nav class="site-header sticky-top py-1">
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html" 
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
 
-        <div style="font-size: 13px; " class="container d-flex flex-column flex-md-row justify-content-between">
-            <ul> <li><h:link  outcome="/index">AGROUJA</h:link></li></ul>
-            <ul> <li><h:link  outcome="/productos/index">Productos</h:link></li></ul>
-            <ul> <li class="margenmov"><h:link  outcome="/contacto/index">Contacto</h:link></li></ul>
-            <a class="py-2 d-none d-md-inline-block margenmov" ></a>
-            <ul> <li style="width: 125px"><h:link  outcome="/login">Iniciar Sesión</h:link></li></ul>
-            <ul> <li><h:link  outcome="/registro">Registro</h:link></li></ul>
-            <h:link outcome="/usuario/index"> <p:avatar icon="pi pi-user" shape="circle" styleClass="p-mr-2" style="padding: 1%;margin-bottom: 20%;margin-top: 10%;background: #006600;color: white" /></h:link>
-        </div>
-    </nav>
-</div>  
+    <div id="top" style="position: fixed; width: 100%; top: 0; z-index: 1; max-height: 20px">
+        <nav class="site-header sticky-top py-1">
+
+            <div style="font-size: 13px; " class="container d-flex flex-column flex-md-row justify-content-between">
+                <ul> <li style="margin-bottom: 15%"><h:link  outcome="/index">AGROUJA</h:link></li></ul>
+                <ul> <li><h:link  outcome="/productos/index">Productos</h:link></li></ul>
+                <ul> <li class="margenmov"><h:link  outcome="/contacto/index">Contacto</h:link></li></ul>
+                <a class="py-2 d-none d-md-inline-block margenmov" ></a>
+
+                <c:choose>
+                    <c:when test="#{request.isUserInRole('USUARIOS')}">
+                        <ul><li style="width: 125px"><i>Hola, #{request.remoteUser}</i></li></ul>
+                        <h:form style="margin-bottom: 0%">
+                            <ul><li style="width: 150px"> <p:commandButton style="margin-bottom: 0%" styleClass="ui-button-success" action="#{usuarioCtrl.logout()}" value="Logout" /></li></ul>
+                        </h:form>
+                        <h:link outcome="/usuario/mostrar.jsf?id=#{usuarioCtrl.usuId(request.remoteUser)}"> 
+                            <p:avatar shape="circle" styleClass="p-mr-2" style="padding: 1%;margin-bottom: 20%;margin-top: 10%;background: #006600;color: white">
+                                <h:graphicImage name="#{usuarioCtrl.usuAvatar(request.remoteUser)}" library="images"/>
+                            </p:avatar>
+                        </h:link>
+                    </c:when>
+                    <c:when test="#{request.isUserInRole('ADMINISTRADORES')}">
+                        <ul><li style="width: 160px"><i>Hola, admin #{request.remoteUser}</i></li></ul>
+                        <h:form style="margin-bottom: 0%">
+                            <ul><li style="width: 100px"> <p:commandButton style="margin-bottom: 0%" styleClass="ui-button-success" action="#{usuarioCtrl.logout()}" value="Logout" /></li></ul>
+                        </h:form>                    
+                        <ul><li style="width: 50px"> <h:link  outcome="/usuario/index">Listado</h:link></li></ul>
+                        <h:link outcome="/usuario/mostrar.jsf?id=#{usuarioCtrl.usuId(request.remoteUser)}"> 
+                            <p:avatar shape="circle" styleClass="p-mr-2" style="padding: 1%;margin-bottom: 20%;margin-top: 10%;background: #006600;color: white">
+                                <h:graphicImage name="#{usuarioCtrl.usuAvatar(request.remoteUser)}" library="images"/>
+                            </p:avatar>
+                        </h:link>
+                    </c:when>
+                    <c:otherwise>
+                        <ul> <li style="width: 125px"><h:link  outcome="/usuario/mostrar.jsf">Iniciar Sesión</h:link></li></ul>
+                        <ul> <li><h:link  outcome="/registro">Registro</h:link></li></ul>
+                    </c:otherwise>
+                </c:choose>
+
+            </div>
+        </nav>
+    </div>  
 </html>
 
 

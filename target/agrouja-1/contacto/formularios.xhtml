@@ -26,14 +26,14 @@
                         #{f.email}
                     </p:column>
                     <p:column >
-                        <p:commandButton icon="pi pi-search" action="#{ctrlFormulario.recupera(f.email)}"
+                        <p:commandButton icon="pi pi-search" action="#{ctrlFormulario.recupera(f.id)}"
                                          title="Detalle" update="detalle"/>
                     </p:column>
                 </p:dataTable>
         </h:form>
         
         <h:panelGroup id="detalle" layout="block">
-            <h:form rendered="#{not empty(ctrlFormulario.formulario.email)}">
+            <h:form rendered="#{not empty(ctrlFormulario.formulario.email)}"> <!-- no podemos poner el id porque id != null de primeras -->
                 <h3>Detalle del formulario</h3>
                 <dawcomp:formulario value="#{ctrlFormulario.formulario}"/>
                 <!--<h:commandButton value="Cerrar" action="">

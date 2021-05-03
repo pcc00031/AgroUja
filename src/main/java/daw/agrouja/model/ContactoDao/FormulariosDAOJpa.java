@@ -7,6 +7,7 @@ package daw.agrouja.model.ContactoDao;
 
 import daw.agrouja.model.Formulario;
 import daw.agrouja.qualifiers.DAOJpa;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -25,22 +26,23 @@ import javax.transaction.Transactional;
 @RequestScoped
 @DAOJpa
 @Transactional
-public class FormulariosDAOJpa implements FormulariosDAO{
-    private final Logger logger = Logger.getLogger(FormulariosDAOJpa.class.getName());
+public class FormulariosDAOJpa implements FormulariosDAO, Serializable{
+    private static final Logger logger = Logger.getLogger(FormulariosDAOJpa.class.getName());
     
     @PersistenceContext
     private EntityManager em;
     
     @Override
-    public Formulario buscaEmail (String email){
+    public Formulario buscaId (Integer id){
         Formulario f=null;
         try{
-            f=em.find(Formulario.class, email);
+            f=em.find(Formulario.class, id);
         } catch (Exception e) {
-            logger.log(Level.SEVERE, "No existe el email", e);
+            logger.log(Level.SEVERE, "No existe el IdForm", e);
         }
         return f;
     }
+    
     
     @Override
     public List<Formulario> buscaTodos(){
@@ -65,5 +67,31 @@ public class FormulariosDAOJpa implements FormulariosDAO{
             logger.log(Level.SEVERE, "No se ha podido crear el formulario", e);
         }
         return creado;
+    }
+    
+    @Override
+    public boolean borra(Integer id) {
+        boolean borrado = false;
+        try {
+            Formulario f = null;
+            f = em.find(Formulario.class, id);
+            em.remove(f);
+            borrado = true;
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
+        }
+        return borrado;
+    }
+    
+    @Override
+    public boolean editar(Formulario f) {
+        boolean guardado = false;
+        try {
+            em.merge(f);
+            guardado = true;
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
+        }
+        return guardado;
     }
 }

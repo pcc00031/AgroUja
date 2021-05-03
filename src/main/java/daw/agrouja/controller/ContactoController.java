@@ -7,14 +7,14 @@ package daw.agrouja.controller;
 
 import daw.agrouja.model.Formulario;
 import daw.agrouja.model.ContactoDao.FormulariosDAO;
+import daw.agrouja.model.UsuarioDao.UsuarioDAO;
 import daw.agrouja.qualifiers.DAOJpa;
-import daw.agrouja.qualifiers.DAOMap;
 import java.io.Serializable;
+import java.security.Principal;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -23,82 +23,120 @@ import javax.inject.Named;
  *
  * @author Carlos
  */
-
 @Named("ctrlFormulario")
 @ViewScoped
 public class ContactoController implements Serializable {
 
-    private final Logger logger = Logger.getLogger(ContactoController.class.getName());
+    private static final Logger logger = Logger.getLogger(ContactoController.class.getName());
 
-    
-    private boolean bar=false;
+    private boolean bar = false;
     private int contador = 1;
-    
-    @Inject @DAOJpa
+
+    @Inject
+    @DAOJpa
     private FormulariosDAO formulariosDAO;
-    
+
     private Formulario formulario;
-    
+
     List<Formulario> formularios;
-    
-    public ContactoController(){   
+
+    @Inject
+    @DAOJpa
+    private UsuarioDAO usu;
+
+    @Inject
+    private Principal principal;
+
+    public ContactoController() {
     }
-    
+
     @PostConstruct
-    private void init (){
-        formulario=new Formulario();
-        formularios=formulariosDAO.buscaTodos();
+    private void init() {
+        formulario = new Formulario();
+        formularios = formulariosDAO.buscaTodos();
     }
-    
-    public Formulario getFormulario(){
+
+    public Formulario getFormulario() {
         return formulario;
     }
-    
-    public void setFormulario(Formulario formulario){
-        this.formulario=formulario;
+
+    public void setFormulario(Formulario formulario) {
+        this.formulario = formulario;
     }
-    
-    public List<Formulario> getFormularios(){
+
+    public List<Formulario> getFormularios() {
         logger.info("Buscando formularios");
         return formularios;
     }
-    
-    public String contForm(){
-        return "Formulario"+contador++;
+
+    public String contForm() {
+        return "Formulario" + contador++;
     }
-    
-    public String crea(){
+
+    public String crea() {
         logger.info("Guardando formulario");
+        formulario.setIdUsuario(usu.buscaPorNombre(principal.getName()).getId());
         formulariosDAO.crea(formulario);
+
         //formularios=formulariosDAO.buscaTodos();
-        this.formulario=new Formulario();
-        return "";
+        return "/contacto/detalle?faces-redirect=true&id=" + formulario.getId();
+    }
+
+    public String borrar(Integer id) {
+        logger.info("Borrando formulario");
+        formulariosDAO.borra(id);
+        return "/usuario/mostrar?faces-redirect=true";
     }
     
-    public void recupera(){
-        logger.info("Recuperando formulario "+formulario.getEmail());
-        formulario=formulariosDAO.buscaEmail(formulario.getEmail());
+    public String visualizaEdit(Integer id) {
+        formulario = formulariosDAO.buscaId(id);
+        logger.log(Level.INFO, "Editando : {0}", formulario.getId());
+        return "/contacto/edita?faces-redirect=true&id=" + formulario.getId();
+    }
+    
+    public String editar() {
+        logger.info("Editando formulario");
+        if (formulariosDAO.editar(formulario)) {
+            return "detalle?faces-redirect=true&id=" + formulario.getId();
+        } else {
+            return "/usuario/mostrar?faces-redirect=true&id=" + formulario.getId();
+        }
+    }
+
+    public void recupera() {
+        logger.log(Level.INFO, "Recuperando formulario {0}", formulario.getId());
+        formulario = formulariosDAO.buscaId(formulario.getId());
 
     }
-    
-    public void recupera(String email){
-        logger.info("Recuperando formulario "+email);
-        formulario = formulariosDAO.buscaEmail(email);
+
+    public void recupera(Integer id) {
+        logger.log(Level.INFO, "Recuperando formulario {0}", id);
+        formulario = formulariosDAO.buscaId(id);
     }
-    
-    public int isContador(){
+
+    public int isContador() {
         return contador;
     }
-    
-    public void foo(){
-        bar=!bar;
+
+    public void foo() {
+        bar = !bar;
     }
-    
-    public boolean isBar(){
+
+    public boolean isBar() {
         return bar;
     }
-    
-    public void setBar(boolean bar){
-        this.bar=bar;
-    }       
+
+    public void setBar(boolean bar) {
+        this.bar = bar;
+    }
+
+    public void UsuarioCont(Integer usu) {
+        formulario.setIdUsuario(usu);
+    }
+
+    public String visualiza(Integer Id) {
+        System.out.println(Id);
+        formulario = formulariosDAO.buscaId(Id);
+        return "/contacto/detalle?faces-redirect=true&id=" + formulario.getId();
+    }
 }

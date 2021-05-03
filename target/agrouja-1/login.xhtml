@@ -3,23 +3,54 @@
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="/WEB-INF/plantilla/layout.xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:p="http://primefaces.org/ui">
-
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:c="http://java.sun.com/jsp/jstl/core">
     <ui:define name="content">
-        <h:form>
-            <p:fieldset legend="Registro">
-            <h:panelGrid columns="2">
-                <p:outputLabel for="txtUsuario" value="Usuario"/>
-                <p:inputText id="txtUsuario" required="true"/>
-                
-                 <p:outputLabel for="txtClave" value="Contraseña"/>
-                <p:password id="txtClave" required="true"/>
-                <h:column />
-                <p:commandButton  value="Iniciar Sesion"/>
-            </h:panelGrid>
+        <style>
+            input[type=text], select {
+                width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
+
+            input[type=submit] {
+                width: 20%;
+                background-color: #4CAF50;
+                color: white;
+                padding: 14px 20px;
+                margin: 8px 0;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            input[type=submit]:hover {
+                background-color: #45a049;
+                width: 20%;
+            }
+
+        </style>
+        <c:if test="#{param.error!=null}">
+            <p class="alert alert-danger">Error de autenticación</p>
+        </c:if>
+        <form action="j_security_check" method="POST">
+            <p:fieldset style="padding-left: 12%; padding-right: 10%; display: block; margin-left: 30%; margin-right: 30%; margin-top: 10%" legend="Iniciar sesión">
+                <h:panelGrid columns="2">
+                    <p:outputLabel value="Usuario"  />
+                    <input required="true"  name="j_username" />
+                    <p:outputLabel value="Contraseña" />
+                    <input type="password" required="true" name="j_password" />                  
+                </h:panelGrid>
+
             </p:fieldset>
-        </h:form>
-        
+            <br><center><input type="submit" value="Acceder"/></center></br>
+        </form>
+
     </ui:define>
+
 
 </ui:composition>

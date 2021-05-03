@@ -1,12 +1,14 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="/WEB-INF/plantilla/layout-cont.xhtml"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:f="http://xmlns.jcp.org/jsf/core">
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:c="http://java.sun.com/jsp/jstl/core">
 
-    <ui:define name="left">
+    <ui:define name="left"> <!-- xmlns="http://www.w3.org/1999/xhtml" para los constraints -->
 
     </ui:define>
 
@@ -42,6 +44,11 @@
         <div class="qs">
             
             <h:panelGrid columns="1" cellpadding="20" id="formulario">
+                <h:form>
+                    <p:messages id="messages" closable="true" >
+                        <p:autoUpdate/>
+                    </p:messages>
+                </h:form>
                 <h:form rendered="#{ctrlFormulario.bar}" class="form-contact">
                     <p:fieldset  legend="Formulario">
                         <p:inputText styleClass="form-control" placeholder="Nombre" 
@@ -72,13 +79,21 @@
                         <h:outputText id="display"/>
                     
                     </p:fieldset>
-                    <p:commandButton value="Enviar  " id="formulario" style="font-size: 12px; margin: 1%" action="#{ctrlFormulario.crea()}" icon="pi pi-check" styleClass="ui-button-success" iconPos="right"/>
-                        
-                    <p:linkButton outcome="formularios" value="Ver formularios" style="font-size: 12px; margin: 1%" icon="pi pi-external-link" iconPos="right" styleClass="ui-button-secondary">Ver formularios</p:linkButton>
-                        
+                    <c:choose>
+                        <c:when test="#{request.isUserInRole('ADMINISTRADORES')}">
+                            <p:commandButton value="Enviar  " id="formulario" style="font-size: 12px; margin: 1%" action="#{ctrlFormulario.crea()}" icon="pi pi-check" styleClass="ui-button-success" iconPos="right"/>
+                        </c:when>
+                        <c:when test="#{request.isUserInRole('USUARIOS')}">
+                            <p:commandButton value="Enviar  " id="formulario" style="font-size: 12px; margin: 1%" action="#{ctrlFormulario.crea()}" icon="pi pi-check" styleClass="ui-button-success" iconPos="right"/>
+                        </c:when>
+                    </c:choose>
+                    <c:if test="#{request.isUserInRole('ADMINISTRADORES')}">
+                        <p:linkButton outcome="formularios" value="Ver formularios" style="font-size: 12px; margin: 1%" icon="pi pi-external-link" iconPos="right" styleClass="ui-button-secondary">Ver formularios</p:linkButton>    
+                    </c:if>    
                 </h:form>
             </h:panelGrid>
         </div>   
+        <h:form>
         <div class="qs">
             <h1>Contacto</h1>
             <p:carousel  autoPlayInterval="2000" numVisible="1">
@@ -94,5 +109,6 @@
             <p:commandButton type="button" value="Twitter" icon="pi pi-twitter" styleClass="rounded-button ui-button-secondary" />
             <p:commandButton type="button" value="Whatsapp" icon="pi pi-phone" styleClass="rounded-button ui-button-secondary" />
         </div>
+        </h:form>
     </ui:define>
 </ui:composition>

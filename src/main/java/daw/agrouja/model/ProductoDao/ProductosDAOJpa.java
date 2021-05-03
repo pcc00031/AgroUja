@@ -1,6 +1,9 @@
+
 package daw.agrouja.model.ProductoDao;
 
+import daw.agrouja.model.Comentario;
 import daw.agrouja.model.Producto;
+import daw.agrouja.model.Usuario;
 import daw.agrouja.qualifiers.DAOJpa;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -14,7 +17,6 @@ import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 @RequestScoped
@@ -23,15 +25,15 @@ import javax.transaction.Transactional;
 public class ProductosDAOJpa
         implements ProductosDAO, Serializable {
 
-    private final Logger logger = Logger.getLogger(ProductosDAOJpa.class.getName());
+    private static final Logger logger = Logger.getLogger(ProductosDAOJpa.class.getName());
 
     @PersistenceContext(unitName = "agroPU")
     private EntityManager em;
-    private Map<Integer, Producto> subProductos = new HashMap<>();
+    private List<Producto> subProductos = new ArrayList<>();
 
     public ProductosDAOJpa() {
-         
-       //subProductos.put(1, new Producto(1, "Azada", "La mejor azada", "AgroUja", "azada.png", "Nuevo", "Maquinaria", "Venta", true, 50.7));
+
+        //subProductos.put(1, new Producto(1, "Azada", "La mejor azada", "AgroUja", "azada.png", "Nuevo", "Maquinaria", "Venta", true, 50.7));
     }
 
     @Override
@@ -41,7 +43,7 @@ public class ProductosDAOJpa
             p = em.find(Producto.class, id);
         } catch (Exception ex) {
             logger.log(Level.SEVERE, ex.getMessage(), ex);
-        };
+        }
         return p;
     }
 
@@ -59,13 +61,14 @@ public class ProductosDAOJpa
 
     @Override
     public List<Producto> buscaTodosSub() {
-        return subProductos.values().stream().collect(Collectors.toList());
+        return subProductos;
     }
 
     @Override
     public boolean crea(Producto p) {
         boolean creado = false;
         try {
+            // em.createQuery("SELECT u.id, u. FROM Usuario u JOIN c.id p", Usuario.class).setParameter("p", p);
             em.persist(p);
             creado = true;
         } catch (Exception ex) {
@@ -85,10 +88,10 @@ public class ProductosDAOJpa
     }
 
     @Override
-    public boolean agregarComent(Producto p, String coment) {
+    public boolean agregarComent(Producto p) {
         boolean add = false;
         try {
-            em.find(Producto.class, p.getId()).addComent(coment);
+            em.merge(p);
             add = true;
         } catch (Exception ex) {
             logger.log(Level.SEVERE, ex.getMessage(), ex);
@@ -109,28 +112,10 @@ public class ProductosDAOJpa
     }
 
     @Override
-    public void buscarNombre(String nombre) {//FIXME buscar por nombre
-        List<Producto> prods = null;
-        prods = new ArrayList<Producto>();
+    public void buscarNombre(String nombre) {
         try {
-            TypedQuery<Producto> q = em.createQuery("Select p from Producto p where p.nombre=:nombre", Producto.class);
-            q.setParameter("nombre", nombre);
-            prods = q.getResultList();
-            subProductos = prods.stream().collect(Collectors.toMap(Producto::getId, producto -> producto));
-            System.out.println(subProductos.size()); 
-        } catch (Exception ex) {
-            logger.log(Level.SEVERE, ex.getMessage(), ex);
-        }
-    }
-
-    @Override
-    public void buscarMarca(String marca) {//FIXME buscar por marca
-        List<Producto> prods = null;
-        prods = new ArrayList<Producto>();
-        try {
-            TypedQuery<Producto> q = em.createQuery("Select p from Producto p where p.marca=:marca", Producto.class);
-            q.setParameter("marca", marca);
-            prods = q.getResultList();
+            Query q = em.createQuery("Select p from Producto p where p.nombre=:nombre", Producto.class).setParameter("nombre", nombre);
+            subProductos = q.getResultList();
 
         } catch (Exception ex) {
             logger.log(Level.SEVERE, ex.getMessage(), ex);
@@ -138,15 +123,91 @@ public class ProductosDAOJpa
     }
 
     @Override
-    public void buscarCategoria(String categoria) {//FIXME buscar por categoria
-        List<Producto> prods = null;
-        prods = new ArrayList<Producto>();
+    public List<Producto> buscarMarca(String marca) {
+        List<Producto> lp = null;
         try {
-            TypedQuery<Producto> q = em.createQuery("Select p from Producto p where p.categoria=:categoria", Producto.class);
-            q.setParameter("categoria", categoria);
-            prods = q.getResultList();
+            Query q = em.createQuery("Select p from Producto p where p.marca=:marca", Producto.class).setParameter("marca", marca);
+            lp = q.getResultList();
+
         } catch (Exception ex) {
             logger.log(Level.SEVERE, ex.getMessage(), ex);
         }
+        return lp;
+    }
+
+    @Override
+    public List<Producto> buscarCategoria(String categoria) {
+        List<Producto> lp = null;
+        try {
+            Query q = em.createQuery("Select p from Producto p where p.categoria=:categoria", Producto.class).setParameter("categoria", categoria);
+            lp = q.getResultList();
+
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
+        }
+        return lp;
+    }
+
+    @Override
+    public List<Producto> buscarEstado(String estado) {
+        List<Producto> lp = null;
+        try {
+            Query q = em.createQuery("Select p from Producto p where p.estado=:estado", Producto.class).setParameter("estado", estado);
+            lp = q.getResultList();
+
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
+        }
+        return lp;
+    }
+
+    @Override
+    public Boolean comprobarUsu(Producto p, Usuario u) {
+        Boolean coincide = false;
+        try {
+            Query q = em.createQuery("Select p from Producto p, Usuario u where p.idUsuario=u.id AND :pid=:usuid AND p.id=:pid", Usuario.class);
+            q.setParameter("pid", p.getIdUsuario());
+            q.setParameter("usuid", u.getId());
+            if (q.getSingleResult() != null) {
+                coincide = true;
+                return coincide;
+            }
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
+        }
+        return coincide;
+    }
+
+    @Override
+    public Boolean comprobarFav(Producto p, Usuario u) {
+        Boolean coincide = false;
+        List<Producto> llp;
+        try {
+            Query q = em.createQuery("Select us.prodsFavs from Producto p, Usuario us where p.idUsuario=:usuid AND p.idUsuario=us.id AND :pid=p.id", Producto.class);
+            q.setParameter("pid", p.getIdUsuario());
+            q.setParameter("usuid", u.getId());
+            llp = q.getResultList();
+            if (q.getSingleResult() != null) {
+                coincide = true;
+                return coincide;
+            }
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
+        }
+        return coincide;
+    }
+
+    @Override
+    public List<Comentario> buscaComents(Producto p) {
+        List<Comentario> lc = new ArrayList<>();
+        try {
+            Query q = em.createQuery("Select c from Producto p, Comentario c where p.id=:pid AND c.id_producto=:pid AND c.id_producto=p.id", 
+                    Producto.class);
+            q.setParameter("pid", p.getId());
+            lc = q.getResultList();
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
+        }
+        return lc;
     }
 }

@@ -1,11 +1,14 @@
 package daw.agrouja.controller;
 
+import daw.agrouja.model.Comentario;
 import daw.agrouja.model.Producto;
 import daw.agrouja.model.ProductoDao.ProductosDAO;
+import daw.agrouja.model.UsuarioDao.UsuarioDAO;
 import daw.agrouja.qualifiers.DAOJpa;
-import daw.agrouja.qualifiers.DAOMap;
 import java.io.Serializable;
+import java.security.Principal;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
@@ -16,14 +19,18 @@ import javax.inject.Named;
 @ViewScoped
 public class ProductosController implements Serializable {
 
-    private final Logger log = Logger.getLogger(ProductosController.class.getName());
+    private static final Logger log = Logger.getLogger(ProductosController.class.getName());
     @Inject
     @DAOJpa
-    //@DAOMap
     private ProductosDAO productosDAO;
-    private List<Producto> subProductos;
+    @Inject
+    private Principal principal;
+    private List<Producto> prodsEnc;
     private Producto producto;
     private List<Producto> productos;
+    @Inject
+    @DAOJpa
+    private UsuarioDAO usu;
 
     /* INICIALIZADORES , GETTERS Y SETTERS */
     public ProductosController() {
@@ -33,11 +40,11 @@ public class ProductosController implements Serializable {
     public void init() {
         producto = new Producto();
         productos = productosDAO.buscaTodos();
-        subProductos = productosDAO.buscaTodosSub();
+        prodsEnc = productosDAO.buscaTodosSub();
     }
 
-    public List<Producto> getSubProductos() {
-        return subProductos;
+    public List<Producto> getProdsEnc() {
+        return prodsEnc;
     }
 
     public Producto getProducto() {
@@ -54,32 +61,35 @@ public class ProductosController implements Serializable {
 
     /* METODOS PRINCIPALES */
     public void recupera() {
-        log.info("Recuperando producto: " + producto.getId());
+        log.log(Level.INFO, "Recuperando producto: {0}", producto.getId());
         producto = productosDAO.buscaId(producto.getId());
     }
 
     public String visualiza(Integer id) {
         recupera(id);
-        return "visualizar?faces-redirect=true&id=" + producto.getId();
+        return "/productos/visualizar?faces-redirect=true&id=" + producto.getId();
     }
 
-    public String edita() {
-        recupera();
-        return "editar?faces-redirect=true&id=" + producto.getId();
+    public String edita(Integer id) {
+        recupera(id);
+        log.log(Level.INFO, "Editando producto: {0}", producto.getId());
+        return "/productos/editar?faces-redirect=true&id=" + producto.getId();
     }
 
     public String crea() {
-        log.info("Creando producto: " + producto.getId());
-        productosDAO.crea(producto);
-        recupera(producto.getId());
-        return "visualizar?faces-redirect=true&id=" + producto.getId();
+        producto.setIdUsuario(usu.buscaPorNombre(principal.getName()).getId());
+        if (productosDAO.crea(producto)) {
+            return "/productos/visualizar?faces-redirect=true&id=" + producto.getId();
+        } else {
+            return "/index";
+        }
     }
 
-    public String borrar() {
-        recupera();
-        log.info("Borrando producto: " + producto.getId());
+    public String borrar(Integer id) {
+        recupera(id);
+        log.log(Level.INFO, "Borrando producto: {0}", producto.getId());
         productosDAO.borra(producto);
-        return "index?faces-redirect=true";
+        return "/usuario/mostrar?faces-redirect=true";
     }
 
     public void recupera(Integer id) {
@@ -89,44 +99,61 @@ public class ProductosController implements Serializable {
 
     public String editar() {
         productosDAO.edita(producto);
-        return "visualizar?faces-redirect=true&id=" + producto.getId();
-    }
-
-    public String addComent() {
-        log.info("Agregando comentario: " + producto.getComentario() + " al producto-" + producto.getId());
-        productosDAO.agregarComent(producto, producto.getComentario());
-        return "visualizar?faces-redirect=true&id=" + producto.getId();
+        return "/productos/visualizar?faces-redirect=true&id=" + producto.getId();
     }
 
     public String buscarNombre() {
         if (producto.getBuscaNomb().contentEquals("")) {
             producto.setBuscaNomb("xxx");
         }
-        log.info("Buscando producto que contiene: " + producto.getBuscaNomb());
+        log.log(Level.INFO, "Buscando producto que contiene: {0}", producto.getBuscaNomb());
         productosDAO.buscarNombre(producto.getBuscaNomb());
-                subProductos = productosDAO.buscaTodosSub();
-        System.out.println(subProductos.size());
-        return "index?faces-redirect=true";
+        return "index?faces-redirect";
     }
 
-    public String buscarCategoria() {
+    public List<Producto> buscarCategoria() {
         if (producto.getBuscaCat().contentEquals("")) {
             producto.setBuscaCat("xxx");
         }
-        log.info("Buscando producto con categoria: " + producto.getBuscaCat());
-        productosDAO.buscarCategoria(producto.getBuscaCat());
-        System.out.println(subProductos.size());
-        return "index?faces-redirect=true";
+        log.log(Level.INFO, "Buscando producto con categoria: {0}", producto.getBuscaCat());
+        return productosDAO.buscarCategoria(producto.getBuscaCat());
     }
 
-    public String buscarMarca() {
+    public List<Producto> buscarMarca() {
         if (producto.getBuscaMarca().contentEquals("") || producto.getBuscaMarca().contentEquals("Otra")) {
             producto.setBuscaMarca("xxx");
         }
-        log.info("Buscando producto con marca: " + producto.getBuscaMarca());
-        productosDAO.buscarMarca(producto.getBuscaMarca());
-        System.out.println(subProductos.size());
-        return "index?faces-redirect=true";
+        log.log(Level.INFO, "Buscando producto con marca: {0}", producto.getBuscaMarca());
+        return productosDAO.buscarMarca(producto.getBuscaMarca());
     }
 
+    public List<Producto> buscarEstado() {
+        if (producto.getBuscaEst().contentEquals("")) {
+            producto.setBuscaEst("xxx");
+        } else {
+        }
+        log.log(Level.INFO, "Buscando producto en: {0}", producto.getBuscaEst());
+        return productosDAO.buscarEstado(producto.getBuscaEst());
+    }
+
+    public String getUsu() {
+        return usu.buscaId(producto.getIdUsuario()).getNickname();
+    }
+
+    //FIXME Buscar por marca, estado, categoria
+    //FIXME Comprobar comentario y usuario para editar/borrar comentario
+    public Boolean comprobarUsu() {
+        return (productosDAO.comprobarUsu(producto, usu.buscaPorNombre(principal.getName())));
+    }
+
+    public Boolean comprobarFav() {
+        if (productosDAO.comprobarFav(producto, usu.buscaPorNombre(principal.getName()))) {
+        } else {
+        }
+        return productosDAO.comprobarFav(producto, usu.buscaPorNombre(principal.getName()));
+    }
+    
+    public List<Comentario> buscaComents(){
+        return productosDAO.buscaComents(producto);
+    }
 }
