@@ -64,4 +64,14 @@ public class FormulariosDAOMap implements FormulariosDAO, Serializable{
         }
         return result;
     }
+    
+    @Override
+    public boolean editar(Formulario f) {
+        boolean result = false;
+        if (formularios.containsKey(f.getId())) {
+            formularios.replace(f.getId(), f);
+            result = true;
+        }
+        return result;
+    }
 }

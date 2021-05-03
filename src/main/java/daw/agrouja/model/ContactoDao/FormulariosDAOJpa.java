@@ -82,4 +82,16 @@ public class FormulariosDAOJpa implements FormulariosDAO, Serializable{
         }
         return borrado;
     }
+    
+    @Override
+    public boolean editar(Formulario f) {
+        boolean guardado = false;
+        try {
+            em.merge(f);
+            guardado = true;
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
+        }
+        return guardado;
+    }
 }
