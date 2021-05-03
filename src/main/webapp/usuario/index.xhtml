@@ -28,9 +28,9 @@
                     #{u.nickname}
                 </p:column>  
                 <p:column headerText ="Opciones">
-                    <p:commandButton  styleClass="ui-button-danger" value="Borrar" icon="pi pi-times" action ="#{usuarioCtrl.borra()}"/> 
+                    <p:commandButton  styleClass="ui-button-danger" value="Borrar" icon="pi pi-times" action ="#{usuarioCtrl.borra(u.id)}"/> 
                     <p style="color: white;"> he</p>
-                    <p:commandButton  styleClass="ui-button-success" value="Editar" icon="pi pi-pencil" action ="#{usuarioCtrl.editar()}"/> 
+                    <p:commandButton  styleClass="ui-button-success" value="Editar" icon="pi pi-pencil" action ="#{usuarioCtrl.editar(u.id)}"/> 
 
                 </p:column> 
             </p:dataTable>

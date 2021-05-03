@@ -67,16 +67,12 @@ public class UsuarioController implements Serializable {
     }
 
     public String guarda() {
-        System.out.println(Usuario.getNombre());
-        if (usuarioDao.guarda(Usuario)) {
-            return "/index?faces-redirect";
-        } else {
-            return "/index?faces-redirect";
-        }
+        usuarioDao.guarda(Usuario);
+        return "/usuario/mostrar?faces-redirect";
     }
 
-    public String editar() {
-        recupera();
+    public String editar(Integer id) {
+        recupera2(id);
         logger.log(Level.INFO, "Editando : {0}", Usuario.getId());
         return "editar?faces-redirect=true&id=" + Usuario.getId();
     }
@@ -88,11 +84,16 @@ public class UsuarioController implements Serializable {
         return "usuario/mostrar?faces-redirect=true&id=" + Usuario.getId();
     }
 
-    public String borra() throws ServletException {
+    public String borra(Integer id) throws ServletException {
+        recupera2(id);
         usuarioDao.borra(Usuario.getId());
-        request.logout();
-        request.getSession().invalidate();
-        return "/index?faces-redirect=true";
+        if (Usuario.getNickname().equals(principal.getName())) {
+            request.logout();
+            request.getSession().invalidate();
+            return "/index?faces-redirect=true";
+        } else {
+            return "/usuario/index?faces-redirect=true";
+        }
     }
 
     /**
@@ -124,7 +125,7 @@ public class UsuarioController implements Serializable {
         Usuario = usuarioDao.buscaId(usu);
         return Usuario.getNickname();
     }
-    
+
     public List<Formulario> buscaFormularios() {
         Usuario = usuarioDao.buscaPorNombre(principal.getName());
         return usuarioDao.buscaFormularios(Usuario);

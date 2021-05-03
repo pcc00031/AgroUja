@@ -72,9 +72,16 @@ public class UsuarioDAOJpa implements UsuarioDAO, Serializable {
     @Override
     public boolean borra(Integer id) {
         boolean borrado = false;
+        List<Producto> lp;
         try {
             Usuario u = null;
             u = em.find(Usuario.class, id);
+            Query q = em.createQuery("Select p from Usuario u, Producto p where u.id=:idu AND p.idUsuario=:idu", Producto.class);
+            q.setParameter("idu", id);
+            lp = q.getResultList();
+            for (int i = 0; i < lp.size(); i++) {
+                em.remove(lp.get(i));
+            }
             em.remove(u);
             borrado = true;
         } catch (Exception ex) {
@@ -82,8 +89,6 @@ public class UsuarioDAOJpa implements UsuarioDAO, Serializable {
         }
         return borrado;
     }
-    
-    
 
     @Override
     public boolean guarda(Usuario u) {
@@ -97,7 +102,7 @@ public class UsuarioDAOJpa implements UsuarioDAO, Serializable {
         }
         return guardado;
     }
-        
+
     @Override
     public Usuario buscaPorNombre(String nombre) {
         Usuario u = null;
@@ -149,7 +154,6 @@ public class UsuarioDAOJpa implements UsuarioDAO, Serializable {
         }
         return lf;
     }
-
 
     @Override
     public void addFav(Usuario u) {

@@ -70,8 +70,8 @@ public class ProductosController implements Serializable {
         return "/productos/visualizar?faces-redirect=true&id=" + producto.getId();
     }
 
-    public String edita() {
-        recupera();
+    public String edita(Integer id) {
+        recupera(id);
         log.log(Level.INFO, "Editando producto: {0}", producto.getId());
         return "/productos/editar?faces-redirect=true&id=" + producto.getId();
     }
@@ -85,11 +85,11 @@ public class ProductosController implements Serializable {
         }
     }
 
-    public String borrar() {
-        recupera();
+    public String borrar(Integer id) {
+        recupera(id);
         log.log(Level.INFO, "Borrando producto: {0}", producto.getId());
         productosDAO.borra(producto);
-        return "mostrar?faces-redirect=true";
+        return "/usuario/mostrar?faces-redirect=true";
     }
 
     public void recupera(Integer id) {
@@ -140,9 +140,10 @@ public class ProductosController implements Serializable {
         return usu.buscaId(producto.getIdUsuario()).getNickname();
     }
 
-    //TODO Buscar por marca, estado, categoria
-    //TODO Comprobar comentario y usuario para editar/borrar comentario
+    //FIXME Buscar por marca, estado, categoria
+    //FIXME Comprobar comentario y usuario para editar/borrar comentario
     public Boolean comprobarUsu() {
+        System.out.println(producto.getNombre());
         return (productosDAO.comprobarUsu(producto, usu.buscaPorNombre(principal.getName())));
     }
 

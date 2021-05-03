@@ -19,7 +19,7 @@
         <h:form>
             <div class="panel panel-default" style="float: left; margin-left: 15%; width: 30%" >
 
-                <p:card style="width: available; text-align: center;height: 100%; min-height: 1500px">
+                <p:card style="width: available; text-align: center;height: 100%; min-height: 1200px">
                     <f:facet name="title">
                         <h1>Perfil de #{usuarioCtrl.usuario.nickname}</h1>
                         <br><p:avatar styleClass="p-mr-2" size="xlarge" shape="circle" style="width: 200px; height: 200px">
@@ -34,17 +34,18 @@
                         <section>
                             <daw:usuario value="#{usuarioCtrl.usuario}"/>
                         </section>
-                       
-                            <br>
-                                <p:commandButton  styleClass="ui-button-success" value="Editar" action="#{usuarioCtrl.editar()}"/>
-                                <f:param name="id" value="#{usuarioCtrl.usuario}"/>
-                                <p:commandButton styleClass="ui-button-danger" value="Borrar" action="#{usuarioCtrl.borra()}"/> 
-                            </br>
-                       
+
+                        <br> </br>
+                        <p style="color: white">
+                            <p:commandButton  styleClass="ui-button-success" value="Editar" action="#{usuarioCtrl.editar(usuarioCtrl.usuario.id)}"/>
+                            <f:param name="id" value="#{usuarioCtrl.usuario}"/>hehe
+                            <p:commandButton styleClass="ui-button-danger" value="Borrar" action="#{usuarioCtrl.borra(usuarioCtrl.usuario.id)}"/> 
+                        </p>
+
                     </f:facet>
                     <br><h1>COMENTARIOS</h1></br>
-                    <p:carousel autoPlayInterval="4000" numVisible="1" value="#{usuarioCtrl.buscaComentarios()}" var="p" responsive="true" style="width: available; height: 100%; overflow: auto; max-height: 300px">
-                        <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: white; height: 100%">
+                    <p:carousel autoPlayInterval="4000" numVisible="1" value="#{usuarioCtrl.buscaComentarios()}" var="p" responsive="true" style="width: available; height: 100%; overflow: auto; ">
+                        <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: white;">
                             <f:facet name="title">
                                 <h:link style="color: #669900" onclick="#{prodCtrl.visualiza(p.id_producto)}" outcome="#{prodCtrl.visualiza(p.id_producto)}">
                                     Producto: #{p.nombreProd}
@@ -65,14 +66,14 @@
                 </p:card>
 
             </div>
-            <div class="panel panel-default" style="float: right; margin-right: 15%; width: 30%; height: 100%; overflow: auto">
-                <p:card style=" width: available; text-align: center; height: 100%; overflow: auto; height: 100%;">
+            <div class="panel panel-default" style="float: right; margin-right: 15%; width: 30%; overflow: auto">
+                <p:card style=" width: available; text-align: center; overflow: auto;height: 100%; min-height: 1200px">
                     <center>
 
                         <br><h1>PRODUCTOS EN VENTA/ALQUILER</h1></br>
-                        <p:carousel autoPlayInterval="4000" numVisible="3" value="#{usuarioCtrl.buscaProductos()}" var="p" responsive="true" style="width: available; height: 100%; overflow: auto; max-height: 300px">
+                        <p:carousel autoPlayInterval="4000" numVisible="2" value="#{usuarioCtrl.buscaProductos()}" var="p" responsive="true" style="width: available; overflow: auto;">
 
-                            <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: white; height: 100%">
+                            <p:card style="padding-top: 1%; padding-bottom: 1%; background-color: white;">
                                 <f:facet name="title">
                                     <h:link onclick="#{prodCtrl.visualiza(p.id)}" outcome="#{prodCtrl.visualiza(p.id)}">
                                         <h:graphicImage height="100" width="100" name="#{p.imagen}" library="images" /> 
@@ -81,10 +82,10 @@
                                 <f:facet name="subtitle">
                                     <h:link style="color: #669900" onclick="#{prodCtrl.visualiza(p.id)}" outcome="#{prodCtrl.visualiza(p.id)}">#{p.nombre}</h:link>
                                     <br></br><hr></hr>
-                                    <p:commandButton style="float: right" styleClass="ui-button-danger"  icon="pi pi-times" action ="#{prodCtrl.borrar()}"/> 
-                                    <p style="color: white; float: right"> he</p>                       
-                                    <p:commandButton style="float: right" styleClass="ui-button-success"  icon="pi pi-pencil" action ="#{prodCtrl.edita()}"/> 
-                                    <p style="color: white; float: right"> he</p>
+                                    <p style="color: white; float: left">hehe</p>  
+                                    <p:commandButton style="float: left" styleClass="ui-button-danger"  icon="pi pi-times" action ="#{prodCtrl.borrar(p.id)}"/> 
+                                    <p style="color: white; float: right">hehe</p>                       
+                                    <p:commandButton style="float: right" styleClass="ui-button-success"  icon="pi pi-pencil" action ="#{prodCtrl.edita(p.id)}"/> 
                                 </f:facet>
                             </p:card>
 
@@ -92,46 +93,43 @@
                         <br></br>
 
                         <br><h1>PRODUCTOS FAVORITOS</h1></br>
-                        <p:carousel autoPlayInterval="4000" numVisible="3" value="#{usuarioCtrl.buscaProdsFavs()}" var="p" responsive="true" style="width: available">
+                        <p:carousel autoPlayInterval="4000" numVisible="2" value="#{usuarioCtrl.buscaProdsFavs()}" var="p" responsive="true" style="width: available">
 
-                            <p:card style="text-align: center; padding-top: 1%; padding-bottom: 1%; background-color: white; height: 100%; max-height: 300px">
+                            <p:card style="text-align: center; padding-top: 1%; padding-bottom: 1%; background-color: white;">
                                 <f:facet name="title">                               
                                     <h:link onclick="#{prodCtrl.visualiza(p.id)}" outcome="#{prodCtrl.visualiza(p.id)}">
                                         <h:graphicImage height="100" width="100" name="#{p.imagen}" library="images" /> 
                                     </h:link>
                                 </f:facet>
-                                <f:facet name="subtitle">
+                                <f:facet name="footer">
+         
                                     <h:link style="color: #669900" onclick="#{prodCtrl.visualiza(p.id)}" outcome="#{prodCtrl.visualiza(p.id)}">#{p.nombre}</h:link>
-                                    <br></br><hr></hr>
-                                    <p:commandButton style="float: right" styleClass="ui-button-danger"  icon="pi pi-times" action ="#{prodCtrl.borrar()}"/> 
-                                    <p style="color: white; float: right"> he</p>                       
-                                    <p:commandButton style="float: right" styleClass="ui-button-success"  icon="pi pi-pencil" action ="#{prodCtrl.edita()}"/> 
-                                    <p style="color: white; float: right"> he</p>
+
                                 </f:facet>
                             </p:card>
                         </p:carousel>
                         <br></br>
 
                         <br><h1>FORMULARIOS REALIZADOS</h1></br>
-                       
+
                         <p:dataTable var="f" value="#{usuarioCtrl.buscaFormularios()}">
                             <p:column headerText="Formularios" width="215px">
                                 #{f.asunto}
                             </p:column >
                             <p:column>
                                 <p:commandButton icon="pi pi-search" action="#{ctrlFormulario.visualiza(f.id)}"
-                                                 title="Detalle"/>
+                                                 title="Detalle" />
                             </p:column>
                             <p:column >
                                 <p:commandButton icon="pi pi-pencil" 
-                                                 title="Editar"/>
+                                                 title="Editar" styleClass="ui-button-success"/>
                             </p:column>
                             <p:column >
                                 <p:commandButton icon="pi pi-ban" action="#{ctrlFormulario.borrar(f.id)}"
-                                                 title="Borrar"/>
+                                                 title="Borrar" styleClass="ui-button-danger"/>
                             </p:column>
                         </p:dataTable>
-                                    
+
                     </center>
                 </p:card>
             </div>

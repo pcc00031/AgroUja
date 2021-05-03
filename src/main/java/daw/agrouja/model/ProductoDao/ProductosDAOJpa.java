@@ -201,7 +201,7 @@ public class ProductosDAOJpa
     public List<Comentario> buscaComents(Producto p) {
         List<Comentario> lc = new ArrayList<>();
         try {
-            Query q = em.createQuery("Select p.comentarios from Producto p where p.id=:pid", Comentario.class);
+            Query q = em.createQuery("Select p.comentarios from Producto p, Comentario c where p.id=:pid AND c.id_producto=p.id", Comentario.class);
             q.setParameter("pid", p.getId());
             lc = q.getResultList();
         } catch (Exception ex) {

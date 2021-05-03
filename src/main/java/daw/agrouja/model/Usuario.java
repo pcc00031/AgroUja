@@ -44,7 +44,6 @@ public class Usuario implements Serializable {
 
     // Claves foraneas
  
-    private List<Producto> productos = new ArrayList<>();
     private List<Producto> prodsFavs = new ArrayList<>();
     private List<Formulario> formularios = new ArrayList<>();
     private List<Comentario> comentarios;
@@ -254,7 +253,7 @@ public class Usuario implements Serializable {
     }
 
     public void addFav(Producto p) {
-        prodsFavs.add(0, p);
+        prodsFavs.add(p);
     }
 
     public void setProdsFavs(List<Producto> prodsFavs) {
