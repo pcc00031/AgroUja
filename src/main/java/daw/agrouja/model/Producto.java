@@ -59,6 +59,8 @@ public class Producto implements Serializable {
     private String buscaCat = "";
     private String buscaMarca = "";
     private String buscaEst = "";
+    private String buscaPub = "";
+
     private List<Usuario> usuarios;
 
     /* CONSTRUCTORES */
@@ -259,6 +261,14 @@ public class Producto implements Serializable {
 
     public void setBuscaEst(String buscaEst) {
         this.buscaEst = buscaEst;
+    }
+
+    public String getBuscaPub() {
+        return buscaPub;
+    }
+
+    public void setBuscaPub(String buscaPub) {
+        this.buscaPub = buscaPub;
     }
 
 }

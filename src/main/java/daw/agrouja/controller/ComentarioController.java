@@ -111,7 +111,6 @@ public class ComentarioController implements Serializable {
 
     public Boolean comprobarUsu(Integer id) {
         recupera(id);
-        System.out.println(principal.getName());
         return (comentariosDAO.comprobarUsu(comentario, usu.buscaPorNombre(principal.getName())));
     }
 

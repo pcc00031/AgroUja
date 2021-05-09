@@ -31,11 +31,6 @@ public class ProductosDAOMap implements ProductosDAO, Serializable {
     }
 
     @Override
-    public boolean agregarComent(Producto p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public Producto buscaId(Integer id) {
         return new Producto(productos.get(id));
     }
@@ -43,11 +38,6 @@ public class ProductosDAOMap implements ProductosDAO, Serializable {
     @Override
     public List<Producto> buscaTodos() {
         return productos.values().stream().collect(Collectors.toList());
-    }
-
-    @Override
-    public List<Producto> buscaTodosSub() {
-        return subProductos.values().stream().collect(Collectors.toList());
     }
 
     @Override
@@ -76,7 +66,7 @@ public class ProductosDAOMap implements ProductosDAO, Serializable {
     }
 
     @Override
-    public void buscarNombre(String nombre) {
+    public List<Producto> buscarNombre(String nombre) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -107,6 +97,11 @@ public class ProductosDAOMap implements ProductosDAO, Serializable {
 
     @Override
     public List<Comentario> buscaComents(Producto p) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Producto> buscarPub(String pub) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

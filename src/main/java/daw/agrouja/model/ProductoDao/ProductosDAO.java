@@ -12,8 +12,6 @@ public interface ProductosDAO {
 
     public List<Producto> buscaTodos();
 
-    public List<Producto> buscaTodosSub();
-
     // Metodos de edicion general
     public boolean crea(Producto p);
 
@@ -21,10 +19,8 @@ public interface ProductosDAO {
 
     public boolean edita(Producto p);
 
-    public boolean agregarComent(Producto p);
-
     // Metodos de busqueda especifica
-    public void buscarNombre(String nombre);
+    public List<Producto> buscarNombre(String nombre);
 
     public List<Producto> buscarMarca(String marca);
 
@@ -32,10 +28,12 @@ public interface ProductosDAO {
 
     public List<Producto> buscarEstado(String estado);
 
+    public List<Producto> buscarPub(String pub);
+
     public Boolean comprobarUsu(Producto p, Usuario u);
 
     public Boolean comprobarFav(Producto p, Usuario u);
-    
+
     public List<Comentario> buscaComents(Producto p);
 
 }

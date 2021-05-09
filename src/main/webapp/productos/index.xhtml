@@ -7,12 +7,8 @@
                 xmlns:p="http://primefaces.org/ui">
 
     <ui:define name="left">
-        <h:form>
-
-            <aside ng-controller="AgroApp" ng-cloak="">
-                <center><h1>*SIN FUNCIONALIDAD*</h1>
-                    <h1>(LOS 3)</h1>
-                    <h1>↓</h1></center>
+        <aside ng-controller="AgroApp" ng-cloak="">
+            <h:form>
                 <p:card style="margin-top: 5%; padding-top: 1%; background-color: white; width: available; max-height: 310px">
                     <f:facet name="title">
                         <h3 style="font-size: 20px">Seleccione estado: </h3> 
@@ -26,9 +22,11 @@
                             <f:selectItem itemLabel="Usado" itemValue="Usado"/>
                         </p:selectOneRadio>
                     </f:facet> 
-                    <center>  <p:commandButton styleClass="ui-button-success" value="Buscar" icon="pi pi-search" action="#{prodCtrl.buscarEstado()}"/></center>
+                    <center>  <p:commandButton ajax="false" styleClass="ui-button-success" value="Buscar" icon="pi pi-search" action="#{prodCtrl.buscarEstado()}"/></center>
                 </p:card>
-                <br></br>
+            </h:form>
+            <br></br>
+            <h:form>
                 <p:card style="margin-top: 5%; padding-top: 1%; background-color: white; width: available; max-height: 310px">
                     <f:facet name="title">
                         <h3 style="font-size: 20px">Seleccione marca: </h3> 
@@ -42,9 +40,10 @@
                             <f:selectItem itemLabel="Otra" itemValue="Otra"/>
                         </p:selectOneRadio>
                     </f:facet> 
-                    <center>  <p:commandButton styleClass="ui-button-success" value="Buscar" icon="pi pi-search" action="#{prodCtrl.buscarMarca()}"/></center>
+                    <center>  <p:commandButton ajax="false" styleClass="ui-button-success" value="Buscar" icon="pi pi-search" action="#{prodCtrl.buscarMarca()}"/></center>
                 </p:card>
-
+            </h:form>
+            <h:form>
                 <p:card style="margin-top: 5%; padding-top: 1%; background-color: white; width: available; max-height: 310px">
                     <f:facet name="title">
                         <h3 style="font-size: 20px">Seleccione categoría: </h3> 
@@ -59,12 +58,28 @@
                             <f:selectItem itemLabel="Otra" itemValue="Otra"/>
                         </p:selectOneRadio>
                     </f:facet> 
-                    <center>  <p:commandButton styleClass="ui-button-success" value="Buscar" icon="pi pi-search" action="#{prodCtrl.buscarCategoria()}"/></center>
+                    <center>  <p:commandButton ajax="false" styleClass="ui-button-success" value="Buscar" icon="pi pi-search" action="#{prodCtrl.buscarCategoria()}"/></center>
                 </p:card>
+            </h:form>
 
-            </aside>
+            <h:form>
+                <p:card style="margin-top: 5%; padding-top: 1%; background-color: white; width: available; max-height: 310px">
+                    <f:facet name="title">
+                        <h3 style="font-size: 20px">Seleccione tipo de publicación: </h3> 
+                    </f:facet> 
+                    <hr></hr>
+                    <f:facet name="subtitle">
+                        <hr></hr>
 
-        </h:form>
+                        <p:selectOneRadio value="#{prodCtrl.producto.buscaPub}" layout="responsive" columns="1" unselectable="true">
+                            <f:selectItem itemLabel="Venta" itemValue="Venta"/>
+                            <f:selectItem itemLabel="Alquiler" itemValue="Alquiler"/>
+                        </p:selectOneRadio>
+                    </f:facet> 
+                    <center>  <p:commandButton ajax="false" styleClass="ui-button-success" value="Buscar" icon="pi pi-search" action="#{prodCtrl.buscarPub()}"/></center>
+                </p:card>
+            </h:form>
+        </aside>
 
     </ui:define>
 
@@ -78,7 +93,7 @@
                 <f:facet name="options"> 
                     <!--                  boton para ordenar ->  <p:commandButton value="Ordenar" action=""/>-->
                     <p:inputText placeholder="Buscar producto" value="#{prodCtrl.producto.buscaNomb}"/>
-                    <p:commandButton icon="pi pi-fw pi-search" action="#{prodCtrl.buscarNombre()}"/>
+                    <p:commandButton ajax="false" icon="pi pi-fw pi-search" action="#{prodCtrl.buscarNombre()}"/>
                 </f:facet>
             </p:menubar>
 
