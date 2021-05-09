@@ -88,14 +88,12 @@ public class ComentarioController implements Serializable {
     }
 
     public String crea(Producto p) {
-        log.log(Level.INFO, "Creando comentario: {0}", comentario.getId_comentario());
+        log.log(Level.INFO, "Creando comentario: {0}", comentario.getDescripcion());
         comentario.setId_usuario(usu.buscaPorNombre(principal.getName()).getId());
         comentario.setUsu(usu.buscaPorNombre(principal.getName()).getNickname());
         comentario.setNombreProd(p.getNombre());
         comentario.setId_producto(p.getId());
         comentariosDAO.crea(comentario);
-        p.getComentarios().add(comentario);
-        prod.agregarComent(p);
         return "visualizar?faces-redirect=true&id=" + comentario.getId_producto();
     }
 
@@ -113,6 +111,7 @@ public class ComentarioController implements Serializable {
 
     public Boolean comprobarUsu(Integer id) {
         recupera(id);
+        System.out.println(principal.getName());
         return (comentariosDAO.comprobarUsu(comentario, usu.buscaPorNombre(principal.getName())));
     }
 

@@ -165,8 +165,9 @@ public class ProductosDAOJpa
     public Boolean comprobarUsu(Producto p, Usuario u) {
         Boolean coincide = false;
         try {
-            Query q = em.createQuery("Select p from Producto p, Usuario u where p.idUsuario=u.id AND :pid=:usuid AND p.id=:pid", Usuario.class);
-            q.setParameter("pid", p.getIdUsuario());
+            Query q = em.createQuery("Select p from Producto p, Usuario u where p.idUsuario=u.id AND :puid=:usuid AND p.id=:pid AND u.id=:usuid", Usuario.class);
+            q.setParameter("puid", p.getIdUsuario());
+            q.setParameter("pid", p.getId());
             q.setParameter("usuid", u.getId());
             if (q.getSingleResult() != null) {
                 coincide = true;
@@ -201,7 +202,7 @@ public class ProductosDAOJpa
     public List<Comentario> buscaComents(Producto p) {
         List<Comentario> lc = new ArrayList<>();
         try {
-            Query q = em.createQuery("Select c from Producto p, Comentario c where p.id=:pid AND c.id_producto=:pid AND c.id_producto=p.id", 
+            Query q = em.createQuery("Select c from Producto p, Comentario c where p.id=:pid AND c.id_producto=:pid", 
                     Producto.class);
             q.setParameter("pid", p.getId());
             lc = q.getResultList();
