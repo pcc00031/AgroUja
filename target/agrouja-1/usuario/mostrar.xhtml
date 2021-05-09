@@ -98,12 +98,19 @@
                             <p:card style="text-align: center; padding-top: 1%; padding-bottom: 1%; background-color: white;">
                                 <f:facet name="title">                               
                                     <h:link onclick="#{prodCtrl.visualiza(p.id)}" outcome="#{prodCtrl.visualiza(p.id)}">
+
                                         <h:graphicImage height="100" width="100" name="#{p.imagen}" library="images" /> 
                                     </h:link>
-                                </f:facet>
-                                <f:facet name="footer">
+                                    
 
+
+                                </f:facet>
+                                <f:facet name="subtitle">
                                     <h:link style="color: #669900" onclick="#{prodCtrl.visualiza(p.id)}" outcome="#{prodCtrl.visualiza(p.id)}">#{p.nombre}</h:link>
+                                    <br></br><hr></hr>
+                                    <p style="color: white; float: left">hehehe</p>  
+                                    <p:commandButton style="float: left" styleClass="ui-button-danger"  icon="pi pi-times" action ="#{favCtrl.borrar(p.id)}"/> 
+                                     
 
                                 </f:facet>
                             </p:card>

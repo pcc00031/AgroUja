@@ -11,6 +11,7 @@ import daw.agrouja.model.Producto;
 import daw.agrouja.model.Usuario;
 import daw.agrouja.qualifiers.DAOJpa;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -131,14 +132,16 @@ public class UsuarioDAOJpa implements UsuarioDAO, Serializable {
 
     @Override
     public List<Producto> buscaProductosFavs(Usuario u) {
-        List<Producto> lp = null;
+        List<Producto> lc = new ArrayList<>();
         try {
-            Query q = em.createQuery("Select us.prodsFavs from Producto p, Usuario us where p.idUsuario=:u AND p.idUsuario=us.id", Producto.class).setParameter("u", u.getId());
-            lp = q.getResultList();
+            Query q = em.createQuery("Select p from Producto p, Usuario u, Favorito f where f.id_usuario=:uid AND f.id_usuario=u.id AND f.id_producto=p.id", 
+                    Producto.class);
+            q.setParameter("uid", u.getId());
+            lc = q.getResultList();
         } catch (Exception ex) {
             logger.log(Level.SEVERE, ex.getMessage(), ex);
         }
-        return lp;
+        return lc;
     }
 
     @Override

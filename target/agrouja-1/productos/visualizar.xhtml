@@ -37,12 +37,12 @@
                     <h1>
                         #{prodCtrl.producto.nombre}
                         <c:if test="#{prodCtrl.comprobarUsu()}">
-                            <p:commandButton style="float: right" styleClass="ui-button-danger" value="Borrar producto" icon="pi pi-times" action ="#{prodCtrl.borrar()}"/> 
+                            <p:commandButton style="float: right" styleClass="ui-button-danger" value="Borrar producto" icon="pi pi-times" action ="#{prodCtrl.borrar(prodCtrl.producto.id)}"/> 
                             <p style="color: white; float: right"> he</p>                       
-                            <p:commandButton style="float: right" styleClass="ui-button-success" value="Editar producto" icon="pi pi-pencil" action ="#{prodCtrl.edita()}"/> 
+                            <p:commandButton style="float: right" styleClass="ui-button-success" value="Editar producto" icon="pi pi-pencil" action ="#{prodCtrl.edita(prodCtrl.producto.id)}"/> 
                             <p style="color: white; float: right"> he</p>
                         </c:if>
-                        <p:commandButton style="float: right" value="Favorito" icon="pi pi-heart" action ="#{usuarioCtrl.addFav(prodCtrl.producto)}"/> 
+                        <p:commandButton style="float: right" value="Favorito" icon="pi pi-heart" action ="#{favCtrl.anade(prodCtrl.producto)}"/> 
                     </h1>
                 </f:facet>
                 <f:facet name="subtitle">
