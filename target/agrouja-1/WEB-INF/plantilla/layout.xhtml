@@ -12,10 +12,15 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="#{request.contextPath}/resources/images/icon.ico"/>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-animate/1.8.2/angular-animate.min.js" integrity="sha512-jZoujmRqSbKvkVDG+hf84/X11/j5TVxwBrcQSKp1W+A/fMxmYzOAVw+YaOf3tWzG/SjEAbam7KqHMORlsdF/eA==" crossorigin="anonymous"></script>        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-aria/1.8.2/angular-aria.min.js" integrity="sha512-IP/3KOfYYFXQTJVQkBfavKkpvK8u+JD5r2C5vO3Dj3ufl7Xk0SoI0Oh2MXMFcGSAOxK6oZhWbZVWglgvZwAU+w==" crossorigin="anonymous"></script>
+        <script src="https://rawgit.com/angular/bower-material/master/angular-material.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.2.2/angular-material.min.css" integrity="sha512-dMahqxu9L2XnPgHEO4mWksNGfyvOsV2rtMt5TX7OJdWbky+sw9dyMPw8gwhohmwVXAJW5zVCfdyvhutemjYuzg==" crossorigin="anonymous" />        
+        <script type="module" src="/AgroUja/js/app-agrouja.js"/>
         <h:outputStylesheet library="css" name="bootstrap.min.css"/>
         <h:outputStylesheet library="css" name="default.css"/>
         <h:outputStylesheet library="css" name="cssLayout.css"/>
-        <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces"/>
         <title>AgroUja</title>
     </h:head>
 
@@ -24,12 +29,14 @@
         <!--CABECERA-->
         <header>
             <nav>
+                <div style="margin-bottom: 3%">
                 <ui:include src="/WEB-INF/plantilla/cabecera.xhtml"/>
+                </div>
             </nav>
         </header>
 
         <!--CONTENIDO-->
-        <main>
+        <main data-ng-app="agrouja.app">
             <div style="overflow: auto; height: 100%">
                 <div id="content" class="center_content" style="overflow: auto; height: 100%">
                     <ui:insert name="content">Content</ui:insert>

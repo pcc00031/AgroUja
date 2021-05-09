@@ -14,59 +14,61 @@
             </p:messages>
         </h:form>
         <h:form>
-            <p:fieldset  style=" align-self:  center; margin-left: 30%; margin-right: 30%" legend="Datos del producto">
-                <h:panelGrid style="margin-left: 10%;" columns="2" cellpadding="7">
-                    <p:outputLabel for="Nomb" value="Nombre" />
-                    <p:inputText id="Nomb" required="true" value="#{prodCtrl.producto.nombre}" />
+            <div ng-controller="AgroApp" ng-cloak="">
+                <p:fieldset  style=" align-self:  center; margin-left: 30%; margin-right: 30%" legend="Datos del producto">
+                    <h:panelGrid style="margin-left: 10%;" columns="2" cellpadding="7">
+                        <p:outputLabel for="Nomb" value="Nombre" />
+                        <p:inputText id="Nomb" required="true" value="#{prodCtrl.producto.nombre}" />
 
-                    <p:outputLabel for="input1" value="Precio"/>
-                    <p:inputNumber id="input1" value="#{prodCtrl.producto.precio}" modifyValueOnWheel="false" required="true"/>
-
-
-                    <p:outputLabel for="@next" value="Estado"/>
-                    <p:selectOneRadio value="#{prodCtrl.producto.estado}" required="true">
-                        <f:selectItem  itemValue="Nuevo" itemLabel="Nuevo"/>
-                        <f:selectItem  itemValue="Usado" itemLabel="Usado"/>
-                    </p:selectOneRadio>
-
-                    <p:outputLabel for="@next" value="Tipo de publicación" />
-                    <p:selectOneRadio  value="#{prodCtrl.producto.ventAlq}" required="true">
-                        <f:selectItem  itemValue="Venta" itemLabel="Venta"/>
-                        <f:selectItem  itemValue="Alquiler" itemLabel="Alquiler"/>
-                    </p:selectOneRadio>
-
-                    <p:outputLabel for="@next" value="Categoría"/>
-                    <p:selectOneMenu value="#{prodCtrl.producto.categoria}" editable="true"  id="option" >
-                        <f:selectItem  itemLabel="Desconocido" itemValue="Desconocido"/>
-                        <f:selectItem  itemLabel="Comestible" itemValue="Comestible"/>
-                        <f:selectItem   itemLabel="Maquinaria" itemValue="Maquinaria"/>
-                    </p:selectOneMenu>
-
-                    <p:outputLabel for="@next" value="Marca"/>
-                    <p:selectOneMenu  value="#{prodCtrl.producto.marca}" editable="true" id="option1" >
-                        <f:selectItem  itemLabel="Desconocida" itemValue="Desconocida"/>
-                        <f:selectItem  itemLabel="AgroUja" itemValue="AgroUja"/>
-                    </p:selectOneMenu>
-
-                    <p:outputLabel for="dest" value="Destacado"/>
-                    <p:selectBooleanCheckbox id="dest" value="#{prodCtrl.producto.destacado}" itemLabel="Sí"/>
+                        <p:outputLabel for="input1" value="Precio"/>
+                        <p:inputNumber id="input1" value="#{prodCtrl.producto.precio}" modifyValueOnWheel="false" required="true"/>
 
 
-                    <p:outputLabel for="desc" value="Descripción"/>
-                    <p:inputTextarea id="desc" value="#{prodCtrl.producto.descripcion}" rows="6" cols="33"/>
+                        <p:outputLabel for="@next" value="Estado"/>
+                        <p:selectOneRadio value="#{prodCtrl.producto.estado}" required="true">
+                            <f:selectItem  itemValue="Nuevo" itemLabel="Nuevo"/>
+                            <f:selectItem  itemValue="Usado" itemLabel="Usado"/>
+                        </p:selectOneRadio>
+
+                        <p:outputLabel for="@next" value="Tipo de publicación" />
+                        <p:selectOneRadio  value="#{prodCtrl.producto.ventAlq}" required="true">
+                            <f:selectItem  itemValue="Venta" itemLabel="Venta"/>
+                            <f:selectItem  itemValue="Alquiler" itemLabel="Alquiler"/>
+                        </p:selectOneRadio>
+
+                        <p:outputLabel for="@next" value="Categoría"/>
+                        <p:selectOneMenu value="#{prodCtrl.producto.categoria}" editable="true"  id="option" >
+                            <f:selectItem  itemLabel="Desconocido" itemValue="Desconocido"/>
+                            <f:selectItem  itemLabel="Comestible" itemValue="Comestible"/>
+                            <f:selectItem   itemLabel="Maquinaria" itemValue="Maquinaria"/>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel for="@next" value="Marca"/>
+                        <p:selectOneMenu  value="#{prodCtrl.producto.marca}" editable="true" id="option1" >
+                            <f:selectItem  itemLabel="Desconocida" itemValue="Desconocida"/>
+                            <f:selectItem  itemLabel="AgroUja" itemValue="AgroUja"/>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel for="dest" value="Destacado"/>
+                        <p:selectBooleanCheckbox id="dest" value="#{prodCtrl.producto.destacado}" itemLabel="Sí"/>
 
 
-                    <p:outputLabel for="img" value="Imagen"/>
-                    <p:inputText id="img" value="#{prodCtrl.producto.imagen}" />
-
-                    <p:commandButton icon="pi pi-upload" value="Subir imagen"/>
-                    <p:commandButton  styleClass="ui-button-success" action="#{prodCtrl.crea()}" value="Añadir producto"/>
+                        <p:outputLabel for="desc" value="Descripción"/>
+                        <p:inputTextarea id="desc" value="#{prodCtrl.producto.descripcion}" rows="6" cols="33"/>
 
 
-                </h:panelGrid>
-            </p:fieldset>
+                        <p:outputLabel for="img" value="Imagen"/>
+                        <p:inputText id="img" value="#{prodCtrl.producto.imagen}" />
+
+                        <p:commandButton icon="pi pi-upload" value="Subir imagen"/>
+                        <p:commandButton  styleClass="ui-button-success" action="#{prodCtrl.crea()}" value="Añadir producto"/>
+                        <md-button ng-click="showAlert($event)" md-colors="{background: 'green'}"><span style="color:white">Añadir producto</span></md-button>
 
 
+                    </h:panelGrid>
+                </p:fieldset>
+
+            </div>
         </h:form>
 
     </ui:define>
