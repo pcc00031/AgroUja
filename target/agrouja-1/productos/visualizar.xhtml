@@ -37,9 +37,9 @@
                         <h1>
                             #{prodCtrl.producto.nombre}
                             <c:if test="#{prodCtrl.comprobarUsu()}">
-                                <p:commandButton style="float: right" styleClass="ui-button-danger" value="Borrar producto" icon="pi pi-times" action ="#{prodCtrl.borrar()}"/> 
+                                <p:commandButton style="float: right" styleClass="ui-button-danger" value="Borrar producto" icon="pi pi-times" action ="#{prodCtrl.borrar(prodCtrl.borrar(prodCtrl.producto.id))}"/> 
                                 <p style="color: white; float: right"> he</p>                       
-                                <p:commandButton style="float: right" styleClass="ui-button-success" value="Editar producto" icon="pi pi-pencil" action ="#{prodCtrl.edita()}"/> 
+                                <p:commandButton style="float: right" styleClass="ui-button-success" value="Editar producto" icon="pi pi-pencil" action ="#{prodCtrl.edita(prodCtrl.borrar(prodCtrl.producto.id))}"/> 
                                 <md-button ng-click="showConfirm($event)" md-colors="{background: 'green'}">
                                     <md-icon md-colors="{color: 'grey-A100'}" md-font-icon="pi pi-pencil"></md-icon>
                                     <span style="color:white;">Editar producto</span>

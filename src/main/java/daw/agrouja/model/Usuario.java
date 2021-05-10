@@ -44,15 +44,12 @@ public class Usuario implements Serializable {
 
     // Claves foraneas
  
-    private List<Producto> prodsFavs = new ArrayList<>();
-    private List<Formulario> formularios = new ArrayList<>();
-    private List<Comentario> comentarios;
+   
 
 
     public Usuario() {
         this.id = 0;
-        this.prodsFavs = new ArrayList<>();
-        this.comentarios = new ArrayList<>();
+        
     }
 
     public Usuario(Integer _id, String _Nombre, String _Apellidos, String _Sexo, String _usuario, String _Contraseña, String _Correo, String _fnac, Integer _tarjeta, String _direccion, Integer _telef) {
@@ -68,7 +65,7 @@ public class Usuario implements Serializable {
         direccion = _direccion;
         telef = _telef;
 
-        prodsFavs = new ArrayList<>();
+        
     }
 
     public Usuario(Usuario u) {
@@ -248,40 +245,5 @@ public class Usuario implements Serializable {
         this.avatar = avatar;
     }
 
-    public List<Producto> getProdsFavs() {
-        return prodsFavs;
-    }
-
-    public void addFav(Producto p) {
-        prodsFavs.add(p);
-    }
-
-    public void setProdsFavs(List<Producto> prodsFavs) {
-        this.prodsFavs = prodsFavs;
-    }
-
-    public List<Comentario> getComentarios() {
-        return comentarios;
-    }
-
-    public void setComentarios(List<Comentario> comentarios) {
-        this.comentarios = comentarios;
-    }
-
-    /**
-     * @return the formularios
-     */
-    public List<Formulario> getFormularios() {
-        return formularios;
-    }
-
-    /**
-     * @param formularios the formularios to set
-     */
-    public void setFormularios(List<Formulario> formularios) {
-        this.formularios = formularios;
-    }
-
-
-    
+   
 }
