@@ -163,4 +163,8 @@ public class ProductosController implements Serializable {
     public List<Comentario> buscaComents() {
         return productosDAO.buscaComents(producto);
     }
+    
+    public List<Producto> buscaDestacados() {
+        return productosDAO.buscaDestacados();
+    }
 }

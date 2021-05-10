@@ -21,6 +21,7 @@ public class Comentario implements Serializable {
     private String descripcion = "";
     private String usu = "";
     private String nombreProd = "";
+
     // Claves foraneas
     private Integer id_usuario = 0;
     private Integer id_producto = 0;
