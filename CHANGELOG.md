@@ -10,7 +10,8 @@
 - Mensajes de error y ventanas emergentes para operaciones con Formulario agregados - @cga00037
 - Mensajes de error y ventanas emergentes para operaciones con Comentario agregados - @cmp00070
 - Implementación de servicios REST
-- Conexiones asíncronas con el servidor 
+- Conexiones asíncronas con el servidor
+- Comprobación de favoritos añadidos por un usuario establecida - @cmp00070  
 
 ### Fixed
 

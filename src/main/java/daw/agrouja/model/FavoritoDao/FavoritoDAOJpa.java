@@ -6,6 +6,8 @@
 package daw.agrouja.model.FavoritoDao;
 
 import daw.agrouja.model.Favorito;
+import daw.agrouja.model.Producto;
+import daw.agrouja.model.Usuario;
 import daw.agrouja.qualifiers.DAOJpa;
 import java.io.Serializable;
 import java.util.List;
@@ -83,6 +85,27 @@ public class FavoritoDAOJpa implements FavoritoDAO, Serializable {
         } catch (Exception ex) {
             logger.log(Level.SEVERE, ex.getMessage(), ex);
         }
+    }
+    
+    @Override
+    public Boolean comprobarUsufav(Usuario u, Producto p) {
+        Boolean coincide = false;
+        List<Favorito> favo =null;
+        try {
+             Query q = em.createQuery("Select f from Favorito f, Usuario u, Producto p where f.id_usuario=:uid AND f.id_usuario=u.id AND f.id_producto=p.id AND f.id_producto=:prodId", 
+                    Favorito.class);
+            q.setParameter("uid", u.getId());
+            q.setParameter("prodId", p.getId());
+            favo=q.getResultList();
+            System.out.println(favo.size());
+            if (q.getSingleResult() != null) {
+                coincide = true;
+                return coincide;
+            }
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
+        }
+        return coincide;
     }
     
 }
