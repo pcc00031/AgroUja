@@ -18,7 +18,22 @@ export const AgroAppModule = angular
                         .ok('Sí')
                         .cancel('No')
                         .targetEvent(ev)
-                        );
+                        ).then(function () {
+                    $mdDialog.show(
+                            $mdDialog.confirm()
+                            .parent(angular.element(document.querySelector('#popupContainer')))
+                            .clickOutsideToClose(true)
+                            .title('Producto creado')
+                            .ariaLabel('Alert Dialog Demo')
+                            .ok('Ver')
+                            .targetEvent(ev)).then(function () {
+                        document.getElementById("CrearProd").submit();
+                    })
+                }, function () {
+
+                    $scope.status = 'You decided to keep your debt.';
+                });
+                ;
             };
             $scope.showConfirm = function (ev) {
                 var confirm = $mdDialog.confirm()
