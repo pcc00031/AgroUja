@@ -3,12 +3,14 @@
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="/WEB-INF/plantilla/layout.xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:p="http://primefaces.org/ui">
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
 
     <ui:define name="content">
         <script>
             function aver() {
                 document.getElementsByClassName('ui-widget-header')[0].style.display = 'none';
+                document.getElementsByClassName('ui-widget-header')[1].style.display = 'none';
             }
         </script>
         <h:body onload="aver()">
@@ -24,6 +26,33 @@
                 </p:carousel>
             </p:card>
 
+            <p:card style="background-color: #ccffcc; height: 100%; min-height: 700px">
+                <center>
+                    <h1 style="font-size: 35px"> Productos destacados </h1>
+                </center>
+                <br></br>
+                <center>
+                    <p:carousel value="#{prodCtrl.buscaDestacados()}" var="p" pageLinks="0" effect="fade" autoPlayInterval="4000" numVisible="2" responsive="true" style="width:50%">                                                     
+                        <p:card>  
+                            <f:facet name="title">
+                                <h:link onclick="#{prodCtrl.visualiza(p.id)}" outcome="#{prodCtrl.visualiza(p.id)}">
+                                    <h:graphicImage height="100" width="100" name="#{p.imagen}" library="images" /> 
+                                </h:link>
+                            </f:facet>
+                            <f:facet name="subtitle">
+                                <hr></hr>
+                                <h:link style="color: #669900" onclick="#{prodCtrl.visualiza(p.id)}" outcome="#{prodCtrl.visualiza(p.id)}">#{p.nombre}</h:link>
+                            </f:facet>
+                        </p:card>
+                    </p:carousel>
+                </center>
+                <f:facet name="footer">
+                    <center>
+                        <hr></hr>
+                        <h1>¡Publica los tuyos!</h1>
+                    </center>
+                </f:facet>
+            </p:card>
         </h:body>
     </ui:define>
 </ui:composition>

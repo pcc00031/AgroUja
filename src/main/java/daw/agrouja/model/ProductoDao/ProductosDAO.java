@@ -36,4 +36,6 @@ public interface ProductosDAO {
 
     public List<Comentario> buscaComents(Producto p);
 
+    public List<Producto> buscaDestacados();
+
 }

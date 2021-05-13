@@ -208,4 +208,17 @@ public class ProductosDAOJpa
         }
         return lc;
     }
+
+    @Override
+    public List<Producto> buscaDestacados() {
+        List<Producto> lp = new ArrayList<>();
+        try {
+            Query q = em.createQuery("Select p from Producto p where p.destacado= 1",
+                    Producto.class);
+            lp = q.getResultList();
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
+        }
+        return lp;
+    }
 }

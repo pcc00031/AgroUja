@@ -21,74 +21,90 @@
     </ui:define>
 
     <ui:define name="content">
-
-        <h:form>
-            <h:head>
-                <f:metadata>
-                    <f:viewParam name ="id" required ="true"
-                                 value ="#{prodCtrl.producto.id}"/>
-                    <f:viewAction action = "#{prodCtrl.recupera()}"/>
-                </f:metadata>
-            </h:head>
-        </h:form>
-        <h:form>
-            <p:card style="margin-right: 10%; margin-left: 10%;margin-top: 5%; margin-bottom: 5%;">
-                <f:facet name="title">
-                    <h1>
-                        #{prodCtrl.producto.nombre}
-                        <c:if test="#{prodCtrl.comprobarUsu()}">
-                            <p:commandButton style="float: right" styleClass="ui-button-danger" value="Borrar producto" icon="pi pi-times" action ="#{prodCtrl.borrar(prodCtrl.producto.id)}"/> 
-                            <p style="color: white; float: right"> he</p>                       
-                            <p:commandButton style="float: right" styleClass="ui-button-success" value="Editar producto" icon="pi pi-pencil" action ="#{prodCtrl.edita(prodCtrl.producto.id)}"/> 
-                            <p style="color: white; float: right"> he</p>
-                        </c:if>
-                        <p:commandButton style="float: right" value="Favorito" icon="pi pi-heart" action ="#{favCtrl.anade(prodCtrl.producto)}"/> 
-                    </h1>
-                </f:facet>
-                <f:facet name="subtitle">
-                    <hr></hr>
-                    <br>#{prodCtrl.producto.descripcion}</br>
-                    <div style="margin-left: 1%">
-                        <br><b>Distribuido por: </b>#{prodCtrl.producto.marca}</br>
-                        <br><b>Estado: </b>#{prodCtrl.producto.estado}</br>
-                        <br><b>Categoría: </b>#{prodCtrl.producto.categoria}</br>
-                        <br><b>En: </b>#{prodCtrl.producto.ventAlq}<p style="color: white">separador</p></br>
-                    </div>           
-                </f:facet>
-                <f:facet name="footer">                    
-                    <br><p><i>Publicado por: <strong>@#{prodCtrl.usu}</strong></i></p></br>
-                    <h3>Precio: #{prodCtrl.producto.precio}€</h3>
-                </f:facet> 
-            </p:card>
-            <br>   <center><h1>Agregar comentario</h1></center></br>
-            <br>                
-                <p:inputTextarea style="margin-left: 13%;width: 900px; margin-right: 5%" rows="5" value="#{comentCtrl.comentario.descripcion}"  ></p:inputTextarea>
-            </br>
-            <br> <center> <p:commandButton styleClass="ui-button-success" value="Confirmar" icon="pi pi-comment" action ="#{comentCtrl.crea(prodCtrl.producto)}"/> </center></br>
-            <br></br>
-            <center><h1>Lista de comentarios</h1></center>
-        </h:form>
-        <h:form>
-            <ui:repeat var="p" value="#{prodCtrl.buscaComents()}">
+        <div ng-controller="AgroApp" ng-cloak="">
+            <h:form>
+                <h:head>
+                    <f:metadata>
+                        <f:viewParam name ="id" required ="true"
+                                     value ="#{prodCtrl.producto.id}"/>
+                        <f:viewAction action = "#{prodCtrl.recupera()}"/>
+                    </f:metadata>
+                </h:head>
+            </h:form>
+            <h:form>
                 <p:card style="margin-right: 10%; margin-left: 10%;margin-top: 5%; margin-bottom: 5%;">
-                    <f:facet name="subtitle">
-
-                        <p style="float: right"><i>@#{p.usu}</i></p>
-                        <p style="float: left">#{p.descripcion}</p>
-                        <h:panelGroup rendered="#{comentCtrl.comprobarUsu(p.id_comentario)}">                          
-                            <br>
-                                <br>
-                                    <p:commandButton style="float: right" styleClass="ui-button-danger"  icon="pi pi-times" action ="#{comentCtrl.borrar(p.id_comentario)}"/> 
-                                    <p style="color: white; float: right"> he</p>                       
-                                    <p:commandButton style="float: right" styleClass="ui-button-success"  icon="pi pi-pencil" action ="#{comentCtrl.edita(p.id_comentario)}"/> 
-                                    <p style="color: white; float: right"> he</p>
-                                </br>
-                            </br>
-                        </h:panelGroup>
+                    <f:facet name="title">
+                        <h1>
+                            #{prodCtrl.producto.nombre}
+                            <c:if test="#{prodCtrl.comprobarUsu()}">
+                                <p:commandButton style="float: right" styleClass="ui-button-danger" value="Borrar producto" icon="pi pi-times" action ="#{prodCtrl.borrar(prodCtrl.borrar(prodCtrl.producto.id))}"/> 
+                                <p style="color: white; float: right"> he</p>                       
+                                <p:commandButton style="float: right" styleClass="ui-button-success" value="Editar producto" icon="pi pi-pencil" action ="#{prodCtrl.edita(prodCtrl.borrar(prodCtrl.producto.id))}"/> 
+                                <md-button ng-click="showConfirm($event)" md-colors="{background: 'green'}">
+                                    <md-icon md-colors="{color: 'grey-A100'}" md-font-icon="pi pi-pencil"></md-icon>
+                                    <span style="color:white;">Editar producto</span>
+                                </md-button>
+                                <md-button ng-click="showConfirm($event)" md-colors="{background: 'red'}">
+                                    <md-icon md-colors="{color: 'grey-A100'}" md-font-icon="pi pi-times"></md-icon>
+                                    <span style="color:white">Borrar producto</span>
+                                </md-button>
+                                <md-button class="md-icon-button" aria-label="More" ng-click="showConfirm($event)" >
+                                    <md-icon md-colors="{color: 'red'}" md-font-icon="pi pi-heart"></md-icon>
+                                </md-button>
+                                <p style="color: white; float: right"> he</p>
+                            </c:if>
+                            <p:commandButton style="float: right" value="Favorito" icon="pi pi-heart" action ="#{usuarioCtrl.addFav(prodCtrl.producto)}"/> 
+                        </h1>
                     </f:facet>
+                    <f:facet name="subtitle">
+                        <hr></hr>
+                        <br>#{prodCtrl.producto.descripcion}</br>
+                        <div style="margin-left: 1%">
+                            <br><b>Distribuido por: </b>#{prodCtrl.producto.marca}</br>
+                            <br><b>Estado: </b>#{prodCtrl.producto.estado}</br>
+                            <br><b>Categoría: </b>#{prodCtrl.producto.categoria}</br>
+                            <br><b>En: </b>#{prodCtrl.producto.ventAlq}<p style="color: white">separador</p></br>
+                        </div>           
+                    </f:facet>
+                    <f:facet name="footer">                    
+                        <br><p><i>Publicado por: <strong>@#{prodCtrl.usu}</strong></i></p></br>
+                        <h3>Precio: #{prodCtrl.producto.precio}€</h3>
+                    </f:facet> 
                 </p:card>
-            </ui:repeat>
-        </h:form>
+                <br>   <center><h1>Agregar comentario</h1></center></br>
+                <br>                
+                    <p:inputTextarea style="margin-left: 13%;width: 900px; margin-right: 5%" rows="5" value="#{comentCtrl.comentario.descripcion}"  ></p:inputTextarea>
+                </br>
+                <br> <center> <p:commandButton styleClass="ui-button-success" value="Confirmar" icon="pi pi-comment" action ="#{comentCtrl.crea(prodCtrl.producto)}"/> </center></br>
+                <md-button ng-click="showConfirm($event)" md-colors="{background: 'green'}">
+                    <md-icon md-colors="{color: 'grey-A100'}" md-font-icon="pi pi-comment"></md-icon>
+                    <span style="color:white">Comentar</span>
+                </md-button>
+                <br></br>
+                <center><h1>Lista de comentarios</h1></center>
+            </h:form>
+            <h:form>
+                <ui:repeat var="p" value="#{prodCtrl.buscaComents()}">
+                    <p:card style="margin-right: 10%; margin-left: 10%;margin-top: 5%; margin-bottom: 5%;">
+                        <f:facet name="subtitle">
+
+                            <p style="float: right"><i>@#{p.usu}</i></p>
+                            <p style="float: left">#{p.descripcion}</p>
+                            <h:panelGroup rendered="#{comentCtrl.comprobarUsu(p.id_comentario)}">                          
+                                <br>
+                                    <br>
+                                        <p:commandButton style="float: right" styleClass="ui-button-danger"  icon="pi pi-times" action ="#{comentCtrl.borrar(p.id_comentario)}"/> 
+                                        <p style="color: white; float: right"> he</p>                       
+                                        <p:commandButton style="float: right" styleClass="ui-button-success"  icon="pi pi-pencil" action ="#{comentCtrl.edita(p.id_comentario)}"/> 
+                                        <p style="color: white; float: right"> he</p>
+                                    </br>
+                                </br>
+                            </h:panelGroup>
+                        </f:facet>
+                    </p:card>
+                </ui:repeat>
+            </h:form>
+        </div>
     </ui:define>
 
 

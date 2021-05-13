@@ -146,8 +146,6 @@ public class UsuarioController implements Serializable {
         return Usuario.getAvatar();
     }
 
-    
-
     public List<Comentario> buscaComentarios() {
         Usuario = usuarioDao.buscaPorNombre(principal.getName());
         return usuarioDao.buscaComentarios(Usuario);
