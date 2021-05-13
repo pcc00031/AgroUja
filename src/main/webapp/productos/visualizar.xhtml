@@ -53,7 +53,19 @@
                                 </md-button>
                                 <p style="color: white; float: right"> he</p>
                             </c:if>
-                            <p:commandButton style="float: right" value="Favorito" icon="pi pi-heart" action ="#{usuarioCtrl.addFav(prodCtrl.producto)}"/> 
+
+                            <c:choose>
+                                <c:when test="#{favCtrl.comprobarUsufav(prodCtrl.producto)}">
+                                    <p:commandButton style="float: right" styleClass="ui-button-danger" value="Eliminar Favorito" icon="pi pi-times" action ="#{favCtrl.borrar(prodCtrl.producto.id)}"/> 
+                                </c:when>
+                              
+                                <c:otherwise>
+                                    <p:commandButton style="float: right" value="Favorito" icon="pi pi-heart" action ="#{favCtrl.anade(prodCtrl.producto)}"/>
+                                </c:otherwise>
+                            </c:choose>
+
+                            
+
                         </h1>
                     </f:facet>
                     <f:facet name="subtitle">

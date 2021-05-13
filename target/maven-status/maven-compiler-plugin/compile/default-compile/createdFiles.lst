@@ -1,4 +1,5 @@
 daw\agrouja\controller\UsuarioController.class
+daw\agrouja\jxrs\NoticiaResource.class
 daw\agrouja\model\UsuarioDao\UsuarioDAOMap.class
 daw\agrouja\model\ComentarioDao\ComentarioDAOMap.class
 daw\agrouja\model\FavoritoDao\FavoritoDAO.class
@@ -7,12 +8,14 @@ daw\agrouja\controller\ProductosController.class
 daw\agrouja\qualifiers\DAOJpa.class
 daw\agrouja\model\ComentarioDao\ComentarioDAO.class
 daw\agrouja\resources\JavaEE8Resource.class
+daw\agrouja\jxrs\AgroujaValidationExceptionManager$1.class
 daw\agrouja\model\ProductoDao\ProductosDAOMap.class
 daw\agrouja\UsuarioIdentityStore.class
 daw\agrouja\country1\Country.class
 daw\agrouja\model\ProductoDao\ProductosDAO.class
 daw\agrouja\model\ProductoDao\ProductosDAOJpa.class
 daw\agrouja\fileuploadbean1\FileUploadBean.class
+daw\agrouja\controller\NoticiasController.class
 daw\agrouja\selectOneView1\SelectOneView.class
 daw\agrouja\model\ContactoDao\FormulariosDAO.class
 daw\agrouja\model\Producto.class
@@ -27,11 +30,14 @@ daw\agrouja\model\Comentario.class
 daw\agrouja\model\ContactoDao\FormulariosDAOMap.class
 daw\agrouja\UsuarioLoginController.class
 daw\agrouja\model\UsuarioDao\UsuarioDAOJpa.class
+daw\agrouja\jxrs\AgroujaValidationExceptionManager.class
 daw\agrouja\controller\ContactoController.class
 daw\agrouja\JAXRSConfiguration.class
 daw\agrouja\model\ComentarioDao\ComentarioDAOJpa.class
+daw\agrouja\model\NoticiasDAO\NoticiasDAO.class
 daw\agrouja\model\ContactoDao\FormulariosDAOJpa.class
 daw\agrouja\model\Formulario.class
 daw\agrouja\controller\FavoritoController.class
 daw\agrouja\model\Usuario.class
+daw\agrouja\model\Noticia.class
 daw\agrouja\country1\CountryService.class

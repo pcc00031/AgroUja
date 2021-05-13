@@ -1,5 +1,25 @@
 # CHANGELOG - AGROUJA
 
+## [1.0.0] - 2021-05-15
+#### Added
+
+- Agregados productos destacados a la página principal - @pcc00031
+- Integración de AngularJS Material - @pcc00031 , @cmp00070 , @jgr00059 , @cga00037
+- Mensajes de error y ventanas emergentes para operaciones con Producto agregados - @pcc00031
+- Mensajes de error y ventanas emergentes para operaciones con Usuario agregados - @jgr00059
+- Mensajes de error y ventanas emergentes para operaciones con Formulario agregados - @cga00037
+- Mensajes de error y ventanas emergentes para operaciones con Comentario agregados - @cmp00070
+- Implementación de servicios REST
+- Conexiones asíncronas con el servidor
+- Comprobación de favoritos añadidos por un usuario establecida - @cmp00070  
+
+### Fixed
+
+- Relación de Favoritos corregida, Entidad Favorito creada - @cmp00070
+- Relaciones entre entidades corregidas - @cmp00070
+- Entidad Comentario corregida - @pcc00031
+- Filtrado de productos corregido - @pcc00031
+
 ## [0.0.4] - 2021-05-03
 #### Added
 

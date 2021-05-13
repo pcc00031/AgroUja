@@ -156,7 +156,7 @@ public class ProductosDAOJpa
             logger.log(Level.SEVERE, ex.getMessage(), ex);
         }
         return lp;
-    }
+    } 
 
     @Override
     public Boolean comprobarUsu(Producto p, Usuario u) {

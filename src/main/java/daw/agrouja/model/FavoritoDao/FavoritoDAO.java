@@ -7,6 +7,7 @@ package daw.agrouja.model.FavoritoDao;
 
 import daw.agrouja.model.Comentario;
 import daw.agrouja.model.Favorito;
+import daw.agrouja.model.Producto;
 import daw.agrouja.model.Usuario;
 import java.util.List;
 
@@ -23,6 +24,8 @@ public interface FavoritoDAO {
      public boolean anade(Favorito fav);
      
       public void borra(Integer idprod, Integer idUsuario);
+      
+      public Boolean comprobarUsufav(Usuario u, Producto p);
       
     
 }
