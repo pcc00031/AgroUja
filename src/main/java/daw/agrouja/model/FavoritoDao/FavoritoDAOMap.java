@@ -7,6 +7,8 @@ package daw.agrouja.model.FavoritoDao;
 
 
 import daw.agrouja.model.Favorito;
+import daw.agrouja.model.Producto;
+import daw.agrouja.model.Usuario;
 import daw.agrouja.qualifiers.DAOMap;
 import java.io.Serializable;
 import java.util.List;
@@ -24,7 +26,7 @@ public class FavoritoDAOMap implements FavoritoDAO, Serializable {
     
 
     @Override
-    public Favorito buscaId(Integer id) {
+    public Favorito buscaId(Integer id)  {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -43,9 +45,10 @@ public class FavoritoDAOMap implements FavoritoDAO, Serializable {
     public void borra(Integer idprod, Integer idUsuario) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
-   
-    
+
+    @Override
+    public Boolean comprobarUsufav(Usuario u, Producto p) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

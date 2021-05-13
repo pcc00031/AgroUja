@@ -121,8 +121,12 @@ public class FavoritoController implements Serializable{
     public String borrar(Integer id) {
         log.log(Level.INFO, "Eliminando producto de favoritos: {0}", favorito.getId_Favorito());
         favoritosDAO.borra(id,usu.buscaPorNombre(principal.getName()).getId());
-        return "mostrar?faces-redirect=true";
+        return "/productos/visualizar?faces-redirect=true&id=" + id;
     }
     
+   public Boolean comprobarUsufav(Producto p) {
+       
+       return (favoritosDAO.comprobarUsufav(usu.buscaPorNombre(principal.getName()),p));
+    }
     
 }

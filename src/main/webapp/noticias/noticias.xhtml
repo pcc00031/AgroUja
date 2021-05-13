@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<html lang="es"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html" 
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+        <base href="#{request.contextPath}/"/>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.js"></script>
+        <script type="module" src="#{request.contextPath}/js/app-noticia.module.js"></script>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="#{request.contextPath}/resources/images/icon.ico"/>
+        <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+        <h:outputStylesheet library="css" name="default.css"/>
+        <h:outputStylesheet library="css" name="cssLayout.css"/>
+        
+    </h:head>
+<div id="top" style="position: fixed; width: 100%; top: 0; z-index: 1; max-height: 30px">
+        <nav class="site-header sticky-top py-1">
+
+            <div style="font-size: 13px; " class="container d-flex flex-column flex-md-row justify-content-between">
+                <ul> <li style="margin-bottom: 15%"><a href="#">AGROUJA</a></li></ul>
+                <ul> <li><a href="#">Productos</a></li></ul>
+                <ul> <li class="margenmov"><a href="#">Contacto</a></li></ul>
+                <ul> <li>
+                        <a href="#{request.contextPath}/noticias/noticias.xhtml">Noticias</a></li></ul>
+                <a class="py-2 d-none d-md-inline-block margenmov" ></a>
+                <c:choose>
+                    <c:when test="#{request.isUserInRole('USUARIOS')}">
+                        <ul><li style="width: 125px"><i>Hola, #{request.remoteUser}</i></li></ul>
+                        <h:form style="margin-bottom: 0%">
+                            <ul><li style="width: 150px"> <p:commandButton style="margin-bottom: 0%" styleClass="ui-button-success" action="#{usuarioCtrl.logout()}" value="Logout" /></li></ul>
+                        </h:form>
+
+                    </c:when>
+                    <c:when test="#{request.isUserInRole('ADMINISTRADORES')}">
+                        <ul><li style="width: 160px"><i>Hola, admin #{request.remoteUser}</i></li></ul>
+                        <h:form style="margin-bottom: 0%">
+                            <ul><li style="width: 100px"> <p:commandButton style="margin-bottom: 0%" styleClass="ui-button-success" value="Logout" /></li></ul>
+                        </h:form>                    
+                        <ul><li style="width: 50px"><a href="#">Listado</a></li></ul>
+
+                    </c:when>
+                    <c:otherwise>
+                        <ul> <li style="width: 125px"><a href="#">Iniciar Sesión</a></li></ul>
+                        <ul> <li><a href="#">Registro</a></li></ul>
+                    </c:otherwise>
+                </c:choose>
+
+
+            </div>
+        </nav>
+    </div>
+    
+    <style>
+        form .ng-invalid{
+            color: red;
+        }
+    </style>
+    
+    <body data-ng-app="noticia.app">
+        <app-noticia></app-noticia>
+    </body>
+    
+    <div id="bottom" style="width: 100%; position: fixed;  bottom: 0;">
+        <footer  class="container">
+
+            <p class="float-right"><a href="#">Back to top</a></p>
+            <p style="color: white;"> 2020-2021 AgroUja SL.  <a href="#">Privacy</a>  <a href="#">Terms</a></p>
+
+        </footer>
+    </div>
+</html>
+
