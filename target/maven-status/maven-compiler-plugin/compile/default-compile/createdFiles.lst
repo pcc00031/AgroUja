@@ -5,6 +5,7 @@ daw\agrouja\model\ComentarioDao\ComentarioDAOMap.class
 daw\agrouja\model\FavoritoDao\FavoritoDAO.class
 daw\agrouja\model\Favorito.class
 daw\agrouja\controller\ProductosController.class
+daw\agrouja\jxrs\NoticiaUsuResource.class
 daw\agrouja\qualifiers\DAOJpa.class
 daw\agrouja\model\ComentarioDao\ComentarioDAO.class
 daw\agrouja\resources\JavaEE8Resource.class

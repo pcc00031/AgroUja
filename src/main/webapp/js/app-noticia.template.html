@@ -1,42 +1,188 @@
 
-
-
-
-
 <div>
-    <h1>Listado de Noticias</h1>
+    <h1>Noticias</h1>
         <ul class="list-group" id="idNoticias">
             <li class="list-group-item" ng-repeat='n in $ctrl.noticias'>
                 <strong>{{n.titulo}}</strong>. 
                 </br>
                 {{n.mensaje}} 
+                </br>
+                {{n.fecha}}
                 <button data-ng-click="$ctrl.borrar(n.titulo)">Borrar</button>
             </li>    
         </ul>
     
-    <center><button data-ng-click="$ctrl.showForm()" data-ng-hide="$ctrl.formVisibility">Añadir Noticias</button></center>
+    <center><button class="boton-personalizado-2" data-ng-click="$ctrl.showForm()" data-ng-hide="$ctrl.formVisibility">Añadir Noticias</button></center>
          
         <div data-ng-show="$ctrl.formVisibility">
-            <h4>Alta de Noticia</h4>
             <div class="text-danger" id="idErrores">
             <!-- Mensajes de error -->
                 <p ng-repeat='e in $ctrl.errorMsgs' class='text-alert'>{{e.message}}</p>
             </div>
             <br/>
+            <section class="form-register">
             <form novalidate name="frmNoticia" ng-submit='$ctrl.altaNoticias()'> 
-                <input type="text" data-ng-pattern='/^([a-z0-9_\.-]+)\ ([a-z0-9_\.-]+).{2,}$/' ng-model='$ctrl.noticia.titulo' name="titulo" placeholder="Título" required/>
+                <input class="controls" type="text" data-ng-pattern='/^([a-z0-9_\.-]+)\ ([a-z0-9_\.-]+).{2,}$/' ng-model='$ctrl.noticia.titulo' name="titulo" placeholder="Título" required/>
                 <span class="ng-invalid" data-ng-show='frmNoticia.titulo.$dirty && frmNoticia.titulo.$invalid'>
                     Mínimo 2 palabras </span>
-                <input type="text" data-ng-pattern='/^\w{20,200}$/' ng-model='$ctrl.noticia.mensaje' name="mensaje" placeholder="Mensaje"/>
+                <input class="controls" type="text" data-ng-pattern='/^[\w ]{20,200}$/' ng-model='$ctrl.noticia.mensaje' name="mensaje" placeholder="Mensaje"/>
                 <span class="ng-invalid" data-ng-show='frmNoticia.mensaje.$dirty && frmNoticia.mensaje.$invalid'>
                     Entre 20 y 200 caracteres </span>
-                <input type="text" data-ng-pattern='/^([0-2][0-9]|3[0-1])(\/|-)(0[1-9]|1[0-2])\2(\d{4})$/' ng-model='$ctrl.noticia.fecha' name="fecha" placeholder="Fecha"/>
+                <input class="controls" type="text" data-ng-pattern='/^([0-2][0-9]|3[0-1])(\/|-)(0[1-9]|1[0-2])\2(\d{4})$/' ng-model='$ctrl.noticia.fecha' name="fecha" placeholder="Fecha"/>
                 <span class="ng-invalid" data-ng-show='frmNoticia.fecha.$dirty && frmNoticia.fecha.$invalid'>Formato dd/mm/yyyy o dd-mm-yyyy</span>
-                <input name="Enviar" type="Submit" data-ng-disabled='frmNoticia.$invalid' data-ng-click="$ctrl.showForm()"/>
+                <input class="botons" name="Enviar" type="Submit" data-ng-disabled='frmNoticia.$invalid' data-ng-click="$ctrl.showForm()"/>
             </form>
+                </section>
         </div>
     
     </div>
-        
-
          
+<style>
+    
+    @import url(https://fonts.googleapis.com/css?family=Erica+One);
+
+body {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;  
+  height: 100%;
+  background-color: pink;
+ 
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  overflow: hidden;
+}
+::selection {
+  background: transparent;
+}
+
+h1 {
+  cursor: default;
+  position: relative;
+  top: 30px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100px;
+  margin: auto;
+  display: block;
+  
+  -webkit-animation: bounce .3s ease infinite alternate;
+  
+  font-family: 'Erica One', cursive;
+  font-size: 80px;
+  color: #FFF;
+  text-align: center;
+  line-height: 100px;
+  text-shadow: 0 1px 0 #CCC,
+               0 2px 0 #CCC,
+               0 3px 0 #CCC,
+               0 4px 0 #CCC,
+               0 5px 0 #CCC,
+               0 6px 0 transparent,
+               0 7px 0 transparent,
+               0 8px 0 transparent,
+               0 9px 0 transparent,
+               0 10px 10px rgba(0, 0, 0, .6);
+}
+/* ANIMATION */
+@-webkit-keyframes bounce {
+  100% {
+    top: -30px;
+    
+    text-shadow: 0 1px 0 #CCC,
+                 0 2px 0 #CCC,
+                 0 3px 0 #CCC,
+                 0 4px 0 #CCC,
+                 0 5px 0 #CCC,
+                 0 6px 0 #CCC,
+                 0 7px 0 #CCC,
+                 0 8px 0 #CCC,
+                 0 9px 0 #CCC,
+                 0 30px 30px rgba(0, 0, 0, .3);
+  }
+}
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.form-register {
+  width: 400px;
+  background: #24303c;
+  padding: 30px;
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 200px;
+  border-radius: 4px;
+  font-family: 'calibri';
+  color: white;
+  box-shadow: 7px 13px 37px #000;
+}
+
+.form-register h4 {
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.controls {
+  width: 100%;
+  background: #24303c;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  border: 1px solid #1f53c5;
+  font-family: 'calibri';
+  font-size: 18px;
+  color: white;
+}
+
+.form-register p {
+  height: 40px;
+  text-align: center;
+  font-size: 18px;
+  line-height: 40px;
+}
+
+.form-register a {
+  color: white;
+  text-decoration: none;
+}
+
+.form-register a:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+.form-register .botons {
+  width: 100%;
+  background: #1f53c5;
+  border: none;
+  padding: 12px;
+  color: white;
+  margin: 16px 0;
+  font-size: 16px;
+}
+
+.boton-personalizado-2 {
+text-decoration:none;
+font-weight:600;
+font-size:20px;
+color:#ffffff;
+padding-top:15px;
+padding-bottom:15px;
+padding-left:150px;
+padding-right:150px;
+background-color:#FFD27D;
+}
+
+/* Este es el estilo al poner el cursor encima del boton*/
+.boton-personalizado-2:hover {
+background-color:#000000;
+}
+
+</style>
