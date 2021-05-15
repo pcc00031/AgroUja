@@ -9,7 +9,19 @@
                 xmlns:daw="http://java.sun.com/jsf/composite/dawcomp"
                 xmlns:c="http://java.sun.com/jsp/jstl/core">
 
+    <script type="text/javascript">
+        function validacion() {
+            var exprRegNom = /\w{2,50}/;
+            if (!exprRegNom.test(document.getElementById("coment").value)) {
+                alert()("La extensión de comentario debe de estar comprendida entre 2 y 50 caracteres");
+                return false;
+            }
+            return true;
+        }
+    </script>
     <ui:define name="left">
+
+
         <h:form>
             <p:card style="height: available; width: available; margin-top: 10%; margin-bottom: 10%; padding-top: 0;">
                 <h:graphicImage width="100%" name="#{prodCtrl.producto.imagen}" library="images"/>
@@ -22,78 +34,105 @@
 
     <ui:define name="content">
 
-        <h:form>
-            <h:head>
-                <f:metadata>
-                    <f:viewParam name ="id" required ="true"
-                                 value ="#{prodCtrl.producto.id}"/>
-                    <f:viewAction action = "#{prodCtrl.recupera()}"/>
-                </f:metadata>
-            </h:head>
-        </h:form>
-        <h:form>
-            <p:card style="margin-right: 10%; margin-left: 10%;margin-top: 5%; margin-bottom: 5%;">
-                <f:facet name="title">
-                    <h1>
-                        #{prodCtrl.producto.nombre}
-                        <c:if test="#{prodCtrl.comprobarUsu()}">
-                            <p:commandButton style="float: right" styleClass="ui-button-danger" value="Borrar producto" icon="pi pi-times" action ="#{prodCtrl.borrar()}"/> 
-                            <p style="color: white; float: right"> he</p>                       
-                            <p:commandButton style="float: right" styleClass="ui-button-success" value="Editar producto" icon="pi pi-pencil" action ="#{prodCtrl.edita()}"/> 
-                            <p style="color: white; float: right"> he</p>
-                        </c:if>
-                        <p:commandButton style="float: right" value="Favorito" icon="pi pi-heart" action ="#{usuarioCtrl.addFav(prodCtrl.producto)}"/> 
-                    </h1>
-                </f:facet>
-                <f:facet name="subtitle">
-                    <hr></hr>
-                    <br>#{prodCtrl.producto.descripcion}</br>
-                    <div style="margin-left: 1%">
-                        <br><b>Distribuido por: </b>#{prodCtrl.producto.marca}</br>
-                        <br><b>Estado: </b>#{prodCtrl.producto.estado}</br>
-                        <br><b>Categoría: </b>#{prodCtrl.producto.categoria}</br>
-                        <br><b>En: </b>#{prodCtrl.producto.ventAlq}<p style="color: white">separador</p></br>
-                    </div>           
-                </f:facet>
-                <f:facet name="footer">                    
-                    <br><p><i>Publicado por: <strong>@#{prodCtrl.usu}</strong></i></p></br>
-                    <h3>Precio: #{prodCtrl.producto.precio}€</h3>
-                </f:facet> 
-            </p:card>
-            <br>   <center><h1>Agregar comentario</h1></center></br>
-            <br>                
-                <p:inputTextarea style="margin-left: 13%;width: 900px; margin-right: 5%" rows="5" value="#{comentCtrl.comentario.descripcion}"  ></p:inputTextarea>
-            </br>
-            <br> <center> <p:commandButton styleClass="ui-button-success" value="Confirmar" icon="pi pi-comment" action ="#{comentCtrl.crea(prodCtrl.producto)}"/> </center></br>
-            <br></br>
-            <center><h1>Lista de comentarios</h1></center>
+        <div ng-controller="AgroApp" ng-cloak="">
+            <h:form>
+                <h:head>
+                    <f:metadata>
+                        <f:viewParam name ="id" required ="true"
+                                     value ="#{prodCtrl.producto.id}"/>
+                        <f:viewAction action = "#{prodCtrl.recupera()}"/>
+                    </f:metadata>
+                </h:head>
+            </h:form>
+            <h:form>
 
-            <!-- No consigo que funcione de manera adecuada, estoy mezclando conceptos & los Select's de la base de datos seguramente estén mal-->
-            <!-- El método para borrar tampoco funciona, por las claves foraneas, pero es todo es demasiado lío y no soy capaz de solucionarlo -->
-            <!-- Al menos en la parte de usuario, sí hemos conseguido que al eliminar un usuario se borren sus productos asociados y no genera problemas-->
-            <!-- Me hubiera gustado implementar más cosas y que funcionaran correctamente, pero el hecho de no terminar de comprender del todo el contenido 
-            en general ha hecho que me sea imposible -->
-
-            <ui:repeat var="p" value="#{prodCtrl.buscaComents()}">
                 <p:card style="margin-right: 10%; margin-left: 10%;margin-top: 5%; margin-bottom: 5%;">
-                    <f:facet name="subtitle">
+                    <f:facet name="title">
+                        <h1>
+                            #{prodCtrl.producto.nombre}
+                            <c:if test="#{prodCtrl.comprobarUsu()}">
+                                <md-menu style="float:right">
+                                    <md-button md-colors="{background: 'green'}" ng-click="$mdMenu.open()">
+                                        <md-icon md-colors="{color: 'grey-A100'}" md-font-icon="pi pi-align-justify"></md-icon>
+                                        <span style="color:white">Opciones</span>
+                                    </md-button>
+                                    <md-menu-content width="4">
+                                        <md-menu-item>
+                                            <p:commandButton styleClass="ui-button-success" value="Editar producto" icon="pi pi-pencil" action ="#{prodCtrl.edita(prodCtrl.producto.id)}"/>                                 
+                                        </md-menu-item>    
+                                        <md-menu-item>
+                                            <p:commandButton styleClass="ui-button-danger" value="Borrar producto" icon="pi pi-times" action ="#{prodCtrl.borrar(prodCtrl.producto.id)}"/> 
+                                        </md-menu-item>
+                                    </md-menu-content>
+                                </md-menu>
+                            </c:if>
 
-                        <p style="float: right"><i>@#{p.usu}</i></p>
-                        <p style="float: left">#{p.descripcion}</p>
-                        <h:panelGroup rendered="#{comentCtrl.comprobarUsu(p.id_comentario)}">                          
-                            <br>
-                                <br>
-                                    <p:commandButton style="float: right" styleClass="ui-button-danger"  icon="pi pi-times" action ="#{comentCtrl.borrar(p.id_comentario)}"/> 
-                                    <p style="color: white; float: right"> he</p>                       
-                                    <p:commandButton style="float: right" styleClass="ui-button-success"  icon="pi pi-pencil" action ="#{comentCtrl.edita(p.id_comentario)}"/> 
-                                    <p style="color: white; float: right"> he</p>
-                                </br>
-                            </br>
-                        </h:panelGroup>
+                            <c:choose>
+                                <c:when test="#{favCtrl.comprobarUsufav(prodCtrl.producto)}">
+                                    <p:commandButton style="float: right" styleClass="ui-button-danger" value="Eliminar Favorito" icon="pi pi-times" action ="#{favCtrl.borrar(prodCtrl.producto.id)}"/> 
+                                </c:when>
+
+                                <c:otherwise>
+                                    <p:commandButton style="float: right" value="Favorito" icon="pi pi-heart" action ="#{favCtrl.anade(prodCtrl.producto)}"/>
+                                </c:otherwise>
+                            </c:choose>
+                        </h1>
                     </f:facet>
+                    <f:facet name="subtitle">
+                        <hr></hr>
+                        <br>#{prodCtrl.producto.descripcion}</br>
+                        <div style="margin-left: 1%">
+                            <br><b>Distribuido por: </b>#{prodCtrl.producto.marca}</br>
+                            <br><b>Estado: </b>#{prodCtrl.producto.estado}</br>
+                            <br><b>Categoría: </b>#{prodCtrl.producto.categoria}</br>
+                            <br><b>En: </b>#{prodCtrl.producto.ventAlq}<p style="color: white">separador</p></br>
+                        </div>           
+                    </f:facet>
+                    <f:facet name="footer">                    
+                        <br><p><i>Publicado por: <strong>@#{prodCtrl.usu}</strong></i></p></br>
+                        <h3>Precio: #{prodCtrl.producto.precio}€</h3>
+                    </f:facet> 
                 </p:card>
-            </ui:repeat>
-        </h:form>
+            </h:form>
+                <h:form>
+                <br>   <center><h1>Agregar comentario</h1></center></br>
+                <br> 
+
+                    <p:inputTextarea style="margin-left: 5%;width: 900px; margin-right: 5%" id="coment" rows="5"  value="#{comentCtrl.comentario.descripcion}" validatorMessage="La extensión de comentario debe de estar comprendida entre 2 y 50 caracteres" >
+                        <f:validateRegex pattern="\w{2,50}"/>
+                    </p:inputTextarea>
+                </br>
+                <br> <center> <p:commandButton styleClass="ui-button-success" value="Confirmar" icon="pi pi-comment" action ="#{comentCtrl.crea(prodCtrl.producto)}"/> </center></br>
+                <br></br>
+                <h:form>
+                    <p:messages id="messages" closable="true" >
+                        <p:autoUpdate/>
+                    </p:messages>
+                </h:form>
+                <center><h1>Lista de comentarios</h1></center>
+            </h:form>
+            <h:form>
+                <ui:repeat var="p" value="#{prodCtrl.buscaComents()}">
+                    <p:card style="margin-right: 10%; margin-left: 10%;margin-top: 5%; margin-bottom: 5%;">
+                        <f:facet name="subtitle">
+
+                            <p style="float: right"><i>@#{p.usu}</i></p>
+                            <p style="float: left">#{p.descripcion}</p>
+                            <h:panelGroup rendered="#{comentCtrl.comprobarUsu(p.id_comentario)}">                          
+                                <br>
+                                    <br>
+                                        <p:commandButton style="float: right" styleClass="ui-button-danger"  icon="pi pi-times" action ="#{comentCtrl.borrar(p.id_comentario)}"/> 
+                                        <p style="color: white; float: right"> he</p>                       
+                                        <p:commandButton style="float: right" styleClass="ui-button-success"  icon="pi pi-pencil" action ="#{comentCtrl.edita(p.id_comentario)}"/> 
+                                        <p style="color: white; float: right"> he</p>
+                                    </br>
+                                </br>
+                            </h:panelGroup>
+                        </f:facet>
+                    </p:card>
+                </ui:repeat>
+            </h:form>
+        </div>
     </ui:define>
 
 

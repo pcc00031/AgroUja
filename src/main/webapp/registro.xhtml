@@ -7,6 +7,37 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:c="http://java.sun.com/jsp/jstl/core">
+    
+    <script type="text/javascript">
+            function validacion() {
+                var exprRegNom=/\w{2,20}/;
+                if(!exprRegNom.test(document.getElementById("Nomb").value)) {
+                    alert()("El nombre debe tener entre 2 y 20 caracteres");
+                    return false;
+                }
+                var exprRegApell=/\w{2,30}/;                
+                if(!exprRegApell.test(document.getElementById("Apell").value)) {
+                    alert()("Los apellidos deben tener entre 2 y 30 caracteres");
+                    return false;
+                }
+                var exprRegNUsu=/\w{2,20}/;                
+                if(!exprRegNUsu.test(document.getElementById("usu").value)) {
+                    alert()("El nombre de usuario debe tener entre 2 y 20 caracteres");
+                    return false;
+                }
+                var exprRegPasswd=/\w{6,20}/;
+                if(!exprRegPasswd.test(document.getElementById("cont").value)) {
+                    alert()("La contraseña debe tener entre 6 y 20 caracteres");
+                    return false;
+                }
+                var exprRegCorr=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3,4})+$/;               
+                if(!exprRegCorr.test(document.getElementById("Corr").value)) {
+                    alert()("El formato de correo electrónico no es correcto");
+                    return false;
+                }
+                return true;
+            }
+        </script>
 
     <ui:define name="content">
         <h:form>
@@ -15,17 +46,24 @@
             </p:messages>
         </h:form>
 
-        <h:form>
+        <h:form id="formularioRegistro">
             <p:fieldset style="padding-left: 12%; padding-right: 10%; display: block; margin-left: 20%; margin-right: 20%" legend="Datos Personales">
                 <h:panelGrid columns="2">
                     <p:outputLabel for="Nomb" value="Nombre" />
-                    <p:inputText required="true" id="Nomb" value="#{usuarioCtrl.usuario.nombre}" />
+                    
+                    <p:inputText required="true" id="Nomb" value="#{usuarioCtrl.usuario.nombre}" validatorMessage="El nombre debe tener entre 2 y 20 caracteres">
+                        <f:validateRegex pattern="\w{2,20}"/>
+                    </p:inputText>
 
                     <p:outputLabel for="Apell" value="Apellidos"  />
-                    <p:inputText required="true" id="Apell" value="#{usuarioCtrl.usuario.apellidos}" />
+                    <p:inputText required="true" id="Apell" value="#{usuarioCtrl.usuario.apellidos}" validatorMessage="Los apellidos deben tener entre 2 y 30 caracteres">
+                        <f:validateRegex pattern="^[(\w+)\s(\w+)]{2,30}"/>
+                    </p:inputText>
 
                     <p:outputLabel for="Corr" value="Correo"  />
-                    <p:inputText required="true" id="Corr" value="#{usuarioCtrl.usuario.correo}" />
+                    <p:inputText required="true" id="Corr" value="#{usuarioCtrl.usuario.correo}" validatorMessage="El formato de correo electrónico no es correcto">
+                        <f:validateRegex pattern="[\w._%+-]+@[\w.-]+\.[a-zA-Z]{2,4}"/>
+                    </p:inputText>
 
                     <p:outputLabel  value="Sexo"/>
                     <p:selectOneRadio value="#{usuarioCtrl.usuario.sexo}">
@@ -53,9 +91,13 @@
             <p:fieldset style="padding-left: 12%; padding-right: 10%; display: block; margin-left: 20%; margin-right: 20%" legend="Cuenta">
                 <h:panelGrid columns="2">
                     <p:outputLabel for="usu" value="Usuario"  />
-                    <p:inputText required="true" id="usu" value="#{usuarioCtrl.usuario.nickname}" />
+                    <p:inputText required="true" id="usu" value="#{usuarioCtrl.usuario.nickname}" validatorMessage="El nombre de usuario debe tener entre 2 y 20 caracteres">
+                        <f:validateRegex pattern="\w{2,20}"/>
+                    </p:inputText>
                     <p:outputLabel for="cont" value="Contraseña"  />
-                    <p:password required="true" toggleMask="true" id="cont" value="#{usuarioCtrl.usuario.password}" />
+                    <p:password required="true" toggleMask="true" id="cont" value="#{usuarioCtrl.usuario.password}" validatorMessage="La contraseña debe tener entre 6 y 20 caracteres">
+                        <f:validateRegex pattern="\w{6,20}"/>
+                    </p:password>
                     <p:commandButton value="Registrar" styleClass="ui-button-success" action="#{usuarioCtrl.crea()}"/>
                 </h:panelGrid>
             </p:fieldset>

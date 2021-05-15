@@ -7,6 +7,7 @@ import daw.agrouja.model.UsuarioDao.UsuarioDAO;
 import daw.agrouja.qualifiers.DAOJpa;
 import java.io.Serializable;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,7 +26,7 @@ public class ProductosController implements Serializable {
     private ProductosDAO productosDAO;
     @Inject
     private Principal principal;
-    private List<Producto> prodsEnc;
+    private List<Producto> prodsEnc = new ArrayList<>();
     private Producto producto;
     private List<Producto> productos;
     @Inject
@@ -40,7 +41,6 @@ public class ProductosController implements Serializable {
     public void init() {
         producto = new Producto();
         productos = productosDAO.buscaTodos();
-        prodsEnc = productosDAO.buscaTodosSub();
     }
 
     public List<Producto> getProdsEnc() {
@@ -102,46 +102,50 @@ public class ProductosController implements Serializable {
         return "/productos/visualizar?faces-redirect=true&id=" + producto.getId();
     }
 
-    public String buscarNombre() {
+    public void buscarNombre() {
         if (producto.getBuscaNomb().contentEquals("")) {
             producto.setBuscaNomb("xxx");
         }
         log.log(Level.INFO, "Buscando producto que contiene: {0}", producto.getBuscaNomb());
-        productosDAO.buscarNombre(producto.getBuscaNomb());
-        return "index?faces-redirect";
+        prodsEnc = productosDAO.buscarNombre(producto.getBuscaNomb());
     }
 
-    public List<Producto> buscarCategoria() {
+    public void buscarCategoria() {
         if (producto.getBuscaCat().contentEquals("")) {
             producto.setBuscaCat("xxx");
         }
         log.log(Level.INFO, "Buscando producto con categoria: {0}", producto.getBuscaCat());
-        return productosDAO.buscarCategoria(producto.getBuscaCat());
+        prodsEnc = productosDAO.buscarCategoria(producto.getBuscaCat());
+    }
+    
+        public void buscarPub() {
+        if (producto.getBuscaPub().contentEquals("")) {
+            producto.setBuscaPub("xxx");
+        }
+        log.log(Level.INFO, "Buscando producto con tipo de publicación: {0}", producto.getBuscaPub());
+        prodsEnc = productosDAO.buscarPub(producto.getBuscaPub());
     }
 
-    public List<Producto> buscarMarca() {
+    public void buscarMarca() {
         if (producto.getBuscaMarca().contentEquals("") || producto.getBuscaMarca().contentEquals("Otra")) {
             producto.setBuscaMarca("xxx");
         }
         log.log(Level.INFO, "Buscando producto con marca: {0}", producto.getBuscaMarca());
-        return productosDAO.buscarMarca(producto.getBuscaMarca());
+        prodsEnc = productosDAO.buscarMarca(producto.getBuscaMarca());
     }
 
-    public List<Producto> buscarEstado() {
+    public void buscarEstado() {
         if (producto.getBuscaEst().contentEquals("")) {
             producto.setBuscaEst("xxx");
         } else {
         }
         log.log(Level.INFO, "Buscando producto en: {0}", producto.getBuscaEst());
-        return productosDAO.buscarEstado(producto.getBuscaEst());
+        prodsEnc = productosDAO.buscarEstado(producto.getBuscaEst());
     }
 
     public String getUsu() {
         return usu.buscaId(producto.getIdUsuario()).getNickname();
-    }
-
-    //FIXME Buscar por marca, estado, categoria
-    //FIXME Comprobar comentario y usuario para editar/borrar comentario
+    } 
     public Boolean comprobarUsu() {
         return (productosDAO.comprobarUsu(producto, usu.buscaPorNombre(principal.getName())));
     }
@@ -152,8 +156,12 @@ public class ProductosController implements Serializable {
         }
         return productosDAO.comprobarFav(producto, usu.buscaPorNombre(principal.getName()));
     }
-    
-    public List<Comentario> buscaComents(){
+
+    public List<Comentario> buscaComents() {
         return productosDAO.buscaComents(producto);
+    }
+    
+    public List<Producto> buscaDestacados() {
+        return productosDAO.buscaDestacados();
     }
 }

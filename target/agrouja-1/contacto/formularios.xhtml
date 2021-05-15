@@ -8,13 +8,7 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:dawcomp="http://java.sun.com/jsf/composite/dawcomp">
 
-    <ui:define name="left">
-        left
-    </ui:define>
-
-    <ui:define name="right">
-        right
-    </ui:define>
+    
 
     <ui:define name="content">
         <h:form>
@@ -31,6 +25,9 @@
                     </p:column>
                 </p:dataTable>
         </h:form>
+        
+        
+
         
         <h:panelGroup id="detalle" layout="block">
             <h:form rendered="#{not empty(ctrlFormulario.formulario.email)}"> <!-- no podemos poner el id porque id != null de primeras -->

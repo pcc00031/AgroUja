@@ -44,22 +44,18 @@ public class Producto implements Serializable {
     private String ventAlq = ""; //> Venta / Alquiler
     private boolean destacado = false;
 
-    private Integer rating = 3;
-    private Boolean favorito = false;
-
     @Positive(message = "El precio no puede ser negativo o cero")
     private double precio = 0;
 
     //Claves foraneas
     private Integer idUsuario = 0;
-    private List<Comentario> comentarios = null;
 
     //Atributos específicos
     private String buscaNomb = "";
     private String buscaCat = "";
     private String buscaMarca = "";
     private String buscaEst = "";
-    private List<Usuario> usuarios;
+    private String buscaPub = "";
 
     /* CONSTRUCTORES */
     /**
@@ -112,8 +108,6 @@ public class Producto implements Serializable {
         this.ventAlq = p.ventAlq;
         this.destacado = p.destacado;
         this.precio = p.precio;
-        this.comentarios = p.comentarios;
-        this.rating = p.rating;
     }
 
     /* GETTERS Y SETTERS */
@@ -197,22 +191,6 @@ public class Producto implements Serializable {
         this.precio = precio;
     }
 
-    public Integer getRating() {
-        return rating;
-    }
-
-    public void setRating(Integer rating) {
-        this.rating = rating;
-    }
-
-    public List<Comentario> getComentarios() {
-        return comentarios;
-    }
-
-    public void setComentarios(List<Comentario> comentarios) {
-        this.comentarios = comentarios;
-    }
-
     public String getBuscaNomb() {
         return buscaNomb;
     }
@@ -245,20 +223,20 @@ public class Producto implements Serializable {
         this.idUsuario = idUsuario;
     }
 
-    public Boolean getFavorito() {
-        return favorito;
-    }
-
-    public void setFavorito(Boolean favorito) {
-        this.favorito = favorito;
-    }
-
     public String getBuscaEst() {
         return buscaEst;
     }
 
     public void setBuscaEst(String buscaEst) {
         this.buscaEst = buscaEst;
+    }
+
+    public String getBuscaPub() {
+        return buscaPub;
+    }
+
+    public void setBuscaPub(String buscaPub) {
+        this.buscaPub = buscaPub;
     }
 
 }

@@ -1,4 +1,3 @@
-
 package daw.agrouja.model.ProductoDao;
 
 import daw.agrouja.model.Comentario;
@@ -29,11 +28,9 @@ public class ProductosDAOJpa
 
     @PersistenceContext(unitName = "agroPU")
     private EntityManager em;
-    private List<Producto> subProductos = new ArrayList<>();
 
     public ProductosDAOJpa() {
 
-        //subProductos.put(1, new Producto(1, "Azada", "La mejor azada", "AgroUja", "azada.png", "Nuevo", "Maquinaria", "Venta", true, 50.7));
     }
 
     @Override
@@ -60,15 +57,9 @@ public class ProductosDAOJpa
     }
 
     @Override
-    public List<Producto> buscaTodosSub() {
-        return subProductos;
-    }
-
-    @Override
     public boolean crea(Producto p) {
         boolean creado = false;
         try {
-            // em.createQuery("SELECT u.id, u. FROM Usuario u JOIN c.id p", Usuario.class).setParameter("p", p);
             em.persist(p);
             creado = true;
         } catch (Exception ex) {
@@ -88,18 +79,6 @@ public class ProductosDAOJpa
     }
 
     @Override
-    public boolean agregarComent(Producto p) {
-        boolean add = false;
-        try {
-            em.merge(p);
-            add = true;
-        } catch (Exception ex) {
-            logger.log(Level.SEVERE, ex.getMessage(), ex);
-        }
-        return add;
-    }
-
-    @Override
     public boolean edita(Producto p) {
         boolean editado = false;
         try {
@@ -112,23 +91,28 @@ public class ProductosDAOJpa
     }
 
     @Override
-    public void buscarNombre(String nombre) {
+    public List<Producto> buscarNombre(String nombre) {
+        List<Producto> lp = null;
         try {
             Query q = em.createQuery("Select p from Producto p where p.nombre=:nombre", Producto.class).setParameter("nombre", nombre);
-            subProductos = q.getResultList();
-
+            lp = q.getResultList();
         } catch (Exception ex) {
             logger.log(Level.SEVERE, ex.getMessage(), ex);
         }
+        return lp;
     }
 
     @Override
     public List<Producto> buscarMarca(String marca) {
         List<Producto> lp = null;
         try {
-            Query q = em.createQuery("Select p from Producto p where p.marca=:marca", Producto.class).setParameter("marca", marca);
-            lp = q.getResultList();
-
+            if (marca.equals("xxx")) {
+                Query q = em.createQuery("Select p from Producto p where NOT p.marca=:marca", Producto.class).setParameter("marca", "AgroUja");
+                lp = q.getResultList();
+            } else {
+                Query q = em.createQuery("Select p from Producto p where p.marca=:marca", Producto.class).setParameter("marca", marca);
+                lp = q.getResultList();
+            }
         } catch (Exception ex) {
             logger.log(Level.SEVERE, ex.getMessage(), ex);
         }
@@ -162,11 +146,25 @@ public class ProductosDAOJpa
     }
 
     @Override
+    public List<Producto> buscarPub(String pub) {
+        List<Producto> lp = null;
+        try {
+            Query q = em.createQuery("Select p from Producto p where p.ventAlq=:pub", Producto.class).setParameter("pub", pub);
+            lp = q.getResultList();
+
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
+        }
+        return lp;
+    } 
+
+    @Override
     public Boolean comprobarUsu(Producto p, Usuario u) {
         Boolean coincide = false;
         try {
-            Query q = em.createQuery("Select p from Producto p, Usuario u where p.idUsuario=u.id AND :pid=:usuid AND p.id=:pid", Usuario.class);
-            q.setParameter("pid", p.getIdUsuario());
+            Query q = em.createQuery("Select p from Producto p, Usuario u where p.idUsuario=u.id AND :puid=:usuid AND p.id=:pid AND u.id=:usuid", Usuario.class);
+            q.setParameter("puid", p.getIdUsuario());
+            q.setParameter("pid", p.getId());
             q.setParameter("usuid", u.getId());
             if (q.getSingleResult() != null) {
                 coincide = true;
@@ -201,7 +199,7 @@ public class ProductosDAOJpa
     public List<Comentario> buscaComents(Producto p) {
         List<Comentario> lc = new ArrayList<>();
         try {
-            Query q = em.createQuery("Select c from Producto p, Comentario c where p.id=:pid AND c.id_producto=:pid AND c.id_producto=p.id", 
+            Query q = em.createQuery("Select c from Producto p, Comentario c where p.id=:pid AND c.id_producto=:pid",
                     Producto.class);
             q.setParameter("pid", p.getId());
             lc = q.getResultList();
@@ -209,5 +207,18 @@ public class ProductosDAOJpa
             logger.log(Level.SEVERE, ex.getMessage(), ex);
         }
         return lc;
+    }
+
+    @Override
+    public List<Producto> buscaDestacados() {
+        List<Producto> lp = new ArrayList<>();
+        try {
+            Query q = em.createQuery("Select p from Producto p where p.destacado= 1",
+                    Producto.class);
+            lp = q.getResultList();
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
+        }
+        return lp;
     }
 }
