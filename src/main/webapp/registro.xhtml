@@ -27,12 +27,12 @@
                 }
                 var exprRegPasswd=/\w{6,20}/;
                 if(!exprRegPasswd.test(document.getElementById("cont").value)) {
-                    alert()("La contraseña debe tener entre 6 y 20 caracteres");
+                    alert()("La contraseÃ±a debe tener entre 6 y 20 caracteres");
                     return false;
                 }
                 var exprRegCorr=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3,4})+$/;               
                 if(!exprRegCorr.test(document.getElementById("Corr").value)) {
-                    alert()("El formato de correo electrónico no es correcto");
+                    alert()("El formato de correo electrÃ³nico no es correcto");
                     return false;
                 }
                 return true;
@@ -60,7 +60,7 @@
                     </p:inputText>
 
                     <p:outputLabel for="Corr" value="Correo"  />
-                    <p:inputText required="true" id="Corr" value="#{usuarioCtrl.usuario.correo}" validatorMessage="El formato de correo electrónico no es correcto">
+                    <p:inputText required="true" id="Corr" value="#{usuarioCtrl.usuario.correo}" validatorMessage="El formato de correo electrÃ³nico no es correcto">
                         <f:validateRegex pattern="[\w._%+-]+@[\w.-]+\.[a-zA-Z]{2,4}"/>
                     </p:inputText>
 
@@ -93,8 +93,8 @@
                     <p:inputText required="true" id="usu" value="#{usuarioCtrl.usuario.nickname}" validatorMessage="El nombre de usuario debe tener entre 2 y 20 caracteres">
                         <f:validateRegex pattern="\w{2,20}"/>
                     </p:inputText>
-                    <p:outputLabel for="cont" value="Contraseña"  />
-                    <p:password required="true" toggleMask="true" id="cont" value="#{usuarioCtrl.usuario.password}" validatorMessage="La contraseña debe tener entre 6 y 20 caracteres">
+                    <p:outputLabel for="cont" value="ContraseÃ±a"  />
+                    <p:password required="true" toggleMask="true" id="cont" value="#{usuarioCtrl.usuario.password}" validatorMessage="La contraseÃ±a debe tener entre 6 y 20 caracteres">
                         <f:validateRegex pattern="\w{6,20}"/>
                     </p:password>
                     <p:commandButton value="Registrar" styleClass="ui-button-success" action="#{usuarioCtrl.crea()}"/>
