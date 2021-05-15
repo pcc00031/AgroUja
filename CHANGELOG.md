@@ -7,9 +7,10 @@
 - Integración de AngularJS Material - @pcc00031 , @cmp00070 , @jgr00059 , @cga00037
 - Mensajes de error y ventanas emergentes para operaciones con Producto agregados - @pcc00031
 - Mensajes de error y ventanas emergentes para operaciones con Usuario agregados - @jgr00059
-- Mensajes de error para operaciones con Noticias agregados - @cga00037
 - Mensajes de error y ventanas emergentes para operaciones con Comentario agregados - @cmp00070
+- Mensajes de error para operaciones con Noticias agregados - @cga00037
 - Implementación de servicio REST (Noticias) y peticiones asíncronas con el servidor - @cga00037
+- Creación Entidad Noticia, DAO y Controller - @cga00037 
 - Comprobación de favoritos añadidos por un usuario establecida - @cmp00070  
 
 ### Fixed
