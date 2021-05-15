@@ -18,15 +18,7 @@
                 <p:fieldset  style=" align-self:  center; margin-left: 30%; margin-right: 30%" legend="Datos del producto">
                     <h:panelGrid style="margin-left: 10%;" columns="2" cellpadding="7">
                         <p:outputLabel value="Nombre" />
-                        <input name="nombre" id="Nomb" required="true" ng-model="#{prodCtrl.producto.nombre}" />
-                        <md-input-container md-colors="{color: 'green'}" class="md-block" >
-                            <label md-colors="{color: 'green'}">Description</label>
-                            <input md-colors="{color: 'green'}" md-maxlength="30" required="true" md-no-asterisk="true" name="description" ng-model="project.description"/>
-                            <div ng-messages="agro.description.$error">
-                                <div ng-message="required">This is required.</div>
-                                <div ng-message="md-maxlength">The description must be less than 30 characters long.</div>
-                            </div>
-                        </md-input-container>
+                        <p:inputText value="#{prodCtrl.producto.nombre}"></p:inputText>
                         <p:outputLabel for="input1" value="Precio"/>
                         <p:inputNumber id="input1" value="#{prodCtrl.producto.precio}" modifyValueOnWheel="false" required="true"/>
 
@@ -70,8 +62,6 @@
                         <p:commandButton icon="pi pi-upload" value="Subir imagen"/>
                         <h:commandButton  id="crear" styleClass="ui-button-success" action="#{prodCtrl.crea()}" value="Añadir producto"/>
                         <md-button ng-click="showAlert($event)" md-colors="{background: 'green'}"><span style="color:white">Añadir producto</span></md-button>
-                        <p:remoteCommand name="showAlert($event)" action="#{prodCtrl.crea()}" />
-
                     </h:panelGrid>
                 </p:fieldset>
 

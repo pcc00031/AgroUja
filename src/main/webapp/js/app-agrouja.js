@@ -25,7 +25,7 @@ export const AgroAppModule = angular
                             .clickOutsideToClose(true)
                             .title('Producto creado')
                             .ariaLabel('Alert Dialog Demo')
-                            .ok('Ver')
+                            .ok('OK ("Ir a productos"')
                             .targetEvent(ev)).then(function () {
                         document.getElementById("CrearProd").submit();
                     })
@@ -34,21 +34,6 @@ export const AgroAppModule = angular
                     $scope.status = 'You decided to keep your debt.';
                 });
                 ;
-            };
-            $scope.showConfirm = function (ev) {
-                var confirm = $mdDialog.confirm()
-                        .title('Would you like to delete your debt?')
-                        .textContent('All of the banks have agreed to forgive you your debts.')
-                        .ariaLabel('Lucky day')
-                        .targetEvent(ev)
-                        .ok('Please do it!')
-                        .cancel('Sounds like a scam');
-
-                $mdDialog.show(confirm).then(function () {
-                    $scope.status = 'You decided to get rid of your debt.';
-                }, function () {
-                    $scope.status = 'You decided to keep your debt.';
-                });
             };
         });
         
