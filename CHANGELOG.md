@@ -19,6 +19,7 @@
 - Relaciones entre entidades corregidas - @cmp00070
 - Entidad Comentario corregida - @pcc00031
 - Filtrado de productos corregido - @pcc00031
+- Corrección de errores en formulario de registro de usuario - @jgr00059
 
 ## [0.0.4] - 2021-05-03
 #### Added
