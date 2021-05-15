@@ -9,7 +9,19 @@
                 xmlns:daw="http://java.sun.com/jsf/composite/dawcomp"
                 xmlns:c="http://java.sun.com/jsp/jstl/core">
 
+    <script type="text/javascript">
+        function validacion() {
+            var exprRegNom = /\w{2,50}/;
+            if (!exprRegNom.test(document.getElementById("coment").value)) {
+                alert()("La extensión de comentario debe de estar comprendida entre 2 y 50 caracteres");
+                return false;
+            }
+            return true;
+        }
+    </script>
     <ui:define name="left">
+
+
         <h:form>
             <p:card style="height: available; width: available; margin-top: 10%; margin-bottom: 10%; padding-top: 0;">
                 <h:graphicImage width="100%" name="#{prodCtrl.producto.imagen}" library="images"/>
@@ -21,6 +33,7 @@
     </ui:define>
 
     <ui:define name="content">
+
         <div ng-controller="AgroApp" ng-cloak="">
             <h:form>
                 <h:head>
@@ -31,7 +44,8 @@
                     </f:metadata>
                 </h:head>
             </h:form>
-            <h:form id="CrearProd">
+            <h:form>
+
                 <p:card style="margin-right: 10%; margin-left: 10%;margin-top: 5%; margin-bottom: 5%;">
                     <f:facet name="title">
                         <h1>
@@ -79,12 +93,22 @@
                         <h3>Precio: #{prodCtrl.producto.precio}€</h3>
                     </f:facet> 
                 </p:card>
+            </h:form>
+                <h:form>
                 <br>   <center><h1>Agregar comentario</h1></center></br>
-                <br>                
-                    <p:inputTextarea style="margin-left: 13%;width: 900px; margin-right: 5%" rows="5" value="#{comentCtrl.comentario.descripcion}"  ></p:inputTextarea>
+                <br> 
+
+                    <p:inputTextarea style="margin-left: 5%;width: 900px; margin-right: 5%" id="coment" rows="5"  value="#{comentCtrl.comentario.descripcion}" validatorMessage="La extensión de comentario debe de estar comprendida entre 2 y 50 caracteres" >
+                        <f:validateRegex pattern="\w{2,50}"/>
+                    </p:inputTextarea>
                 </br>
                 <br> <center> <p:commandButton styleClass="ui-button-success" value="Confirmar" icon="pi pi-comment" action ="#{comentCtrl.crea(prodCtrl.producto)}"/> </center></br>
                 <br></br>
+                <h:form>
+                    <p:messages id="messages" closable="true" >
+                        <p:autoUpdate/>
+                    </p:messages>
+                </h:form>
                 <center><h1>Lista de comentarios</h1></center>
             </h:form>
             <h:form>

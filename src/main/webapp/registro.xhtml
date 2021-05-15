@@ -50,6 +50,7 @@
             <p:fieldset style="padding-left: 12%; padding-right: 10%; display: block; margin-left: 20%; margin-right: 20%" legend="Datos Personales">
                 <h:panelGrid columns="2">
                     <p:outputLabel for="Nomb" value="Nombre" />
+                    
                     <p:inputText required="true" id="Nomb" value="#{usuarioCtrl.usuario.nombre}" validatorMessage="El nombre debe tener entre 2 y 20 caracteres">
                         <f:validateRegex pattern="\w{2,20}"/>
                     </p:inputText>
